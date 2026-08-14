@@ -8,114 +8,705 @@
 
 <meta name="theme-color" content="#75472f">
 
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style"
+      content="default">
+
 <title>Chicken Soup Library</title>
 
 <style>
 
+/* =========================
+   BASE
+========================= */
+
 *{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
 }
 
 body{
-  margin:0;
-  padding:0;
-  background:#f6efe6;
-  color:#35271f;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+margin:0;
+background:#f6efe6;
+color:#35271f;
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+sans-serif;
 }
 
+button,
+input{
+font:inherit;
+}
+
+button{
+-webkit-appearance:none;
+appearance:none;
+cursor:pointer;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
 header{
-  background:linear-gradient(145deg,#9b6543,#75472f);
-  color:white;
-  padding:35px 20px 25px;
-  padding-top:calc(35px + env(safe-area-inset-top));
-  border-radius:0 0 28px 28px;
+background:
+linear-gradient(
+145deg,
+#9b6543,
+#75472f
+);
+
+color:white;
+
+padding:
+calc(30px + env(safe-area-inset-top))
+20px
+24px;
+
+border-radius:
+0 0 30px 30px;
+
+box-shadow:
+0 8px 25px rgba(60,35,20,.16);
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.logo{
+width:60px;
+height:60px;
+border-radius:18px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:34px;
+
+background:
+rgba(255,255,255,.15);
 }
 
 h1{
-  margin:0;
-  font-family:Georgia,serif;
-  font-size:28px;
+margin:0;
+
+font-family:Georgia,serif;
+
+font-size:28px;
 }
 
 .subtitle{
-  margin-top:5px;
-  opacity:.85;
-  font-size:14px;
+margin-top:4px;
+font-size:13px;
+opacity:.85;
 }
+
+.search{
+width:100%;
+margin-top:18px;
+
+border:0;
+outline:0;
+
+padding:14px 16px;
+
+border-radius:15px;
+
+font-size:16px;
+}
+
+
+/* =========================
+   MAIN
+========================= */
 
 main{
-  padding:20px;
-  max-width:700px;
-  margin:auto;
+max-width:900px;
+margin:auto;
+
+padding:
+20px
+16px
+100px;
 }
 
-.add{
-  display:block;
-  width:100%;
-  border:0;
-  border-radius:16px;
-  padding:17px;
-  background:#75472f;
-  color:white;
-  font-size:18px;
-  font-weight:bold;
-  margin-bottom:20px;
+.topbar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
 }
 
-.add:active{
-  transform:scale(.98);
+.topbar h2{
+margin:0;
+
+font-family:Georgia,serif;
+
+font-size:24px;
 }
+
+.addButton{
+border:0;
+
+background:#75472f;
+
+color:white;
+
+padding:12px 15px;
+
+border-radius:13px;
+
+font-weight:bold;
+}
+
+.addButton:active{
+transform:scale(.97);
+}
+
+
+/* =========================
+   FILE INPUT
+========================= */
 
 #fileInput{
-  display:none;
+display:none;
 }
 
-.message{
-  background:#fffaf4;
-  border:1px solid #e5d8ca;
-  border-radius:16px;
-  padding:18px;
-  text-align:center;
-  color:#806f62;
+
+/* =========================
+   HELP BOX
+========================= */
+
+.help{
+margin-top:15px;
+
+padding:14px;
+
+border-radius:16px;
+
+background:#fff8ee;
+
+border:1px solid #e5d8ca;
+
+color:#806f62;
+
+font-size:13px;
+
+line-height:1.55;
 }
 
-.book{
-  display:none;
-  background:#fffaf4;
-  border:1px solid #e5d8ca;
-  border-radius:18px;
-  padding:20px;
-  margin-top:20px;
+
+/* =========================
+   FILTERS
+========================= */
+
+.filters{
+display:flex;
+
+gap:8px;
+
+overflow-x:auto;
+
+padding:
+16px
+0
+4px;
 }
 
-.book h2{
-  font-family:Georgia,serif;
-  margin-top:0;
+.filter{
+border:1px solid #e5d8ca;
+
+background:#fffaf4;
+
+padding:9px 14px;
+
+border-radius:20px;
+
+white-space:nowrap;
 }
 
-.file-info{
-  color:#806f62;
-  font-size:14px;
-  line-height:1.6;
+.filter.active{
+background:#75472f;
+color:white;
+
+border-color:#75472f;
 }
+
+
+/* =========================
+   LIBRARY
+========================= */
+
+.library{
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:15px;
+
+margin-top:16px;
+}
+
+.card{
+position:relative;
+
+background:#fffaf4;
+
+border:
+1px solid #e5d8ca;
+
+border-radius:20px;
+
+overflow:hidden;
+
+box-shadow:
+0 7px 24px
+rgba(70,40,20,.08);
+}
+
+.cover{
+height:190px;
+
+padding:18px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+color:white;
+
+font-family:Georgia,serif;
+
+background:
+linear-gradient(
+145deg,
+#c9935d,
+#70432e
+);
+}
+
+.cover.audio{
+background:
+linear-gradient(
+145deg,
+#80679d,
+#392d52
+);
+}
+
+.coverIcon{
+font-size:42px;
+
+margin-bottom:10px;
+}
+
+.coverTitle{
+font-size:17px;
+
+font-weight:bold;
+
+line-height:1.3;
+}
+
+.cardInfo{
+padding:13px;
+}
+
+.cardTitle{
+font-weight:bold;
+
+line-height:1.3;
+}
+
+.cardType{
+margin-top:6px;
+
+font-size:11px;
+
+color:#806f62;
+}
+
+.progress{
+height:4px;
+
+background:#e8dccf;
+
+border-radius:5px;
+
+overflow:hidden;
+
+margin-top:10px;
+}
+
+.progressBar{
+height:100%;
+
+background:#c9965c;
+
+width:0%;
+}
+
+.openButton{
+width:100%;
+
+border:0;
+
+background:#eadaca;
+
+color:#67422e;
+
+padding:10px;
+
+border-radius:11px;
+
+margin-top:10px;
+
+font-weight:bold;
+}
+
+.deleteButton{
+position:absolute;
+
+top:8px;
+right:8px;
+
+z-index:5;
+
+width:32px;
+height:32px;
+
+border:0;
+
+border-radius:50%;
+
+background:white;
+
+font-size:18px;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+text-align:center;
+
+padding:55px 20px;
+
+margin-top:18px;
+
+background:#fffaf4;
+
+border:
+1px dashed #e5d8ca;
+
+border-radius:22px;
+}
+
+.emptyIcon{
+font-size:60px;
+}
+
+.empty h3{
+font-family:Georgia,serif;
+
+font-size:22px;
+}
+
+.empty p{
+color:#806f62;
+
+line-height:1.5;
+}
+
+
+/* =========================
+   READER
+========================= */
 
 .reader{
-  display:none;
-  margin-top:20px;
-  background:#fffaf4;
-  border-radius:18px;
-  padding:22px;
-  font-family:Georgia,serif;
-  font-size:18px;
-  line-height:1.7;
-  white-space:pre-wrap;
+display:none;
+
+position:fixed;
+
+inset:0;
+
+z-index:10000;
+
+background:#fffaf4;
+
+overflow:auto;
 }
 
-audio{
-  width:100%;
-  margin-top:20px;
+.readerHeader{
+position:sticky;
+
+top:0;
+
+z-index:20;
+
+background:#fffaf4;
+
+border-bottom:
+1px solid #e5d8ca;
+
+padding:
+calc(12px + env(safe-area-inset-top))
+12px
+12px;
+}
+
+.readerTop{
+display:flex;
+
+align-items:center;
+
+gap:10px;
+}
+
+.backButton{
+border:0;
+
+background:#eadaca;
+
+padding:9px 13px;
+
+border-radius:10px;
+}
+
+.readerTitle{
+font-weight:bold;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:ellipsis;
+}
+
+.readerContent{
+max-width:720px;
+
+margin:auto;
+
+padding:
+30px
+22px
+120px;
+
+font-family:Georgia,serif;
+
+font-size:19px;
+
+line-height:1.8;
+
+white-space:pre-wrap;
+}
+
+
+/* =========================
+   AUDIO PLAYER
+========================= */
+
+.audioPlayer{
+text-align:center;
+
+padding:
+40px
+20px
+100px;
+}
+
+.albumArt{
+width:210px;
+height:210px;
+
+margin:
+0 auto
+25px;
+
+border-radius:30px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:85px;
+
+background:
+linear-gradient(
+145deg,
+#80679d,
+#392d52
+);
+
+box-shadow:
+0 18px 40px
+rgba(50,30,70,.2);
+}
+
+.audioPlayer h2{
+font-family:Georgia,serif;
+
+font-size:25px;
+
+line-height:1.25;
+}
+
+.filename{
+font-size:13px;
+
+color:#806f62;
+
+word-break:break-word;
+}
+
+.audioRange{
+width:100%;
+
+margin-top:25px;
+
+accent-color:#75472f;
+}
+
+.times{
+display:flex;
+
+justify-content:space-between;
+
+font-size:12px;
+
+color:#806f62;
+}
+
+.playButton{
+width:74px;
+height:74px;
+
+border:0;
+
+border-radius:50%;
+
+background:#75472f;
+
+color:white;
+
+font-size:28px;
+
+margin:20px 0;
+}
+
+.skipButtons{
+display:flex;
+
+justify-content:center;
+
+gap:12px;
+}
+
+.skipButtons button{
+border:
+1px solid #e5d8ca;
+
+background:#fffaf4;
+
+border-radius:12px;
+
+padding:11px 15px;
+}
+
+.speedButtons{
+display:flex;
+
+justify-content:center;
+
+gap:7px;
+
+flex-wrap:wrap;
+
+margin-top:18px;
+}
+
+.speedButtons button{
+border:
+1px solid #e5d8ca;
+
+background:#fffaf4;
+
+border-radius:9px;
+
+padding:7px 10px;
+}
+
+.audioStatus{
+margin-top:14px;
+
+font-size:13px;
+
+color:#806f62;
+}
+
+.chooseAgain{
+margin-top:22px;
+
+border:0;
+
+background:#eadaca;
+
+color:#67422e;
+
+padding:12px 16px;
+
+border-radius:12px;
+
+font-weight:bold;
+}
+
+
+/* =========================
+   PDF
+========================= */
+
+.pdfViewer{
+width:100%;
+
+height:
+calc(100vh - 95px);
+
+border:0;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(min-width:600px){
+
+.library{
+grid-template-columns:
+repeat(3,1fr);
+}
+
 }
 
 </style>
@@ -124,134 +715,359 @@ audio{
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
-<h1>🍲 Chicken Soup Library</h1>
+<div class="brand">
+
+<div class="logo">
+🍲
+</div>
+
+<div>
+
+<h1>
+Chicken Soup Library
+</h1>
 
 <div class="subtitle">
 Stories that feed the soul
 </div>
 
+</div>
+
+</div>
+
+
+<input
+id="search"
+class="search"
+type="search"
+placeholder="🔎 Search your library">
+
 </header>
 
 
+<!-- =========================
+     MAIN
+========================= -->
+
 <main>
 
-<!-- THIS BUTTON OPENS THE IPHONE FILES PICKER -->
+
+<div class="topbar">
+
+<h2>
+My Library
+</h2>
+
 
 <button
-  type="button"
-  class="add"
-  id="addBook">
+type="button"
+id="addButton"
+class="addButton">
 
-  ＋ Add Book or Audiobook
+＋ Add Book
 
 </button>
 
-
-<!-- HIDDEN IPHONE FILE PICKER -->
-
-<input
-  id="fileInput"
-  type="file"
-  accept=".txt,.html,.htm,.pdf,.epub,.mp3,.m4a,.m4b,.wav">
+</div>
 
 
-<div
-  id="message"
-  class="message">
+<div class="help">
 
-📚 Your library is empty.
+📱 <b>Add directly from your iPhone Files app.</b>
 
 <br><br>
 
-Tap <b>＋ Add Book or Audiobook</b>
-to choose a file from your iPhone's
-Files app.
+📖 Books:
+TXT • HTML • PDF
+
+<br>
+
+🎧 Audiobooks:
+MP3 • M4A • M4B • WAV
+
+<br><br>
+
+Audiobooks are played directly from
+the file you choose, so large
+audiobooks aren't copied into the
+browser database.
 
 </div>
 
 
-<div
-  id="book"
-  class="book">
+<!-- FILTERS -->
 
-<h2 id="bookTitle"></h2>
-
-<div
-  id="fileInfo"
-  class="file-info">
-</div>
-
-<div id="audioContainer"></div>
+<div class="filters">
 
 <button
-  type="button"
-  class="add"
-  id="readButton"
-  style="display:none;margin-top:20px;">
+type="button"
+class="filter active"
+data-filter="all">
 
-📖 Read Book
+All
+
+</button>
+
+
+<button
+type="button"
+class="filter"
+data-filter="book">
+
+📚 Books
+
+</button>
+
+
+<button
+type="button"
+class="filter"
+data-filter="audio">
+
+🎧 Audiobooks
 
 </button>
 
 </div>
 
 
+<!-- FILE PICKER -->
+
+<input
+id="fileInput"
+type="file"
+accept=".txt,.html,.htm,.pdf,.mp3,.m4a,.m4b,.wav">
+
+
+<!-- EMPTY -->
+
 <div
-  id="reader"
-  class="reader">
+id="empty"
+class="empty">
+
+<div class="emptyIcon">
+📚
 </div>
+
+<h3>
+Your library is empty
+</h3>
+
+<p>
+Add books and audiobooks from
+your iPhone Files app.
+</p>
+
+
+<button
+type="button"
+class="addButton"
+id="emptyAdd">
+
+＋ Add Your First Book
+
+</button>
+
+</div>
+
+
+<!-- LIBRARY -->
+
+<div
+id="library"
+class="library">
+</div>
+
 
 </main>
 
 
+<!-- =========================
+     READER
+========================= -->
+
+<div
+id="reader"
+class="reader">
+
+
+<div class="readerHeader">
+
+<div class="readerTop">
+
+<button
+type="button"
+class="backButton"
+id="backButton">
+
+← Library
+
+</button>
+
+
+<div
+id="readerTitle"
+class="readerTitle">
+</div>
+
+</div>
+
+</div>
+
+
+<div
+id="readerContent"
+class="readerContent">
+</div>
+
+
+</div>
+
+
 <script>
 
-(function(){
+/* =================================================
+   CHICKEN SOUP LIBRARY
+   BUILT AROUND THE WORKING IPHONE FILE PICKER
+================================================= */
 
-/* Get the two important elements */
+
+/* =========================
+   VARIABLES
+========================= */
+
+var books = [];
+
+var currentAudio = null;
+
+var currentAudioURL = null;
+
+var currentBook = null;
+
+var currentFilter = "all";
+
+
+/* =========================
+   ELEMENTS
+========================= */
 
 var addButton =
-document.getElementById("addBook");
+document.getElementById("addButton");
+
+var emptyAdd =
+document.getElementById("emptyAdd");
 
 var fileInput =
 document.getElementById("fileInput");
 
+var library =
+document.getElementById("library");
 
-/*
-====================================================
-ADD BOOK BUTTON
-====================================================
+var empty =
+document.getElementById("empty");
 
-This is the important part.
+var search =
+document.getElementById("search");
 
-When you tap the button, iPhone should open
-the Files picker.
-*/
+var reader =
+document.getElementById("reader");
 
-addButton.addEventListener(
-"click",
-function(){
+var readerTitle =
+document.getElementById("readerTitle");
+
+var readerContent =
+document.getElementById("readerContent");
+
+var backButton =
+document.getElementById("backButton");
+
+
+/* =========================
+   FILE PICKER
+========================= */
+
+function chooseFile(){
 
 fileInput.click();
 
 }
+
+
+addButton.addEventListener(
+"click",
+chooseFile
 );
 
 
-/*
-====================================================
-FILE SELECTED
-====================================================
-*/
+emptyAdd.addEventListener(
+"click",
+chooseFile
+);
+
+
+/* =========================
+   FILTERS
+========================= */
+
+document
+.querySelectorAll(".filter")
+.forEach(function(button){
+
+button.addEventListener(
+"click",
+function(){
+
+currentFilter =
+button.dataset.filter;
+
+
+document
+.querySelectorAll(".filter")
+.forEach(function(b){
+
+b.classList.remove("active");
+
+});
+
+
+button.classList.add("active");
+
+render();
+
+});
+
+});
+
+
+/* =========================
+   SEARCH
+========================= */
+
+search.addEventListener(
+"input",
+render
+);
+
+
+/* =========================
+   FILE SELECTED
+========================= */
 
 fileInput.addEventListener(
 "change",
 function(){
 
-if(!fileInput.files ||
-   fileInput.files.length === 0){
+if(
+!fileInput.files ||
+fileInput.files.length === 0
+){
 
 return;
 
@@ -260,252 +1076,1551 @@ return;
 var file =
 fileInput.files[0];
 
-showFile(file);
+handleFile(file);
 
-}
+fileInput.value = "";
+
+});
+
+
+/* =========================
+   HANDLE FILE
+========================= */
+
+function handleFile(file){
+
+var filename =
+file.name;
+
+var lower =
+filename.toLowerCase();
+
+
+var title =
+filename.replace(
+/\.(txt|html?|pdf|mp3|m4a|m4b|wav)$/i,
+""
 );
 
 
-/*
-====================================================
-SHOW SELECTED FILE
-====================================================
-*/
+/* AUDIO */
 
-function showFile(file){
+if(
+lower.endsWith(".mp3") ||
+lower.endsWith(".m4a") ||
+lower.endsWith(".m4b") ||
+lower.endsWith(".wav")
+){
 
-var message =
-document.getElementById("message");
+addAudiobook(
+file,
+title
+);
 
-var book =
-document.getElementById("book");
+return;
+
+}
+
+
+/* TEXT */
+
+if(
+lower.endsWith(".txt") ||
+lower.endsWith(".html") ||
+lower.endsWith(".htm")
+){
+
+readTextImport(
+file,
+title
+);
+
+return;
+
+}
+
+
+/* PDF */
+
+if(
+lower.endsWith(".pdf")
+){
+
+addPDF(
+file,
+title
+);
+
+return;
+
+}
+
+
+/* UNSUPPORTED */
+
+alert(
+"This file type isn't supported yet."
+);
+
+}
+
+
+/* =========================
+   ADD AUDIOBOOK
+========================= */
+
+function addAudiobook(
+file,
+title
+){
+
+var book = {
+
+id:
+"audio-" +
+Date.now(),
+
+title:title,
+
+filename:file.name,
+
+type:"AUDIO",
+
+format:
+file.name
+.split(".")
+.pop()
+.toUpperCase(),
+
+size:file.size,
+
+file:file,
+
+position:0,
+
+progress:0
+
+};
+
+
+books.unshift(book);
+
+currentBook = book;
+
+render();
+
+openAudiobook(book);
+
+}
+
+
+/* =========================
+   ADD TEXT BOOK
+========================= */
+
+function readTextImport(
+file,
+title
+){
+
+var readerFile =
+new FileReader();
+
+
+readerFile.onload =
+function(){
+
+var content =
+readerFile.result;
+
+
+var book = {
+
+id:
+"book-" +
+Date.now(),
+
+title:title,
+
+filename:file.name,
+
+type:"BOOK",
+
+format:
+file.name
+.split(".")
+.pop()
+.toUpperCase(),
+
+size:file.size,
+
+content:content,
+
+progress:0,
+
+position:0
+
+};
+
+
+books.unshift(book);
+
+saveLibrary();
+
+render();
+
+
+alert(
+"📚 Book added to your library!"
+);
+
+};
+
+
+readerFile.onerror =
+function(){
+
+alert(
+"Could not read this book."
+);
+
+};
+
+
+readerFile.readAsText(file);
+
+}
+
+
+/* =========================
+   ADD PDF
+========================= */
+
+function addPDF(
+file,
+title
+){
+
+var readerFile =
+new FileReader();
+
+
+readerFile.onload =
+function(){
+
+var book = {
+
+id:
+"pdf-" +
+Date.now(),
+
+title:title,
+
+filename:file.name,
+
+type:"PDF",
+
+format:"PDF",
+
+size:file.size,
+
+data:readerFile.result,
+
+progress:0
+
+};
+
+
+books.unshift(book);
+
+saveLibrary();
+
+render();
+
+
+alert(
+"📕 PDF added to your library!"
+);
+
+};
+
+
+readerFile.onerror =
+function(){
+
+alert(
+"Could not read this PDF."
+);
+
+};
+
+
+readerFile.readAsArrayBuffer(file);
+
+}
+
+
+/* =========================
+   RENDER LIBRARY
+========================= */
+
+function render(){
+
+var term =
+search.value
+.toLowerCase()
+.trim();
+
+
+var list =
+books.filter(
+function(book){
+
+var matches =
+book.title
+.toLowerCase()
+.includes(term);
+
+
+if(!matches){
+
+return false;
+
+}
+
+
+if(
+currentFilter === "audio"
+){
+
+return book.type === "AUDIO";
+
+}
+
+
+if(
+currentFilter === "book"
+){
+
+return book.type !== "AUDIO";
+
+}
+
+
+return true;
+
+});
+
+
+empty.style.display =
+books.length === 0
+? "block"
+: "none";
+
+
+library.innerHTML = "";
+
+
+list.forEach(
+function(book){
+
+createCard(book);
+
+});
+
+}
+
+
+/* =========================
+   CREATE CARD
+========================= */
+
+function createCard(book){
+
+var card =
+document.createElement("div");
+
+card.className =
+"card";
+
+
+/* COVER */
+
+var cover =
+document.createElement("div");
+
+cover.className =
+"cover" +
+(
+book.type === "AUDIO"
+? " audio"
+: ""
+);
+
+
+var icon =
+document.createElement("div");
+
+icon.className =
+"coverIcon";
+
+icon.textContent =
+book.type === "AUDIO"
+? "🎧"
+: "🍲";
+
 
 var title =
-document.getElementById("bookTitle");
+document.createElement("div");
 
-var info =
-document.getElementById("fileInfo");
-
-var audioContainer =
-document.getElementById("audioContainer");
-
-var readButton =
-document.getElementById("readButton");
-
-
-message.style.display="none";
-
-book.style.display="block";
-
-audioContainer.innerHTML="";
-
-readButton.style.display="none";
+title.className =
+"coverTitle";
 
 title.textContent =
-file.name;
-
-info.textContent =
-"File type: " +
-(file.type || "Unknown") +
-"\n\nSize: " +
-formatSize(file.size);
+book.title;
 
 
-/*
-====================================================
-AUDIOBOOK
-====================================================
-*/
+cover.appendChild(icon);
 
-var name =
-file.name.toLowerCase();
-
-var isAudio =
-name.endsWith(".mp3") ||
-name.endsWith(".m4a") ||
-name.endsWith(".m4b") ||
-name.endsWith(".wav");
+cover.appendChild(title);
 
 
-if(isAudio){
+/* DELETE */
+
+var deleteButton =
+document.createElement("button");
+
+deleteButton.type =
+"button";
+
+deleteButton.className =
+"deleteButton";
+
+deleteButton.textContent =
+"×";
+
+
+deleteButton.addEventListener(
+"click",
+function(event){
+
+event.stopPropagation();
+
+deleteBook(book);
+
+});
+
+
+/* INFO */
+
+var info =
+document.createElement("div");
+
+info.className =
+"cardInfo";
+
+
+var cardTitle =
+document.createElement("div");
+
+cardTitle.className =
+"cardTitle";
+
+cardTitle.textContent =
+book.title;
+
+
+var type =
+document.createElement("div");
+
+type.className =
+"cardType";
+
+
+if(
+book.type === "AUDIO"
+){
+
+type.textContent =
+"🎧 AUDIOBOOK • " +
+book.format;
+
+}else{
+
+type.textContent =
+"📖 BOOK • " +
+book.format;
+
+}
+
+
+/* PROGRESS */
+
+var progress =
+document.createElement("div");
+
+progress.className =
+"progress";
+
+
+var progressBar =
+document.createElement("div");
+
+progressBar.className =
+"progressBar";
+
+progressBar.style.width =
+(book.progress || 0) +
+"%";
+
+
+progress.appendChild(
+progressBar
+);
+
+
+/* OPEN */
+
+var open =
+document.createElement("button");
+
+open.type =
+"button";
+
+open.className =
+"openButton";
+
+open.textContent =
+book.type === "AUDIO"
+? "▶ Listen"
+: "📖 Read";
+
+
+open.addEventListener(
+"click",
+function(){
+
+openBook(book);
+
+});
+
+
+info.appendChild(
+cardTitle
+);
+
+info.appendChild(
+type
+);
+
+info.appendChild(
+progress
+);
+
+info.appendChild(
+open
+);
+
+
+card.appendChild(
+cover
+);
+
+card.appendChild(
+deleteButton
+);
+
+card.appendChild(
+info
+);
+
+
+library.appendChild(
+card
+);
+
+}
+
+
+/* =========================
+   OPEN BOOK
+========================= */
+
+function openBook(book){
+
+currentBook =
+book;
+
+
+if(
+book.type === "AUDIO"
+){
+
+openAudiobook(book);
+
+return;
+
+}
+
+
+if(
+book.type === "PDF"
+){
+
+openPDF(book);
+
+return;
+
+}
+
+
+openTextBook(book);
+
+}
+
+
+/* =========================
+   TEXT READER
+========================= */
+
+function openTextBook(book){
+
+readerTitle.textContent =
+book.title;
+
+
+readerContent.innerHTML =
+"";
+
+
+var heading =
+document.createElement("h2");
+
+heading.textContent =
+book.title;
+
+
+var text =
+document.createElement("div");
+
+text.textContent =
+book.content;
+
+
+readerContent.appendChild(
+heading
+);
+
+readerContent.appendChild(
+text
+);
+
+
+readerContent.style.fontSize =
+"19px";
+
+
+reader.style.display =
+"block";
+
+
+}
+
+
+/* =========================
+   AUDIOBOOK PLAYER
+========================= */
+
+function openAudiobook(book){
+
+cleanupAudio();
+
+
+if(!book.file){
+
+alert(
+"Please select the audiobook from Files again."
+);
+
+chooseFile();
+
+return;
+
+}
+
+
+readerTitle.textContent =
+book.title;
+
+
+readerContent.innerHTML =
+"";
+
+
+/* PLAYER */
+
+var player =
+document.createElement("div");
+
+player.className =
+"audioPlayer";
+
+
+/* ART */
+
+var art =
+document.createElement("div");
+
+art.className =
+"albumArt";
+
+art.textContent =
+"🎧";
+
+
+/* TITLE */
+
+var heading =
+document.createElement("h2");
+
+heading.textContent =
+book.title;
+
+
+/* FILENAME */
+
+var filename =
+document.createElement("div");
+
+filename.className =
+"filename";
+
+filename.textContent =
+book.filename;
+
+
+/* AUDIO */
 
 var audio =
 document.createElement("audio");
 
-audio.controls=true;
-
-audio.preload="metadata";
-
-audio.src =
-URL.createObjectURL(file);
-
-audioContainer.appendChild(audio);
-
-return;
-
-}
+audio.preload =
+"metadata";
 
 
-/*
-====================================================
-TEXT BOOK
-====================================================
-*/
-
-var isText =
-name.endsWith(".txt") ||
-name.endsWith(".html") ||
-name.endsWith(".htm");
-
-
-if(isText){
-
-readButton.style.display="block";
-
-
-readButton.onclick =
-function(){
-
-readTextFile(file);
-
-};
-
-return;
-
-}
-
-
-/*
-====================================================
-PDF
-====================================================
-*/
-
-if(name.endsWith(".pdf")){
-
-var url =
-URL.createObjectURL(file);
-
-var link =
-document.createElement("a");
-
-link.href=url;
-
-link.target="_blank";
-
-link.textContent=
-"📕 Open PDF";
-
-link.style.display="block";
-
-link.style.marginTop="20px";
-
-link.style.textAlign="center";
-
-link.style.padding="15px";
-
-link.style.background="#eadaca";
-
-link.style.borderRadius="12px";
-
-link.style.color="#67422e";
-
-link.style.textDecoration="none";
-
-link.style.fontWeight="bold";
-
-audioContainer.appendChild(link);
-
-return;
-
-}
-
-
-/*
-====================================================
-OTHER
-====================================================
-*/
-
-info.textContent +=
-"\n\nThe file was successfully selected.";
-
-}
-
-
-/*
-====================================================
-READ TEXT
-====================================================
-*/
-
-function readTextFile(file){
-
-var reader =
-new FileReader();
-
-reader.onload =
-function(){
-
-var readerBox =
-document.getElementById("reader");
-
-readerBox.style.display="block";
-
-readerBox.textContent =
-reader.result;
-
-window.scrollTo({
-top:document.body.scrollHeight,
-behavior:"smooth"
-});
-
-};
-
-reader.onerror =
-function(){
-
-alert(
-"Sorry, this book could not be opened."
+currentAudioURL =
+URL.createObjectURL(
+book.file
 );
 
-};
+audio.src =
+currentAudioURL;
 
-reader.readAsText(file);
+currentAudio =
+audio;
+
+
+/* RANGE */
+
+var range =
+document.createElement("input");
+
+range.type =
+"range";
+
+range.className =
+"audioRange";
+
+range.min =
+"0";
+
+range.max =
+"100";
+
+range.value =
+"0";
+
+range.step =
+".1";
+
+
+/* TIMES */
+
+var times =
+document.createElement("div");
+
+times.className =
+"times";
+
+
+var currentTime =
+document.createElement("span");
+
+currentTime.textContent =
+"0:00";
+
+
+var duration =
+document.createElement("span");
+
+duration.textContent =
+"0:00";
+
+
+times.appendChild(
+currentTime
+);
+
+times.appendChild(
+duration
+);
+
+
+/* PLAY */
+
+var play =
+document.createElement("button");
+
+play.type =
+"button";
+
+play.className =
+"playButton";
+
+play.textContent =
+"▶";
+
+
+/* SKIP */
+
+var skips =
+document.createElement("div");
+
+skips.className =
+"skipButtons";
+
+
+var back =
+document.createElement("button");
+
+back.type =
+"button";
+
+back.textContent =
+"↶ 15 sec";
+
+
+var forward =
+document.createElement("button");
+
+forward.type =
+"button";
+
+forward.textContent =
+"30 sec ↷";
+
+
+skips.appendChild(
+back
+);
+
+skips.appendChild(
+forward
+);
+
+
+/* SPEED */
+
+var speeds =
+document.createElement("div");
+
+speeds.className =
+"speedButtons";
+
+
+[
+.75,
+1,
+1.25,
+1.5,
+2
+]
+.forEach(
+function(speed){
+
+var button =
+document.createElement("button");
+
+button.type =
+"button";
+
+button.textContent =
+speed + "×";
+
+
+button.addEventListener(
+"click",
+function(){
+
+audio.playbackRate =
+speed;
+
+status.textContent =
+"Playback speed: " +
+speed +
+"×";
+
+});
+
+speeds.appendChild(
+button
+);
+
+});
+
+
+/* STATUS */
+
+var status =
+document.createElement("div");
+
+status.className =
+"audioStatus";
+
+status.textContent =
+"Ready";
+
+
+/* CHOOSE AGAIN */
+
+var choose =
+document.createElement("button");
+
+choose.type =
+"button";
+
+choose.className =
+"chooseAgain";
+
+choose.textContent =
+"📂 Choose Another Audiobook";
+
+
+choose.addEventListener(
+"click",
+chooseFile
+);
+
+
+/* =========================
+   AUDIO EVENTS
+========================= */
+
+
+/* PLAY */
+
+play.addEventListener(
+"click",
+function(){
+
+if(
+audio.paused
+){
+
+var promise =
+audio.play();
+
+
+if(promise){
+
+promise.catch(
+function(){
+
+status.textContent =
+"Tap Play again to start.";
+
+});
+
+}
+
+}else{
+
+audio.pause();
+
+}
+
+});
+
+
+/* BACK */
+
+back.addEventListener(
+"click",
+function(){
+
+audio.currentTime =
+Math.max(
+0,
+audio.currentTime - 15
+);
+
+});
+
+
+/* FORWARD */
+
+forward.addEventListener(
+"click",
+function(){
+
+audio.currentTime =
+Math.min(
+audio.duration || 0,
+audio.currentTime + 30
+);
+
+});
+
+
+/* RANGE */
+
+range.addEventListener(
+"input",
+function(){
+
+if(
+audio.duration
+){
+
+audio.currentTime =
+Number(range.value)
+/
+100
+*
+audio.duration;
+
+}
+
+});
+
+
+/* METADATA */
+
+audio.addEventListener(
+"loadedmetadata",
+function(){
+
+duration.textContent =
+formatTime(
+audio.duration
+);
+
+
+if(
+book.position
+){
+
+audio.currentTime =
+book.position;
+
+}
+
+});
+
+
+/* TIME */
+
+audio.addEventListener(
+"timeupdate",
+function(){
+
+if(
+!audio.duration
+){
+
+return;
 
 }
 
 
-/*
-====================================================
-FILE SIZE
-====================================================
-*/
+var percent =
+audio.currentTime
+/
+audio.duration
+*
+100;
 
-function formatSize(bytes){
 
-if(bytes < 1024){
+range.value =
+percent;
 
-return bytes + " B";
+
+currentTime.textContent =
+formatTime(
+audio.currentTime
+);
+
+
+book.position =
+audio.currentTime;
+
+
+book.progress =
+Math.round(
+percent
+);
+
+
+render();
+
+});
+
+
+/* PLAY */
+
+audio.addEventListener(
+"play",
+function(){
+
+play.textContent =
+"❚❚";
+
+status.textContent =
+"Playing";
+
+});
+
+
+/* PAUSE */
+
+audio.addEventListener(
+"pause",
+function(){
+
+play.textContent =
+"▶";
+
+status.textContent =
+"Paused";
+
+});
+
+
+/* END */
+
+audio.addEventListener(
+"ended",
+function(){
+
+play.textContent =
+"▶";
+
+status.textContent =
+"Finished";
+
+book.progress =
+100;
+
+});
+
+
+/* BUILD */
+
+player.appendChild(
+art
+);
+
+player.appendChild(
+heading
+);
+
+player.appendChild(
+filename
+);
+
+player.appendChild(
+audio
+);
+
+player.appendChild(
+range
+);
+
+player.appendChild(
+times
+);
+
+player.appendChild(
+play
+);
+
+player.appendChild(
+skips
+);
+
+player.appendChild(
+speeds
+);
+
+player.appendChild(
+status
+);
+
+player.appendChild(
+choose
+);
+
+
+readerContent.appendChild(
+player
+);
+
+
+reader.style.display =
+"block";
 
 }
 
-if(bytes < 1024*1024){
 
-return Math.round(
-bytes/1024
-) + " KB";
+/* =========================
+   PDF
+========================= */
+
+function openPDF(book){
+
+readerTitle.textContent =
+book.title;
+
+
+readerContent.innerHTML =
+"";
+
+
+var blob =
+new Blob(
+[
+book.data
+],
+{
+type:"application/pdf"
+}
+);
+
+
+var url =
+URL.createObjectURL(
+blob
+);
+
+
+var frame =
+document.createElement(
+"iframe"
+);
+
+frame.className =
+"pdfViewer";
+
+frame.src =
+url;
+
+
+readerContent.appendChild(
+frame
+);
+
+
+reader.style.display =
+"block";
 
 }
+
+
+/* =========================
+   DELETE
+========================= */
+
+function deleteBook(book){
+
+var answer =
+confirm(
+'Remove "' +
+book.title +
+'" from your library?'
+);
+
+
+if(!answer){
+
+return;
+
+}
+
+
+var index =
+books.indexOf(
+book
+);
+
+
+if(index !== -1){
+
+books.splice(
+index,
+1
+);
+
+}
+
+
+saveLibrary();
+
+render();
+
+}
+
+
+/* =========================
+   CLOSE READER
+========================= */
+
+backButton.addEventListener(
+"click",
+function(){
+
+if(
+currentAudio
+){
+
+currentAudio.pause();
+
+}
+
+
+cleanupAudio();
+
+
+reader.style.display =
+"none";
+
+
+currentBook =
+null;
+
+render();
+
+});
+
+
+/* =========================
+   CLEAN AUDIO
+========================= */
+
+function cleanupAudio(){
+
+if(
+currentAudio
+){
+
+try{
+
+currentAudio.pause();
+
+}catch(e){}
+
+}
+
+
+currentAudio =
+null;
+
+
+if(
+currentAudioURL
+){
+
+try{
+
+URL.revokeObjectURL(
+currentAudioURL
+);
+
+}catch(e){}
+
+}
+
+
+currentAudioURL =
+null;
+
+}
+
+
+/* =========================
+   FORMAT TIME
+========================= */
+
+function formatTime(
+seconds
+){
+
+if(
+!seconds ||
+!isFinite(seconds)
+){
+
+return "0:00";
+
+}
+
+
+seconds =
+Math.floor(
+seconds
+);
+
+
+var minutes =
+Math.floor(
+seconds / 60
+);
+
+
+var secs =
+seconds % 60;
+
 
 return (
-bytes/(1024*1024)
-).toFixed(1) + " MB";
+minutes +
+":" +
+String(secs)
+.padStart(2,"0")
+);
 
 }
 
-})();
 
+/* =========================
+   SAVE LIBRARY
+========================= */
+
+function saveLibrary(){
+
+try{
+
+/*
+We save books and PDFs.
+
+We intentionally DON'T save
+the actual audiobook file because
+large audio files can break
+iPhone browser storage.
+*/
+
+var safe =
+books
+.filter(
+function(book){
+
+return (
+book.type === "BOOK" ||
+book.type === "PDF"
+);
+
+})
+.map(
+function(book){
+
+return {
+id:book.id,
+title:book.title,
+filename:book.filename,
+type:book.type,
+format:book.format,
+size:book.size,
+content:
+book.type === "BOOK"
+? book.content
+: null,
+data:
+book.type === "PDF"
+? book.data
+: null,
+progress:
+book.progress || 0
+};
+
+});
+
+
+localStorage.setItem(
+"chickenSoupLibrary",
+JSON.stringify(
+safe
+)
+);
+
+}catch(error){
+
+console.log(
+"Library save skipped:",
+error
+);
+
+}
+
+}
+
+
+/* =========================
+   LOAD LIBRARY
+========================= */
+
+function loadLibrary(){
+
+try{
+
+var saved =
+localStorage.getItem(
+"chickenSoupLibrary"
+);
+
+
+if(
+saved
+){
+
+books =
+JSON.parse(
+saved
+);
+
+}
+
+}catch(error){
+
+console.log(
+"Could not load library"
+);
+
+books = [];
+
+}
+
+
+render();
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadLibrary();
+
+
+})();
 </script>
 
 </body>
