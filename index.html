@@ -1,1 +1,781 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#8b5e3c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Chicken Soup Library</title>
 
+<style>
+:root{
+--bg:#f7f1e8;
+--card:#fffaf3;
+--ink:#35291f;
+--muted:#806f60;
+--accent:#a9673f;
+--line:#e8dccd;
+--shadow:0 10px 30px rgba(70,45,25,.10)
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+background:var(--bg);
+color:var(--ink);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+
+button,input{font:inherit}
+button{cursor:pointer}
+
+.app{
+max-width:760px;
+margin:auto;
+min-height:100vh
+}
+
+header{
+padding:calc(22px + env(safe-area-inset-top)) 20px 20px;
+background:linear-gradient(145deg,#9a633f,#70462f);
+color:white;
+border-radius:0 0 28px 28px;
+box-shadow:var(--shadow)
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:12px
+}
+
+.logo{font-size:38px}
+
+.brand h1{
+margin:0;
+font-family:Georgia,serif;
+font-size:25px
+}
+
+.brand p{
+margin:3px 0 0;
+opacity:.8;
+font-size:13px
+}
+
+.search{
+margin-top:18px;
+background:white;
+color:#59493d;
+border:0;
+border-radius:15px;
+padding:14px 16px;
+width:100%;
+outline:0
+}
+
+main{
+padding:22px 16px 100px
+}
+
+.toprow{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px
+}
+
+h2{
+font-family:Georgia,serif;
+margin:0;
+font-size:24px
+}
+
+.add{
+border:0;
+background:var(--accent);
+color:white;
+padding:12px 16px;
+border-radius:14px;
+font-weight:700;
+box-shadow:0 5px 14px #a9673f30
+}
+
+#file{display:none}
+
+.empty{
+text-align:center;
+padding:55px 25px;
+background:var(--card);
+border:1px dashed var(--line);
+border-radius:22px;
+margin-top:18px
+}
+
+.empty .big{font-size:58px}
+
+.empty h3{
+font-family:Georgia,serif;
+font-size:22px;
+margin:12px 0 7px
+}
+
+.empty p{
+color:var(--muted);
+line-height:1.5
+}
+
+.books{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+margin-top:18px
+}
+
+.book{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:18px;
+overflow:hidden;
+box-shadow:var(--shadow)
+}
+
+.cover{
+height:175px;
+background:linear-gradient(145deg,#c88958,#7e4e34);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:18px;
+color:white;
+text-align:center;
+font-family:Georgia,serif;
+font-size:20px;
+font-weight:bold
+}
+
+.info{padding:13px}
+
+.title{
+font-weight:700;
+line-height:1.25
+}
+
+.meta{
+font-size:12px;
+color:var(--muted);
+margin-top:5px
+}
+
+.open{
+margin-top:11px;
+width:100%;
+border:0;
+background:#efe1d2;
+color:#6d422d;
+border-radius:11px;
+padding:9px;
+font-weight:700
+}
+
+.reader{
+display:none;
+position:fixed;
+inset:0;
+background:var(--bg);
+z-index:5;
+overflow:auto
+}
+
+.readerHead{
+position:sticky;
+top:0;
+background:rgba(247,241,232,.94);
+backdrop-filter:blur(12px);
+border-bottom:1px solid var(--line);
+padding:calc(10px + env(safe-area-inset-top)) 14px 10px;
+z-index:2
+}
+
+.rtop{
+display:flex;
+align-items:center;
+gap:10px
+}
+
+.back{
+border:0;
+background:#eadbcb;
+border-radius:12px;
+padding:9px 12px
+}
+
+.rtitle{
+font-weight:700;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis
+}
+
+.controls{
+display:flex;
+gap:7px;
+margin-top:10px
+}
+
+.controls button{
+border:1px solid var(--line);
+background:var(--card);
+border-radius:10px;
+padding:7px 10px;
+color:var(--ink)
+}
+
+.article{
+max-width:680px;
+margin:auto;
+padding:30px 22px 100px;
+font-family:Georgia,serif;
+font-size:19px;
+line-height:1.75;
+white-space:pre-wrap
+}
+
+.article h1{
+font-size:32px;
+line-height:1.2;
+margin:0 0 25px
+}
+
+.notice{
+font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+background:#fff6e8;
+border:1px solid #ead6bb;
+border-radius:14px;
+padding:13px;
+margin-bottom:22px;
+font-size:13px;
+color:#765b43
+}
+
+.progress{
+height:3px;
+background:var(--line)
+}
+
+.progress i{
+display:block;
+height:100%;
+background:var(--accent);
+width:0
+}
+
+@media(min-width:600px){
+.books{
+grid-template-columns:repeat(3,1fr)
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+
+<div class="brand">
+<div class="logo">🍲</div>
+
+<div>
+<h1>Chicken Soup Library</h1>
+<p>Your personal story library</p>
+</div>
+</div>
+
+<input
+class="search"
+id="search"
+placeholder="Search your books…"
+>
+
+</header>
+
+
+<main>
+
+<div class="toprow">
+
+<h2>My Library</h2>
+
+<button
+class="add"
+onclick="document.getElementById('file').click()">
+＋ Add Book
+</button>
+
+</div>
+
+
+<input
+id="file"
+type="file"
+accept=".txt,.html,.htm,text/plain,text/html"
+>
+
+
+<div id="empty" class="empty">
+
+<div class="big">📚</div>
+
+<h3>Your library is empty</h3>
+
+<p>
+Add a TXT or HTML book file from the Files app
+to start reading.
+</p>
+
+<button
+class="add"
+onclick="document.getElementById('file').click()">
+Add Your First Book
+</button>
+
+</div>
+
+
+<div id="books" class="books"></div>
+
+</main>
+
+</div>
+
+
+<div class="reader" id="reader">
+
+<div class="readerHead">
+
+<div class="rtop">
+
+<button
+class="back"
+onclick="closeReader()">
+← Library
+</button>
+
+<div
+class="rtitle"
+id="rtitle">
+</div>
+
+</div>
+
+
+<div class="controls">
+
+<button onclick="changeFont(-1)">
+A−
+</button>
+
+<button onclick="changeFont(1)">
+A+
+</button>
+
+<button onclick="toggleDark()">
+◐ Theme
+</button>
+
+<button onclick="deleteCurrent()">
+🗑 Delete
+</button>
+
+</div>
+
+
+<div class="progress">
+<i id="bar"></i>
+</div>
+
+</div>
+
+
+<article
+class="article"
+id="article">
+</article>
+
+</div>
+
+
+<script>
+
+const KEY="chickenSoupLibraryV1";
+
+let books=
+JSON.parse(
+localStorage.getItem(KEY)||"[]"
+);
+
+let current=null;
+
+let fontSize=19;
+
+
+function save(){
+
+localStorage.setItem(
+KEY,
+JSON.stringify(books)
+);
+
+}
+
+
+function esc(s){
+
+return s.replace(
+/[&<>"']/g,
+m=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m])
+);
+
+}
+
+
+function render(){
+
+const q=
+document
+.getElementById("search")
+.value
+.toLowerCase();
+
+const wrap=
+document.getElementById("books");
+
+const list=
+books.filter(b=>
+(b.title+" "+(b.author||""))
+.toLowerCase()
+.includes(q)
+);
+
+document.getElementById("empty")
+.style.display=
+books.length
+?"none"
+:"block";
+
+
+wrap.innerHTML=
+list.map((b,i)=>{
+
+const real=
+books.indexOf(b);
+
+return `
+
+<div class="book">
+
+<div class="cover">
+${esc(b.title)}
+</div>
+
+<div class="info">
+
+<div class="title">
+${esc(b.title)}
+</div>
+
+<div class="meta">
+${esc(b.author||"Personal library")}
+</div>
+
+<button
+class="open"
+onclick="openBook(${real})">
+Read Book
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+document
+.getElementById("search")
+.addEventListener(
+"input",
+render
+);
+
+
+document
+.getElementById("file")
+.addEventListener(
+"change",
+async e=>{
+
+const file=e.target.files[0];
+
+if(!file)return;
+
+const text=
+await file.text();
+
+let title=
+file.name.replace(
+/\.(txt|html?|TXT|HTML?)$/,
+""
+);
+
+let content=text;
+
+
+if(
+file.name
+.toLowerCase()
+.endsWith(".html")
+||
+file.name
+.toLowerCase()
+.endsWith(".htm")
+){
+
+const doc=
+new DOMParser()
+.parseFromString(
+text,
+"text/html"
+);
+
+title=
+doc.querySelector("title")
+?.textContent
+.trim()
+||
+title;
+
+content=
+doc.body?.innerText
+||
+doc.body?.textContent
+||
+text;
+
+}
+
+
+books.unshift({
+
+id:Date.now(),
+
+title:title,
+
+author:"Imported book",
+
+content:content,
+
+created:Date.now()
+
+});
+
+
+save();
+
+render();
+
+e.target.value="";
+
+alert(
+"Book added to your library."
+);
+
+});
+
+
+function openBook(i){
+
+current=i;
+
+const b=books[i];
+
+document
+.getElementById("reader")
+.style.display="block";
+
+document
+.getElementById("rtitle")
+.textContent=b.title;
+
+
+document
+.getElementById("article")
+.innerHTML=
+
+`<div class="notice">
+This reader displays a book file you imported into your personal library.
+</div>
+
+<h1>
+${esc(b.title)}
+</h1>
+
+${esc(b.content)}`;
+
+
+document
+.getElementById("article")
+.style.fontSize=
+fontSize+"px";
+
+
+document
+.getElementById("reader")
+.scrollTop=0;
+
+}
+
+
+function closeReader(){
+
+document
+.getElementById("reader")
+.style.display="none";
+
+current=null;
+
+}
+
+
+function changeFont(n){
+
+fontSize=
+Math.max(
+14,
+Math.min(
+30,
+fontSize+n
+)
+);
+
+document
+.getElementById("article")
+.style.fontSize=
+fontSize+"px";
+
+}
+
+
+function toggleDark(){
+
+const dark=
+document.documentElement
+.dataset.dark==="1";
+
+if(dark){
+
+document.documentElement
+.dataset.dark="0";
+
+document.body.style.background=
+"#f7f1e8";
+
+document.body.style.color=
+"#35291f";
+
+document
+.querySelector(".reader")
+.style.background=
+"#f7f1e8";
+
+}else{
+
+document.documentElement
+.dataset.dark="1";
+
+document.body.style.background=
+"#191614";
+
+document.body.style.color=
+"#eee3d7";
+
+document
+.querySelector(".reader")
+.style.background=
+"#191614";
+
+}
+
+}
+
+
+function deleteCurrent(){
+
+if(current===null)return;
+
+if(
+confirm(
+"Remove this book from your library?"
+)
+){
+
+books.splice(
+current,
+1
+);
+
+save();
+
+closeReader();
+
+render();
+
+}
+
+}
+
+
+document
+.getElementById("reader")
+.addEventListener(
+"scroll",
+function(){
+
+const max=
+this.scrollHeight-
+this.clientHeight;
+
+document
+.getElementById("bar")
+.style.width=
+(max
+?
+this.scrollTop/max*100
+:
+0
+)+"%";
+
+}
+);
+
+
+render();
+
+</script>
+
+</body>
+</html>
