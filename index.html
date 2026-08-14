@@ -1,281 +1,489 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#8b5e3c">
+<meta name="theme-color" content="#7b4b32">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
 <title>Chicken Soup Library</title>
 
 <style>
 :root{
---bg:#f7f1e8;
---card:#fffaf3;
---ink:#35291f;
---muted:#806f60;
---accent:#a9673f;
---line:#e8dccd;
---shadow:0 10px 30px rgba(70,45,25,.10)
+ --bg:#f5eee5;
+ --card:#fffaf4;
+ --ink:#35261d;
+ --muted:#806f62;
+ --brown:#7b4b32;
+ --gold:#c89154;
+ --cream:#eadac8;
+ --line:#e5d7c8;
+ --shadow:0 12px 30px rgba(65,40,22,.12);
+ --reader:#fffaf4;
 }
 
 *{box-sizing:border-box}
 
-body{
-margin:0;
-background:var(--bg);
-color:var(--ink);
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+html,body{
+ margin:0;
+ padding:0;
+ background:var(--bg);
+ color:var(--ink);
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-button,input{font:inherit}
-button{cursor:pointer}
+button,input,textarea,select{
+ font:inherit;
+}
+
+button{
+ cursor:pointer;
+}
 
 .app{
-max-width:760px;
-margin:auto;
-min-height:100vh
+ max-width:850px;
+ margin:auto;
+ min-height:100vh;
 }
 
 header{
-padding:calc(22px + env(safe-area-inset-top)) 20px 20px;
-background:linear-gradient(145deg,#9a633f,#70462f);
-color:white;
-border-radius:0 0 28px 28px;
-box-shadow:var(--shadow)
+ padding:
+ calc(22px + env(safe-area-inset-top))
+ 18px 20px;
+ color:white;
+ background:
+ linear-gradient(145deg,#9b6443,#603b29);
+ border-radius:0 0 30px 30px;
+ box-shadow:var(--shadow);
 }
 
 .brand{
-display:flex;
-align-items:center;
-gap:12px
+ display:flex;
+ align-items:center;
+ gap:13px;
 }
 
-.logo{font-size:38px}
+.logo{
+ width:55px;
+ height:55px;
+ border-radius:17px;
+ background:rgba(255,255,255,.15);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:32px;
+}
 
 .brand h1{
-margin:0;
-font-family:Georgia,serif;
-font-size:25px
+ margin:0;
+ font-family:Georgia,serif;
+ font-size:25px;
 }
 
 .brand p{
-margin:3px 0 0;
-opacity:.8;
-font-size:13px
+ margin:4px 0 0;
+ opacity:.82;
+ font-size:13px;
 }
 
 .search{
-margin-top:18px;
-background:white;
-color:#59493d;
-border:0;
-border-radius:15px;
-padding:14px 16px;
-width:100%;
-outline:0
+ margin-top:18px;
+ width:100%;
+ padding:14px 16px;
+ border:0;
+ border-radius:15px;
+ outline:0;
+ background:white;
+ color:#392a21;
 }
 
 main{
-padding:22px 16px 100px
+ padding:20px 16px 110px;
 }
 
-.toprow{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:12px
+.toolbar{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ margin-bottom:16px;
 }
 
-h2{
-font-family:Georgia,serif;
-margin:0;
-font-size:24px
+.toolbar h2{
+ margin:0;
+ font-family:Georgia,serif;
+ font-size:24px;
 }
 
 .add{
-border:0;
-background:var(--accent);
-color:white;
-padding:12px 16px;
-border-radius:14px;
-font-weight:700;
-box-shadow:0 5px 14px #a9673f30
+ border:0;
+ background:var(--brown);
+ color:white;
+ border-radius:13px;
+ padding:11px 14px;
+ font-weight:700;
 }
 
-#file{display:none}
-
-.empty{
-text-align:center;
-padding:55px 25px;
-background:var(--card);
-border:1px dashed var(--line);
-border-radius:22px;
-margin-top:18px
+#file{
+ display:none;
 }
 
-.empty .big{font-size:58px}
-
-.empty h3{
-font-family:Georgia,serif;
-font-size:22px;
-margin:12px 0 7px
+.filters{
+ display:flex;
+ gap:8px;
+ overflow-x:auto;
+ padding-bottom:5px;
 }
 
-.empty p{
-color:var(--muted);
-line-height:1.5
+.filters button{
+ white-space:nowrap;
+ border:1px solid var(--line);
+ background:var(--card);
+ color:var(--ink);
+ border-radius:20px;
+ padding:8px 13px;
+}
+
+.filters button.active{
+ background:var(--brown);
+ color:white;
+ border-color:var(--brown);
 }
 
 .books{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:14px;
-margin-top:18px
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:15px;
+ margin-top:18px;
 }
 
 .book{
-background:var(--card);
-border:1px solid var(--line);
-border-radius:18px;
-overflow:hidden;
-box-shadow:var(--shadow)
+ background:var(--card);
+ border:1px solid var(--line);
+ border-radius:19px;
+ overflow:hidden;
+ box-shadow:var(--shadow);
+ position:relative;
 }
 
 .cover{
-height:175px;
-background:linear-gradient(145deg,#c88958,#7e4e34);
-display:flex;
-align-items:center;
-justify-content:center;
-padding:18px;
-color:white;
-text-align:center;
-font-family:Georgia,serif;
-font-size:20px;
-font-weight:bold
+ height:190px;
+ padding:18px;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+ color:white;
+ font-family:Georgia,serif;
+ background:
+ linear-gradient(145deg,#c9935c,#71442f);
 }
 
-.info{padding:13px}
-
-.title{
-font-weight:700;
-line-height:1.25
+.cover .soup{
+ font-size:38px;
+ margin-bottom:10px;
 }
 
-.meta{
-font-size:12px;
-color:var(--muted);
-margin-top:5px
+.coverTitle{
+ font-size:19px;
+ font-weight:bold;
+ line-height:1.2;
+}
+
+.heart{
+ position:absolute;
+ top:9px;
+ right:9px;
+ width:36px;
+ height:36px;
+ border:0;
+ border-radius:50%;
+ background:rgba(255,255,255,.9);
+ font-size:18px;
+}
+
+.info{
+ padding:13px;
+}
+
+.bookTitle{
+ font-weight:750;
+ line-height:1.25;
+}
+
+.author{
+ color:var(--muted);
+ font-size:12px;
+ margin-top:4px;
+}
+
+.category{
+ display:inline-block;
+ margin-top:8px;
+ font-size:10px;
+ background:#eadaca;
+ color:#68432f;
+ padding:4px 7px;
+ border-radius:10px;
+}
+
+.progressTrack{
+ height:4px;
+ background:#e8dccf;
+ margin-top:10px;
+ border-radius:10px;
+ overflow:hidden;
+}
+
+.progressTrack span{
+ display:block;
+ height:100%;
+ background:var(--gold);
 }
 
 .open{
-margin-top:11px;
-width:100%;
-border:0;
-background:#efe1d2;
-color:#6d422d;
-border-radius:11px;
-padding:9px;
-font-weight:700
+ width:100%;
+ border:0;
+ margin-top:11px;
+ padding:10px;
+ border-radius:11px;
+ background:#eadaca;
+ color:#69422e;
+ font-weight:700;
+}
+
+.empty{
+ text-align:center;
+ padding:50px 25px;
+ border:1px dashed var(--line);
+ border-radius:22px;
+ background:var(--card);
+ margin-top:20px;
+}
+
+.emptyIcon{
+ font-size:60px;
+}
+
+.empty h3{
+ font-family:Georgia,serif;
+ font-size:22px;
+ margin:10px 0 5px;
+}
+
+.empty p{
+ color:var(--muted);
+ line-height:1.5;
 }
 
 .reader{
-display:none;
-position:fixed;
-inset:0;
-background:var(--bg);
-z-index:5;
-overflow:auto
+ display:none;
+ position:fixed;
+ inset:0;
+ z-index:20;
+ background:var(--reader);
+ overflow:auto;
 }
 
 .readerHead{
-position:sticky;
-top:0;
-background:rgba(247,241,232,.94);
-backdrop-filter:blur(12px);
-border-bottom:1px solid var(--line);
-padding:calc(10px + env(safe-area-inset-top)) 14px 10px;
-z-index:2
+ position:sticky;
+ top:0;
+ z-index:5;
+ padding:
+ calc(9px + env(safe-area-inset-top))
+ 12px 9px;
+ background:rgba(255,250,244,.95);
+ backdrop-filter:blur(15px);
+ border-bottom:1px solid var(--line);
 }
 
-.rtop{
-display:flex;
-align-items:center;
-gap:10px
+.readerTop{
+ display:flex;
+ align-items:center;
+ gap:9px;
 }
 
 .back{
-border:0;
-background:#eadbcb;
-border-radius:12px;
-padding:9px 12px
+ border:0;
+ background:#eadaca;
+ border-radius:11px;
+ padding:9px 12px;
+ color:var(--ink);
 }
 
-.rtitle{
-font-weight:700;
-white-space:nowrap;
-overflow:hidden;
-text-overflow:ellipsis
+.readerTitle{
+ font-weight:750;
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:ellipsis;
 }
 
 .controls{
-display:flex;
-gap:7px;
-margin-top:10px
+ display:flex;
+ gap:6px;
+ overflow-x:auto;
+ margin-top:9px;
 }
 
 .controls button{
-border:1px solid var(--line);
-background:var(--card);
-border-radius:10px;
-padding:7px 10px;
-color:var(--ink)
-}
-
-.article{
-max-width:680px;
-margin:auto;
-padding:30px 22px 100px;
-font-family:Georgia,serif;
-font-size:19px;
-line-height:1.75;
-white-space:pre-wrap
-}
-
-.article h1{
-font-size:32px;
-line-height:1.2;
-margin:0 0 25px
-}
-
-.notice{
-font-family:-apple-system,BlinkMacSystemFont,sans-serif;
-background:#fff6e8;
-border:1px solid #ead6bb;
-border-radius:14px;
-padding:13px;
-margin-bottom:22px;
-font-size:13px;
-color:#765b43
+ white-space:nowrap;
+ border:1px solid var(--line);
+ background:var(--card);
+ border-radius:9px;
+ padding:7px 9px;
+ color:var(--ink);
 }
 
 .progress{
-height:3px;
-background:var(--line)
+ height:3px;
+ margin-top:9px;
+ background:#e6d9cb;
 }
 
 .progress i{
-display:block;
-height:100%;
-background:var(--accent);
-width:0
+ display:block;
+ height:100%;
+ width:0;
+ background:var(--gold);
+}
+
+.article{
+ max-width:700px;
+ margin:auto;
+ padding:30px 22px 120px;
+ font-family:Georgia,serif;
+ font-size:19px;
+ line-height:1.8;
+ white-space:pre-wrap;
+}
+
+.article h1{
+ font-size:31px;
+ line-height:1.2;
+ margin:0 0 22px;
+}
+
+.notice{
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ background:#fff3df;
+ border:1px solid #ead3b4;
+ border-radius:13px;
+ padding:12px;
+ font-size:13px;
+ color:#74563d;
+ margin-bottom:22px;
+}
+
+.notes{
+ max-width:700px;
+ margin:0 auto 30px;
+ padding:0 22px;
+}
+
+.notes textarea{
+ width:100%;
+ min-height:110px;
+ resize:vertical;
+ border:1px solid var(--line);
+ border-radius:14px;
+ padding:12px;
+ background:var(--card);
+ color:var(--ink);
+ outline:0;
+}
+
+.saveNote{
+ margin-top:7px;
+ border:0;
+ background:var(--brown);
+ color:white;
+ border-radius:10px;
+ padding:9px 13px;
+}
+
+.pdfViewer{
+ width:100%;
+ height:calc(100vh - 105px);
+ border:0;
+ background:white;
+}
+
+.epubBox{
+ padding:35px 22px;
+ text-align:center;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+.modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ z-index:50;
+ background:rgba(0,0,0,.5);
+ align-items:flex-end;
+ justify-content:center;
+}
+
+.modalCard{
+ width:100%;
+ max-width:700px;
+ background:var(--card);
+ border-radius:25px 25px 0 0;
+ padding:22px;
+}
+
+.modalCard h3{
+ margin-top:0;
+ font-family:Georgia,serif;
+}
+
+.modalCard input,
+.modalCard select{
+ width:100%;
+ padding:12px;
+ margin:6px 0 12px;
+ border:1px solid var(--line);
+ border-radius:11px;
+ background:white;
+}
+
+.modalButtons{
+ display:flex;
+ gap:8px;
+}
+
+.modalButtons button{
+ flex:1;
+ padding:11px;
+ border:0;
+ border-radius:11px;
+}
+
+.cancel{
+ background:#eadaca;
+}
+
+.confirm{
+ background:var(--brown);
+ color:white;
 }
 
 @media(min-width:600px){
-.books{
-grid-template-columns:repeat(3,1fr)
+ .books{
+  grid-template-columns:repeat(3,1fr);
+ }
 }
+
+@media(max-width:380px){
+ .books{
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+ }
+ .cover{
+  height:165px;
+ }
 }
 </style>
 </head>
@@ -287,18 +495,20 @@ grid-template-columns:repeat(3,1fr)
 <header>
 
 <div class="brand">
+
 <div class="logo">🍲</div>
 
 <div>
 <h1>Chicken Soup Library</h1>
-<p>Your personal story library</p>
+<p>Stories that feed the soul</p>
 </div>
+
 </div>
 
 <input
-class="search"
 id="search"
-placeholder="Search your books…"
+class="search"
+placeholder="🔎 Search your library..."
 >
 
 </header>
@@ -306,14 +516,40 @@ placeholder="Search your books…"
 
 <main>
 
-<div class="toprow">
+<div class="toolbar">
 
 <h2>My Library</h2>
 
 <button
 class="add"
-onclick="document.getElementById('file').click()">
+onclick="chooseFile()">
 ＋ Add Book
+</button>
+
+</div>
+
+
+<div class="filters">
+
+<button
+class="active"
+onclick="setFilter('all',this)">
+All Books
+</button>
+
+<button
+onclick="setFilter('favorites',this)">
+❤️ Favorites
+</button>
+
+<button
+onclick="setFilter('reading',this)">
+📖 Reading
+</button>
+
+<button
+onclick="setFilter('finished',this)">
+✓ Finished
 </button>
 
 </div>
@@ -322,42 +558,51 @@ onclick="document.getElementById('file').click()">
 <input
 id="file"
 type="file"
-accept=".txt,.html,.htm,text/plain,text/html"
+accept=".txt,.html,.htm,.pdf,.epub"
 >
 
 
-<div id="empty" class="empty">
+<div
+id="empty"
+class="empty">
 
-<div class="big">📚</div>
+<div class="emptyIcon">📚</div>
 
-<h3>Your library is empty</h3>
+<h3>Your library is waiting</h3>
 
 <p>
-Add a TXT or HTML book file from the Files app
-to start reading.
+Add your own legally obtained book files
+and build your personal reading library.
 </p>
 
 <button
 class="add"
-onclick="document.getElementById('file').click()">
-Add Your First Book
+onclick="chooseFile()">
+＋ Add Your First Book
 </button>
 
 </div>
 
 
-<div id="books" class="books"></div>
+<div
+id="books"
+class="books">
+</div>
 
 </main>
 
 </div>
 
 
-<div class="reader" id="reader">
+<!-- READER -->
+
+<div
+id="reader"
+class="reader">
 
 <div class="readerHead">
 
-<div class="rtop">
+<div class="readerTop">
 
 <button
 class="back"
@@ -366,8 +611,8 @@ onclick="closeReader()">
 </button>
 
 <div
-class="rtitle"
-id="rtitle">
+id="readerTitle"
+class="readerTitle">
 </div>
 
 </div>
@@ -375,133 +620,250 @@ id="rtitle">
 
 <div class="controls">
 
-<button onclick="changeFont(-1)">
+<button onclick="font(-1)">
 A−
 </button>
 
-<button onclick="changeFont(1)">
+<button onclick="font(1)">
 A+
 </button>
 
-<button onclick="toggleDark()">
+<button onclick="bookmark()">
+🔖 Bookmark
+</button>
+
+<button onclick="toggleReaderDark()">
 ◐ Theme
 </button>
 
-<button onclick="deleteCurrent()">
-🗑 Delete
+<button onclick="showNotes()">
+📝 Notes
 </button>
 
 </div>
 
 
 <div class="progress">
-<i id="bar"></i>
+<i id="readerProgress"></i>
 </div>
 
 </div>
 
 
-<article
-class="article"
-id="article">
-</article>
+<div id="readerBody">
+</div>
+
+</div>
+
+
+<!-- BOOK DETAILS MODAL -->
+
+<div
+id="modal"
+class="modal">
+
+<div class="modalCard">
+
+<h3>New Book</h3>
+
+<input
+id="bookTitle"
+placeholder="Book title">
+
+<input
+id="bookAuthor"
+placeholder="Author">
+
+<select id="bookCategory">
+
+<option>Inspiration</option>
+<option>Family</option>
+<option>Love</option>
+<option>Friendship</option>
+<option>Pets</option>
+<option>Teenagers</option>
+<option>Life</option>
+<option>Other</option>
+
+</select>
+
+<div class="modalButtons">
+
+<button
+class="cancel"
+onclick="closeModal()">
+Cancel
+</button>
+
+<button
+class="confirm"
+onclick="finishImport()">
+Add Book
+</button>
+
+</div>
+
+</div>
 
 </div>
 
 
 <script>
 
-const KEY="chickenSoupLibraryV1";
+const DB_KEY="chickenSoupLibrary_2";
 
 let books=
 JSON.parse(
-localStorage.getItem(KEY)||"[]"
+localStorage.getItem(DB_KEY)||"[]"
 );
 
+let filter="all";
 let current=null;
-
+let pendingFile=null;
 let fontSize=19;
+let readerDark=false;
 
 
 function save(){
 
 localStorage.setItem(
-KEY,
+DB_KEY,
 JSON.stringify(books)
 );
 
 }
 
 
-function esc(s){
+function chooseFile(){
 
-return s.replace(
-/[&<>"']/g,
-m=>({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-}[m])
-);
+document
+.getElementById("file")
+.click();
+
+}
+
+
+function esc(value){
+
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+function setFilter(type,button){
+
+filter=type;
+
+document
+.querySelectorAll(".filters button")
+.forEach(b=>b.classList.remove("active"));
+
+button.classList.add("active");
+
+render();
 
 }
 
 
 function render(){
 
-const q=
+const search=
 document
 .getElementById("search")
 .value
-.toLowerCase();
-
-const wrap=
-document.getElementById("books");
-
-const list=
-books.filter(b=>
-(b.title+" "+(b.author||""))
 .toLowerCase()
-.includes(q)
-);
+.trim();
 
-document.getElementById("empty")
+let list=books.filter(b=>{
+
+const matchesSearch=
+(b.title+" "+b.author+" "+b.category)
+.toLowerCase()
+.includes(search);
+
+if(filter==="favorites")
+return matchesSearch&&b.favorite;
+
+if(filter==="reading")
+return matchesSearch&&b.progress>0&&b.progress<100;
+
+if(filter==="finished")
+return matchesSearch&&b.progress>=100;
+
+return matchesSearch;
+
+});
+
+
+document
+.getElementById("empty")
 .style.display=
 books.length
 ?"none"
 :"block";
 
 
-wrap.innerHTML=
-list.map((b,i)=>{
+document
+.getElementById("books")
+.innerHTML=
+list.map((b)=>{
 
-const real=
-books.indexOf(b);
+const i=books.indexOf(b);
 
 return `
 
 <div class="book">
 
+<button
+class="heart"
+onclick="event.stopPropagation();favorite(${i})">
+${b.favorite?"❤️":"♡"}
+</button>
+
 <div class="cover">
+
+<div class="soup">🍲</div>
+
+<div class="coverTitle">
 ${esc(b.title)}
 </div>
+
+</div>
+
 
 <div class="info">
 
-<div class="title">
+<div class="bookTitle">
 ${esc(b.title)}
 </div>
 
-<div class="meta">
-${esc(b.author||"Personal library")}
+<div class="author">
+${esc(b.author||"Unknown author")}
 </div>
+
+<span class="category">
+${esc(b.category||"Other")}
+</span>
+
+
+<div class="progressTrack">
+<span style="width:${b.progress||0}%"></span>
+</div>
+
 
 <button
 class="open"
-onclick="openBook(${real})">
-Read Book
+onclick="openBook(${i})">
+
+${b.progress>0&&b.progress<100
+?"Continue Reading"
+:"Read Book"}
+
 </button>
 
 </div>
@@ -511,6 +873,17 @@ Read Book
 `;
 
 }).join("");
+
+}
+
+
+function favorite(i){
+
+books[i].favorite=
+!books[i].favorite;
+
+save();
+render();
 
 }
 
@@ -527,29 +900,124 @@ document
 .getElementById("file")
 .addEventListener(
 "change",
-async e=>{
+function(){
 
-const file=e.target.files[0];
+if(!this.files.length)
+return;
 
-if(!file)return;
+pendingFile=this.files[0];
 
-const text=
-await file.text();
-
-let title=
-file.name.replace(
-/\.(txt|html?|TXT|HTML?)$/,
+document
+.getElementById("bookTitle")
+.value=
+pendingFile.name
+.replace(
+/\.(txt|html?|pdf|epub)$/i,
 ""
 );
 
-let content=text;
+document
+.getElementById("modal")
+.style.display="flex";
 
+});
+
+
+function closeModal(){
+
+document
+.getElementById("modal")
+.style.display="none";
+
+pendingFile=null;
+
+document
+.getElementById("file")
+.value="";
+
+}
+
+
+async function finishImport(){
+
+if(!pendingFile)
+return;
+
+const file=pendingFile;
+
+const title=
+document
+.getElementById("bookTitle")
+.value
+.trim()
+||
+file.name;
+
+const author=
+document
+.getElementById("bookAuthor")
+.value
+.trim()
+||
+"Unknown author";
+
+const category=
+document
+.getElementById("bookCategory")
+.value;
+
+
+let book={
+ id:Date.now(),
+ title:title,
+ author:author,
+ category:category,
+ favorite:false,
+ progress:0,
+ bookmark:0,
+ notes:"",
+ type:"",
+ content:"",
+ url:""
+};
+
+
+if(file.type==="application/pdf"||
+file.name.toLowerCase().endsWith(".pdf")){
+
+book.type="pdf";
+
+const buffer=
+await file.arrayBuffer();
+
+book.content=
+arrayBufferToBase64(buffer);
+
+}
+else if(
+file.name.toLowerCase().endsWith(".epub")
+){
+
+book.type="epub";
+
+const buffer=
+await file.arrayBuffer();
+
+book.content=
+arrayBufferToBase64(buffer);
+
+}
+else{
+
+book.type="text";
+
+let text=
+await file.text();
 
 if(
 file.name
 .toLowerCase()
-.endsWith(".html")
-||
+.endsWith(".html")||
 file.name
 .toLowerCase()
 .endsWith(".htm")
@@ -562,80 +1030,203 @@ text,
 "text/html"
 );
 
-title=
-doc.querySelector("title")
-?.textContent
-.trim()
-||
-title;
-
-content=
-doc.body?.innerText
-||
-doc.body?.textContent
-||
+text=
+doc.body?.innerText||
 text;
 
 }
 
+book.content=text;
 
-books.unshift({
+}
 
-id:Date.now(),
 
-title:title,
-
-author:"Imported book",
-
-content:content,
-
-created:Date.now()
-
-});
-
+books.unshift(book);
 
 save();
 
+closeModal();
+
 render();
 
-e.target.value="";
+}
 
-alert(
-"Book added to your library."
+
+function arrayBufferToBase64(buffer){
+
+let binary="";
+
+const bytes=
+new Uint8Array(buffer);
+
+const chunk=8192;
+
+for(
+let i=0;
+i<bytes.length;
+i+=chunk
+){
+
+binary+=String.fromCharCode(
+...bytes.subarray(i,i+chunk)
 );
 
-});
+}
+
+return btoa(binary);
+
+}
+
+
+function base64ToBlob(base64,type){
+
+const binary=
+atob(base64);
+
+const bytes=
+new Uint8Array(binary.length);
+
+for(
+let i=0;
+i<binary.length;
+i++
+){
+
+bytes[i]=
+binary.charCodeAt(i);
+
+}
+
+return new Blob(
+[bytes],
+{type:type}
+);
+
+}
 
 
 function openBook(i){
 
 current=i;
 
-const b=books[i];
+const book=books[i];
 
 document
 .getElementById("reader")
 .style.display="block";
 
 document
-.getElementById("rtitle")
-.textContent=b.title;
+.getElementById("readerTitle")
+.textContent=
+book.title;
+
+
+if(book.type==="pdf"){
+
+const blob=
+base64ToBlob(
+book.content,
+"application/pdf"
+);
+
+const url=
+URL.createObjectURL(blob);
+
+document
+.getElementById("readerBody")
+.innerHTML=
+
+`<iframe
+class="pdfViewer"
+src="${url}">
+</iframe>`;
+
+return;
+
+}
+
+
+if(book.type==="epub"){
+
+document
+.getElementById("readerBody")
+.innerHTML=
+
+`<div class="epubBox">
+
+<h2>📕 EPUB Book</h2>
+
+<p>
+This EPUB is safely stored in your library.
+Use the button below to open it with an EPUB-compatible
+reader on your device.
+</p>
+
+<button
+class="add"
+onclick="openEPUB()">
+Open EPUB
+</button>
+
+</div>`;
+
+return;
+
+}
 
 
 document
-.getElementById("article")
+.getElementById("readerBody")
 .innerHTML=
 
-`<div class="notice">
-This reader displays a book file you imported into your personal library.
+`
+
+<article
+id="article"
+class="article">
+
+<div class="notice">
+
+📖 Personal Library Reader
+
+<br><br>
+
+This book was imported from a file on your device.
+
 </div>
 
 <h1>
-${esc(b.title)}
+${esc(book.title)}
 </h1>
 
-${esc(b.content)}`;
+${esc(book.content)}
 
+</article>
+
+<div
+id="notesArea"
+class="notes"
+style="display:none">
+
+<h3>📝 Notes</h3>
+
+<textarea
+id="notesText"
+placeholder="Write your notes about this book...">${esc(book.notes||"")}</textarea>
+
+<button
+class="saveNote"
+onclick="saveNotes()">
+Save Notes
+</button>
+
+</div>
+
+`;
+
+document
+.getElementById("article")
+style;
 
 document
 .getElementById("article")
@@ -645,106 +1236,162 @@ fontSize+"px";
 
 document
 .getElementById("reader")
-.scrollTop=0;
+.scrollTop=
+book.bookmark||0;
 
 }
 
 
 function closeReader(){
 
+if(current!==null){
+
+books[current].bookmark=
+document
+.getElementById("reader")
+.scrollTop;
+
+save();
+
+}
+
 document
 .getElementById("reader")
 .style.display="none";
 
-current=null;
+render();
 
 }
 
 
-function changeFont(n){
+function font(amount){
 
 fontSize=
 Math.max(
 14,
 Math.min(
-30,
-fontSize+n
+32,
+fontSize+amount
 )
 );
 
+const article=
 document
-.getElementById("article")
-.style.fontSize=
+.getElementById("article");
+
+if(article)
+article.style.fontSize=
 fontSize+"px";
 
 }
 
 
-function toggleDark(){
+function bookmark(){
 
-const dark=
-document.documentElement
-.dataset.dark==="1";
+if(current===null)
+return;
 
-if(dark){
-
-document.documentElement
-.dataset.dark="0";
-
-document.body.style.background=
-"#f7f1e8";
-
-document.body.style.color=
-"#35291f";
-
+books[current].bookmark=
 document
-.querySelector(".reader")
-.style.background=
-"#f7f1e8";
-
-}else{
-
-document.documentElement
-.dataset.dark="1";
-
-document.body.style.background=
-"#191614";
-
-document.body.style.color=
-"#eee3d7";
-
-document
-.querySelector(".reader")
-.style.background=
-"#191614";
-
-}
-
-}
-
-
-function deleteCurrent(){
-
-if(current===null)return;
-
-if(
-confirm(
-"Remove this book from your library?"
-)
-){
-
-books.splice(
-current,
-1
-);
+.getElementById("reader")
+.scrollTop;
 
 save();
 
-closeReader();
-
-render();
+alert("Bookmark saved.");
 
 }
+
+
+function showNotes(){
+
+const area=
+document
+.getElementById("notesArea");
+
+if(!area)return;
+
+area.style.display=
+area.style.display==="none"
+?"block"
+:"none";
+
+}
+
+
+function saveNotes(){
+
+if(current===null)
+return;
+
+books[current].notes=
+document
+.getElementById("notesText")
+.value;
+
+save();
+
+alert("Notes saved.");
+
+}
+
+
+function toggleReaderDark(){
+
+readerDark=!readerDark;
+
+const reader=
+document
+.getElementById("reader");
+
+if(readerDark){
+
+reader.style.background="#191614";
+reader.style.color="#eee3d7";
+
+document
+.querySelector(".readerHead")
+.style.background=
+"rgba(25,22,20,.95)";
+
+}else{
+
+reader.style.background=
+"var(--reader)";
+
+reader.style.color=
+"var(--ink)";
+
+document
+.querySelector(".readerHead")
+.style.background=
+"rgba(255,250,244,.95)";
+
+}
+
+}
+
+
+function openEPUB(){
+
+if(current===null)
+return;
+
+const book=books[current];
+
+const blob=
+base64ToBlob(
+book.content,
+"application/epub+zip"
+);
+
+const url=
+URL.createObjectURL(blob);
+
+window.open(
+url,
+"_blank"
+);
 
 }
 
@@ -755,22 +1402,37 @@ document
 "scroll",
 function(){
 
+if(current===null)
+return;
+
 const max=
 this.scrollHeight-
 this.clientHeight;
 
+if(max>0){
+
+const percent=
+(this.scrollTop/max)*100;
+
 document
-.getElementById("bar")
+.getElementById("readerProgress")
 .style.width=
-(max
-?
-this.scrollTop/max*100
-:
-0
-)+"%";
+percent+"%";
+
+if(
+books[current].type==="text"
+){
+
+books[current].progress=
+Math.round(percent);
+
+save();
 
 }
-);
+
+}
+
+});
 
 
 render();
