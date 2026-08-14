@@ -6,7 +6,10 @@
 <meta name="viewport"
 content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<meta name="theme-color" content="#70452f">
+<meta name="theme-color" content="#75472f">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 
 <title>Chicken Soup Library</title>
 
@@ -16,202 +19,513 @@ content="width=device-width,initial-scale=1,viewport-fit=cover">
 box-sizing:border-box;
 }
 
+:root{
+--bg:#f6efe6;
+--card:#fffaf4;
+--brown:#75472f;
+--brown2:#9a6443;
+--gold:#c9965c;
+--text:#35271f;
+--muted:#806f62;
+--line:#e5d8ca;
+}
+
 body{
 margin:0;
-background:#f5eee5;
-color:#38291f;
+background:var(--bg);
+color:var(--text);
 font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
+button,
+input{
+font:inherit;
+}
+
+button{
+-webkit-tap-highlight-color:transparent;
+cursor:pointer;
+}
+
+.app{
+max-width:850px;
+margin:auto;
+min-height:100vh;
+}
+
 header{
-padding:45px 20px 25px;
-background:linear-gradient(145deg,#9a633f,#67412d);
+padding:
+calc(25px + env(safe-area-inset-top))
+18px
+22px;
+
+background:
+linear-gradient(
+145deg,
+var(--brown2),
+var(--brown)
+);
+
 color:white;
-border-radius:0 0 30px 30px;
+
+border-radius:
+0 0 30px 30px;
+
+box-shadow:
+0 10px 30px rgba(60,35,20,.18);
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:13px;
 }
 
 .logo{
-font-size:45px;
+width:58px;
+height:58px;
+border-radius:18px;
+
+background:
+rgba(255,255,255,.15);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:34px;
 }
 
 h1{
+margin:0;
 font-family:Georgia,serif;
-margin:5px 0;
-font-size:29px;
+font-size:26px;
 }
 
-header p{
-margin:0;
-opacity:.8;
+.tagline{
+margin-top:4px;
+font-size:13px;
+opacity:.82;
 }
 
 .search{
-margin-top:20px;
 width:100%;
-padding:14px;
+margin-top:18px;
+
+padding:14px 16px;
+
 border:0;
-border-radius:14px;
+border-radius:15px;
+
+outline:none;
+
 font-size:16px;
+
+color:#35271f;
 }
 
 main{
 padding:20px 16px 100px;
 }
 
-.top{
+.toolbar{
 display:flex;
 align-items:center;
 justify-content:space-between;
 gap:10px;
 }
 
-h2{
+.toolbar h2{
+margin:0;
 font-family:Georgia,serif;
+font-size:24px;
 }
 
-.add{
-background:#70452f;
-color:white;
+.addButton{
 border:0;
+background:var(--brown);
+color:white;
+
 padding:12px 15px;
+
 border-radius:13px;
-font-weight:bold;
+
+font-weight:700;
 }
 
-#file{
+#fileInput{
 display:none;
+}
+
+.helper{
+margin-top:15px;
+
+background:#fff7eb;
+
+border:1px solid var(--line);
+
+padding:13px;
+
+border-radius:15px;
+
+font-size:13px;
+
+line-height:1.5;
+
+color:var(--muted);
 }
 
 .books{
 display:grid;
 grid-template-columns:repeat(2,1fr);
+
 gap:15px;
-margin-top:20px;
+
+margin-top:18px;
 }
 
 .book{
-background:#fffaf4;
-border-radius:18px;
+position:relative;
+
+background:var(--card);
+
+border:1px solid var(--line);
+
+border-radius:19px;
+
 overflow:hidden;
-box-shadow:0 8px 25px rgba(70,45,25,.12);
-border:1px solid #eadccd;
+
+box-shadow:
+0 8px 25px rgba(65,40,22,.10);
 }
 
 .cover{
-height:180px;
-background:linear-gradient(145deg,#c58b58,#75462f);
-color:white;
+height:185px;
+
+padding:18px;
+
 display:flex;
+flex-direction:column;
+
 align-items:center;
 justify-content:center;
+
 text-align:center;
-padding:20px;
+
+color:white;
+
 font-family:Georgia,serif;
-font-size:20px;
-font-weight:bold;
+
+background:
+linear-gradient(
+145deg,
+#c9935d,
+#70432e
+);
 }
 
-.info{
+.coverIcon{
+font-size:37px;
+margin-bottom:10px;
+}
+
+.coverTitle{
+font-size:18px;
+font-weight:bold;
+line-height:1.25;
+}
+
+.bookInfo{
 padding:13px;
 }
 
-.title{
-font-weight:bold;
+.bookTitle{
+font-weight:750;
 line-height:1.3;
 }
 
-.type{
-font-size:12px;
-color:#806f60;
+.bookType{
+font-size:11px;
+color:var(--muted);
 margin-top:5px;
 }
 
-.read{
-margin-top:10px;
-width:100%;
-padding:10px;
-border:0;
+.progress{
+height:4px;
+
+background:#e8dccf;
+
 border-radius:10px;
+
+overflow:hidden;
+
+margin-top:10px;
+}
+
+.progressBar{
+height:100%;
+
+background:var(--gold);
+
+width:0%;
+}
+
+.readButton{
+width:100%;
+
+border:0;
+
+margin-top:10px;
+
+padding:10px;
+
+border-radius:11px;
+
 background:#eadaca;
-color:#69432f;
-font-weight:bold;
+
+color:#67422e;
+
+font-weight:700;
+}
+
+.deleteButton{
+position:absolute;
+
+top:8px;
+right:8px;
+
+width:34px;
+height:34px;
+
+border:0;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.92);
+
+font-size:16px;
 }
 
 .empty{
 text-align:center;
-padding:55px 20px;
+
+padding:55px 22px;
+
+background:var(--card);
+
+border:1px dashed var(--line);
+
+border-radius:22px;
+
+margin-top:20px;
 }
 
-.empty div{
-font-size:60px;
+.emptyIcon{
+font-size:62px;
 }
 
 .empty h3{
 font-family:Georgia,serif;
 font-size:22px;
+margin:10px 0 5px;
 }
 
 .empty p{
-color:#806f60;
-line-height:1.5;
+color:var(--muted);
+line-height:1.55;
 }
 
 .reader{
 display:none;
+
 position:fixed;
+
 inset:0;
+
+z-index:100;
+
 background:#fffaf4;
-z-index:20;
+
 overflow:auto;
 }
 
-.readerTop{
+.readerHeader{
 position:sticky;
+
 top:0;
-background:rgba(255,250,244,.96);
-padding:15px;
-border-bottom:1px solid #eadccd;
-display:flex;
-align-items:center;
-gap:10px;
+
+z-index:10;
+
+background:
+rgba(255,250,244,.96);
+
+backdrop-filter:blur(14px);
+
+border-bottom:1px solid var(--line);
+
+padding:
+calc(10px + env(safe-area-inset-top))
+12px
+10px;
 }
 
-.back{
+.readerTop{
+display:flex;
+
+align-items:center;
+
+gap:9px;
+}
+
+.backButton{
 border:0;
+
 background:#eadaca;
-padding:9px 13px;
+
+padding:9px 12px;
+
 border-radius:10px;
+
+color:var(--text);
 }
 
 .readerTitle{
-font-weight:bold;
+font-weight:750;
+
 white-space:nowrap;
+
 overflow:hidden;
+
 text-overflow:ellipsis;
 }
 
-.readerText{
+.readerControls{
+display:flex;
+
+gap:7px;
+
+overflow-x:auto;
+
+padding-top:9px;
+}
+
+.readerControls button{
+white-space:nowrap;
+
+border:1px solid var(--line);
+
+background:var(--card);
+
+padding:7px 10px;
+
+border-radius:9px;
+}
+
+.readerProgress{
+height:3px;
+
+background:#e5d8ca;
+
+margin-top:9px;
+}
+
+.readerProgressBar{
+height:100%;
+
+width:0%;
+
+background:var(--gold);
+}
+
+.readerContent{
 max-width:700px;
+
 margin:auto;
-padding:30px 22px 100px;
+
+padding:30px 22px 120px;
+
 font-family:Georgia,serif;
+
 font-size:19px;
+
 line-height:1.8;
+
 white-space:pre-wrap;
 }
 
-.controls{
-padding:10px 15px;
-display:flex;
-gap:8px;
-border-bottom:1px solid #eadccd;
+.readerContent h1{
+font-family:Georgia,serif;
+
+font-size:31px;
+
+line-height:1.2;
+
+margin-bottom:25px;
 }
 
-.controls button{
-border:1px solid #eadccd;
-background:#fffaf4;
-padding:8px 12px;
-border-radius:9px;
+.notice{
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+sans-serif;
+
+background:#fff3df;
+
+border:1px solid #ead3b4;
+
+border-radius:13px;
+
+padding:12px;
+
+font-size:13px;
+
+line-height:1.5;
+
+color:#76583f;
+
+margin-bottom:22px;
+}
+
+.pdfFrame{
+width:100%;
+
+height:
+calc(100vh - 105px);
+
+border:0;
+
+background:white;
+}
+
+.epubMessage{
+padding:40px 22px;
+
+text-align:center;
+
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+sans-serif;
+}
+
+.epubMessage h2{
+font-family:Georgia,serif;
+}
+
+.epubButton{
+border:0;
+
+background:var(--brown);
+
+color:white;
+
+padding:12px 18px;
+
+border-radius:12px;
+
+font-weight:bold;
 }
 
 @media(min-width:600px){
@@ -226,34 +540,59 @@ grid-template-columns:repeat(3,1fr);
 
 </head>
 
+
 <body>
+
+
+<div class="app">
+
 
 <header>
 
-<div class="logo">🍲</div>
+<div class="brand">
 
-<h1>Chicken Soup Library</h1>
+<div class="logo">
+🍲
+</div>
 
-<p>Stories that feed the soul</p>
+<div>
+
+<h1>
+Chicken Soup Library
+</h1>
+
+<div class="tagline">
+Stories that feed the soul
+</div>
+
+</div>
+
+</div>
+
 
 <input
-class="search"
 id="search"
-placeholder="Search your library..."
+class="search"
+placeholder="🔎 Search your books..."
 >
+
 
 </header>
 
 
 <main>
 
-<div class="top">
 
-<h2>My Library</h2>
+<div class="toolbar">
+
+<h2>
+My Library
+</h2>
+
 
 <button
-class="add"
-onclick="document.getElementById('file').click()">
+class="addButton"
+onclick="openFilePicker()">
 
 ＋ Add Book
 
@@ -262,10 +601,26 @@ onclick="document.getElementById('file').click()">
 </div>
 
 
+<div class="helper">
+
+📱 <b>Add books directly from your iPhone.</b>
+
+Tap <b>Add Book</b>, choose a file from the
+iPhone Files app, and it will be stored
+locally in this browser.
+
+<br><br>
+
+Supported:
+<b>TXT, HTML, PDF and EPUB</b>.
+
+</div>
+
+
 <input
-id="file"
+id="fileInput"
 type="file"
-accept=".txt,.html,.htm"
+accept=".txt,.html,.htm,.pdf,.epub,text/plain,text/html,application/pdf,application/epub+zip"
 >
 
 
@@ -273,20 +628,24 @@ accept=".txt,.html,.htm"
 id="empty"
 class="empty">
 
-<div>📚</div>
+<div class="emptyIcon">
+📚
+</div>
 
-<h3>Your library is empty</h3>
+<h3>
+Your library is empty
+</h3>
 
 <p>
-Tap "Add Book" to import a TXT or HTML book
-from your iPhone Files app.
+Choose a book from your iPhone Files app
+to start building your personal library.
 </p>
 
 <button
-class="add"
-onclick="document.getElementById('file').click()">
+class="addButton"
+onclick="openFilePicker()">
 
-Add Your First Book
+＋ Add Your First Book
 
 </button>
 
@@ -298,53 +657,114 @@ id="books"
 class="books">
 </div>
 
+
 </main>
 
+</div>
+
+
+
+<!-- READER -->
 
 <div
 id="reader"
 class="reader">
 
+
+<div class="readerHeader">
+
+
 <div class="readerTop">
 
+
 <button
-class="back"
+class="backButton"
 onclick="closeReader()">
 
 ← Library
 
 </button>
 
+
 <div
 id="readerTitle"
 class="readerTitle">
 </div>
 
+
 </div>
 
 
-<div class="controls">
+<div class="readerControls">
 
-<button onclick="changeFont(-1)">
+<button
+onclick="changeFont(-1)">
 A−
 </button>
 
-<button onclick="changeFont(1)">
+<button
+onclick="changeFont(1)">
 A+
 </button>
+
+<button
+onclick="saveBookmark()">
+🔖 Bookmark
+</button>
+
+<button
+onclick="toggleDarkMode()">
+◐ Theme
+</button>
+
+</div>
+
+
+<div class="readerProgress">
+
+<div
+id="readerProgressBar"
+class="readerProgressBar">
+</div>
+
+</div>
+
 
 </div>
 
 
 <div
-id="readerText"
-class="readerText">
+id="readerContent"
+class="readerContent">
 </div>
 
+
 </div>
+
 
 
 <script>
+
+
+/*
+====================================================
+CHICKEN SOUP LIBRARY
+IndexedDB book storage
+Designed for iPhone Files app
+====================================================
+*/
+
+
+const DB_NAME=
+"ChickenSoupLibraryDB";
+
+const DB_VERSION=1;
+
+const STORE=
+"books";
+
+
+let database=null;
 
 let books=[];
 
@@ -352,118 +772,243 @@ let currentBook=null;
 
 let fontSize=19;
 
-
-function save(){
-
-try{
-
-localStorage.setItem(
-"chickenSoupBooks",
-JSON.stringify(books)
-);
-
-}catch(e){
-
-console.log(e);
-
-}
-
-}
+let darkMode=false;
 
 
-function load(){
 
-try{
-
-books=
-JSON.parse(
-localStorage.getItem(
-"chickenSoupBooks"
-)||"[]"
-);
-
-}catch(e){
-
-books=[];
-
-}
-
-render();
-
-}
+/* OPEN DATABASE */
 
 
-function render(){
+function openDatabase(){
 
-let search=
-document
-.getElementById("search")
-.value
-.toLowerCase();
+return new Promise(
+(resolve,reject)=>{
 
-let list=
-books.filter(book=>
-book.title
-.toLowerCase()
-.includes(search)
+const request=
+indexedDB.open(
+DB_NAME,
+DB_VERSION
 );
 
 
-document
-.getElementById("empty")
-.style.display=
-books.length
-?"none"
-:"block";
+request.onupgradeneeded=
+function(event){
+
+const db=
+event.target.result;
 
 
-document
-.getElementById("books")
-.innerHTML=
-list.map((book,index)=>`
+if(!db.objectStoreNames.contains(STORE)){
 
-<div class="book">
+const objectStore=
+db.createObjectStore(
+STORE,
+{
+keyPath:"id",
+autoIncrement:true
+}
+);
 
-<div class="cover">
-
-🍲
-
-<br>
-
-${escapeHTML(book.title)}
-
-</div>
-
-<div class="info">
-
-<div class="title">
-${escapeHTML(book.title)}
-</div>
-
-<div class="type">
-${book.type}
-</div>
-
-<button
-class="read"
-onclick="openBook(${index})">
-
-Read Book
-
-</button>
-
-</div>
-
-</div>
-
-`).join("");
+objectStore.createIndex(
+"title",
+"title",
+{unique:false}
+);
 
 }
+
+};
+
+
+request.onsuccess=
+function(event){
+
+database=
+event.target.result;
+
+resolve(database);
+
+};
+
+
+request.onerror=
+function(){
+
+reject(
+request.error
+);
+
+};
+
+});
+
+}
+
+
+
+/* ADD BOOK TO DATABASE */
+
+
+function addBook(book){
+
+return new Promise(
+(resolve,reject)=>{
+
+const transaction=
+database.transaction(
+STORE,
+"readwrite"
+);
+
+const store=
+transaction.objectStore(STORE);
+
+const request=
+store.add(book);
+
+request.onsuccess=
+()=>{
+resolve(request.result);
+};
+
+request.onerror=
+()=>{
+reject(request.error);
+};
+
+});
+
+}
+
+
+
+/* GET ALL BOOKS */
+
+
+function getBooks(){
+
+return new Promise(
+(resolve,reject)=>{
+
+const transaction=
+database.transaction(
+STORE,
+"readonly"
+);
+
+const store=
+transaction.objectStore(STORE);
+
+const request=
+store.getAll();
+
+request.onsuccess=
+()=>{
+resolve(request.result);
+};
+
+request.onerror=
+()=>{
+reject(request.error);
+};
+
+});
+
+}
+
+
+
+/* DELETE BOOK */
+
+
+function deleteBook(id){
+
+return new Promise(
+(resolve,reject)=>{
+
+const transaction=
+database.transaction(
+STORE,
+"readwrite"
+);
+
+const store=
+transaction.objectStore(STORE);
+
+const request=
+store.delete(id);
+
+request.onsuccess=
+()=>{
+resolve();
+};
+
+request.onerror=
+()=>{
+reject(request.error);
+};
+
+});
+
+}
+
+
+
+/* UPDATE BOOK */
+
+
+function updateBook(book){
+
+return new Promise(
+(resolve,reject)=>{
+
+const transaction=
+database.transaction(
+STORE,
+"readwrite"
+);
+
+const store=
+transaction.objectStore(STORE);
+
+const request=
+store.put(book);
+
+request.onsuccess=
+()=>{
+resolve();
+};
+
+request.onerror=
+()=>{
+reject(request.error);
+};
+
+});
+
+}
+
+
+
+/* FILE PICKER */
+
+
+function openFilePicker(){
+
+document
+.getElementById("fileInput")
+.click();
+
+}
+
+
+
+/* ESCAPE HTML */
 
 
 function escapeHTML(text){
 
-return text
+return String(text)
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
@@ -473,32 +1018,40 @@ return text
 }
 
 
-document
-.getElementById("file")
-.addEventListener(
-"change",
-function(){
 
-let file=this.files[0];
-
-if(!file)return;
+/* DETERMINE FILE TYPE */
 
 
-let reader=
-new FileReader();
+function getFileType(file){
+
+const name=
+file.name.toLowerCase();
+
+if(name.endsWith(".pdf"))
+return "PDF";
+
+if(name.endsWith(".epub"))
+return "EPUB";
+
+if(name.endsWith(".html"))
+return "HTML";
+
+if(name.endsWith(".htm"))
+return "HTML";
+
+return "TXT";
+
+}
 
 
-reader.onload=function(e){
 
-let content=e.target.result;
+/* GET TEXT FROM TEXT/HTML */
 
 
-let title=
-file.name
-.replace(
-/\.(txt|html?|TXT|HTML?)$/,
-""
-);
+async function getTextFile(file){
+
+let text=
+await file.text();
 
 
 if(
@@ -511,68 +1064,358 @@ file.name
 .endsWith(".htm")
 ){
 
-let temp=
-document.createElement("div");
+const parser=
+new DOMParser();
 
-temp.innerHTML=content;
+const documentObject=
+parser.parseFromString(
+text,
+"text/html"
+);
 
-content=
-temp.innerText||
-temp.textContent;
+text=
+documentObject.body
+?
+documentObject.body.innerText
+:
+text;
 
 }
 
 
-books.unshift({
+return text;
 
-title:title,
-
-content:content,
-
-type:file.name
-.split(".")
-.pop()
-.toUpperCase()
-
-});
+}
 
 
-save();
 
-render();
+/* FILE SELECTED */
+
+
+document
+.getElementById("fileInput")
+.addEventListener(
+"change",
+async function(){
+
+const file=
+this.files[0];
+
+if(!file)
+return;
+
+
+const type=
+getFileType(file);
+
+
+const book={
+
+title:
+file.name.replace(
+/\.(txt|html?|pdf|epub)$/i,
+""
+),
+
+filename:file.name,
+
+type:type,
+
+size:file.size,
+
+added:
+Date.now(),
+
+progress:0,
+
+bookmark:0,
+
+content:null
 
 };
 
 
-reader.readAsText(file);
+/*
+TEXT / HTML
+*/
+
+if(
+type==="TXT"||
+type==="HTML"
+){
+
+book.content=
+await getTextFile(file);
+
+}
+
+
+/*
+PDF / EPUB
+*/
+
+else{
+
+book.content=
+await file.arrayBuffer();
+
+}
+
+
+/*
+SAVE TO INDEXEDDB
+*/
+
+try{
+
+await addBook(book);
+
+await refreshBooks();
+
+alert(
+"📚 Book added to your library!"
+);
+
+}
+catch(error){
+
+console.error(error);
+
+alert(
+"Sorry, this book could not be saved."
+);
+
+}
+
 
 this.value="";
 
 });
 
 
-function openBook(index){
 
-currentBook=
-books[index];
+/* REFRESH LIBRARY */
+
+
+async function refreshBooks(){
+
+books=
+await getBooks();
+
+renderBooks();
+
+}
+
+
+
+/* RENDER BOOKS */
+
+
+function renderBooks(){
+
+const search=
+document
+.getElementById("search")
+.value
+.toLowerCase()
+.trim();
+
+
+const filtered=
+books.filter(book=>
+book.title
+.toLowerCase()
+.includes(search)
+);
+
+
+document
+.getElementById("empty")
+.style.display=
+books.length
+?
+"none"
+:
+"block";
+
+
+document
+.getElementById("books")
+.innerHTML=
+filtered
+.map(book=>{
+
+const progress=
+book.progress||0;
+
+
+return `
+
+<div class="book">
+
+<button
+class="deleteButton"
+onclick="removeBook(${book.id})">
+
+×
+</button>
+
+
+<div class="cover">
+
+<div class="coverIcon">
+🍲
+</div>
+
+<div class="coverTitle">
+
+${escapeHTML(book.title)}
+
+</div>
+
+</div>
+
+
+<div class="bookInfo">
+
+
+<div class="bookTitle">
+
+${escapeHTML(book.title)}
+
+</div>
+
+
+<div class="bookType">
+
+${book.type} •
+${formatSize(book.size)}
+
+</div>
+
+
+<div class="progress">
+
+<div
+class="progressBar"
+style="width:${progress}%">
+
+</div>
+
+</div>
+
+
+<button
+class="readButton"
+onclick="openBook(${book.id})">
+
+${progress>0
+?
+"Continue Reading"
+:
+"Read Book"}
+
+</button>
+
+
+</div>
+
+</div>
+
+`;
+
+})
+.join("");
+
+}
+
+
+
+/* FORMAT FILE SIZE */
+
+
+function formatSize(bytes){
+
+if(!bytes)
+return "";
+
+if(bytes<1024)
+return bytes+" B";
+
+if(bytes<1024*1024)
+return Math.round(bytes/1024)+" KB";
+
+return(
+bytes/(1024*1024)
+).toFixed(1)+" MB";
+
+}
+
+
+
+/* REMOVE BOOK */
+
+
+async function removeBook(id){
+
+const book=
+books.find(
+b=>b.id===id
+);
+
+if(!book)
+return;
+
+
+if(
+!confirm(
+'Remove "'+
+book.title+
+'" from your library?'
+)
+)
+return;
+
+
+await deleteBook(id);
+
+await refreshBooks();
+
+
+if(
+currentBook &&
+currentBook.id===id
+){
+
+closeReader();
+
+}
+
+}
+
+
+
+/* OPEN BOOK */
+
+
+async function openBook(id){
+
+const book=
+books.find(
+b=>b.id===id
+);
+
+if(!book)
+return;
+
+
+currentBook=book;
 
 
 document
 .getElementById("readerTitle")
 .textContent=
-currentBook.title;
-
-
-document
-.getElementById("readerText")
-.textContent=
-currentBook.content;
-
-
-document
-.getElementById("readerText")
-.style.fontSize=
-fontSize+"px";
+book.title;
 
 
 document
@@ -580,47 +1423,417 @@ document
 .style.display=
 "block";
 
+
+/*
+TEXT
+*/
+
+if(
+book.type==="TXT"||
+book.type==="HTML"
+){
+
+document
+.getElementById("readerContent")
+.innerHTML=
+
+`
+
+<div class="notice">
+
+📖 Personal Library Reader
+
+<br><br>
+
+This book was imported directly
+from your iPhone Files app.
+
+</div>
+
+
+<h1>
+${escapeHTML(book.title)}
+</h1>
+
+
+${escapeHTML(book.content)}
+
+`;
+
+document
+.getElementById("readerContent")
+.style.fontSize=
+fontSize+"px";
+
+
+/*
+RESTORE BOOKMARK
+*/
+
+document
+.getElementById("reader")
+.scrollTop=
+book.bookmark||0;
+
 }
 
 
-function closeReader(){
+/*
+PDF
+*/
+
+else if(
+book.type==="PDF"
+){
+
+const blob=
+new Blob(
+[book.content],
+{
+type:"application/pdf"
+}
+);
+
+const url=
+URL.createObjectURL(blob);
+
+
+document
+.getElementById("readerContent")
+.innerHTML=
+
+`
+
+<iframe
+class="pdfFrame"
+src="${url}">
+</iframe>
+
+`;
+
+}
+
+
+/*
+EPUB
+*/
+
+else if(
+book.type==="EPUB"
+){
+
+const blob=
+new Blob(
+[book.content],
+{
+type:"application/epub+zip"
+}
+);
+
+const url=
+URL.createObjectURL(blob);
+
+
+window.currentEPUBURL=url;
+
+
+document
+.getElementById("readerContent")
+.innerHTML=
+
+`
+
+<div class="epubMessage">
+
+<div style="font-size:60px">
+📕
+</div>
+
+<h2>
+${escapeHTML(book.title)}
+</h2>
+
+<p>
+Your EPUB is stored locally in your
+Chicken Soup Library.
+</p>
+
+<p>
+iPhone browsers don't natively render
+EPUB files inside a normal HTML page.
+Use the button below to open the file
+with an EPUB reader on your device.
+</p>
+
+<br>
+
+<a
+href="${url}"
+target="_blank">
+
+<button class="epubButton">
+
+Open EPUB
+
+</button>
+
+</a>
+
+</div>
+
+`;
+
+}
+
+}
+
+
+
+/* CLOSE READER */
+
+
+async function closeReader(){
+
+if(
+currentBook &&
+(
+currentBook.type==="TXT"||
+currentBook.type==="HTML"
+)
+){
+
+currentBook.bookmark=
+document
+.getElementById("reader")
+.scrollTop;
+
+
+await updateBook(currentBook);
+
+}
+
 
 document
 .getElementById("reader")
 .style.display=
 "none";
 
+
+currentBook=null;
+
+
+await refreshBooks();
+
 }
+
+
+
+/* FONT SIZE */
 
 
 function changeFont(amount){
 
 fontSize+=amount;
 
+
 if(fontSize<14)
 fontSize=14;
 
-if(fontSize>30)
-fontSize=30;
+
+if(fontSize>32)
+fontSize=32;
 
 
+const content=
 document
-.getElementById("readerText")
-.style.fontSize=
+.getElementById("readerContent");
+
+
+if(content)
+content.style.fontSize=
 fontSize+"px";
 
 }
+
+
+
+/* BOOKMARK */
+
+
+async function saveBookmark(){
+
+if(
+!currentBook
+||
+(
+currentBook.type!=="TXT"&&
+currentBook.type!=="HTML"
+)
+)
+return;
+
+
+currentBook.bookmark=
+document
+.getElementById("reader")
+.scrollTop;
+
+
+await updateBook(currentBook);
+
+
+alert(
+"🔖 Bookmark saved!"
+);
+
+}
+
+
+
+/* DARK MODE */
+
+
+function toggleDarkMode(){
+
+darkMode=!darkMode;
+
+
+const reader=
+document
+.getElementById("reader");
+
+
+const header=
+document
+.querySelector(".readerHeader");
+
+
+if(darkMode){
+
+reader.style.background=
+"#191614";
+
+reader.style.color=
+"#eee5dc";
+
+header.style.background=
+"rgba(25,22,20,.96)";
+
+}
+else{
+
+reader.style.background=
+"#fffaf4";
+
+reader.style.color=
+"#35271f";
+
+header.style.background=
+"rgba(255,250,244,.96)";
+
+}
+
+}
+
+
+
+/* READING PROGRESS */
+
+
+document
+.getElementById("reader")
+.addEventListener(
+"scroll",
+async function(){
+
+if(
+!currentBook
+||
+(
+currentBook.type!=="TXT"&&
+currentBook.type!=="HTML"
+)
+)
+return;
+
+
+const max=
+this.scrollHeight-
+this.clientHeight;
+
+
+if(max<=0)
+return;
+
+
+const percent=
+Math.round(
+(this.scrollTop/max)*100
+);
+
+
+document
+.getElementById("readerProgressBar")
+.style.width=
+percent+"%";
+
+
+if(
+Math.abs(
+(currentBook.progress||0)-
+percent
+)>=5
+){
+
+currentBook.progress=
+percent;
+
+await updateBook(
+currentBook
+);
+
+}
+
+});
+
+
+
+/* SEARCH */
 
 
 document
 .getElementById("search")
 .addEventListener(
 "input",
-render
+renderBooks
 );
 
 
-load();
+
+/* START APP */
+
+
+(async function(){
+
+try{
+
+await openDatabase();
+
+await refreshBooks();
+
+}
+catch(error){
+
+console.error(error);
+
+alert(
+"Your browser does not support local book storage."
+);
+
+}
+
+})();
+
 
 </script>
 
