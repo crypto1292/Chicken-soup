@@ -4,772 +4,603 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#3b2418">
-
 <title>Chicken Soup Library</title>
 
 <style>
-
 *{
-box-sizing:border-box;
--webkit-tap-highlight-color:transparent;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
-html{
-background:#21150f;
+html,body{
+  margin:0;
+  min-height:100%;
 }
 
 body{
-margin:0;
-background:
-radial-gradient(circle at top,#5b3825 0,#2b1b13 45%,#17100c 100%);
-color:#f7ead7;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-min-height:100vh;
+  background:
+    radial-gradient(circle at top,#5b3825,#2b1b13 48%,#17100c);
+  color:#f7ead7;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-button,
-input{
-font:inherit;
+button,input{
+  font:inherit;
 }
 
-
-/* =========================
-   LIBRARY HEADER
-========================= */
+button{
+  -webkit-appearance:none;
+  appearance:none;
+}
 
 header{
-position:relative;
-padding:
-calc(28px + env(safe-area-inset-top))
-20px
-30px;
-
-background:
-linear-gradient(
-180deg,
-rgba(91,56,37,.98),
-rgba(52,31,21,.98)
-);
-
-border-bottom:
-4px solid #9b6a3e;
-
-box-shadow:
-0 8px 25px rgba(0,0,0,.45);
+  padding:
+    calc(28px + env(safe-area-inset-top))
+    20px
+    30px;
+  background:
+    linear-gradient(180deg,#5b3825,#341f15);
+  border-bottom:4px solid #9b6a3e;
+  box-shadow:0 8px 25px rgba(0,0,0,.45);
 }
 
 .headerInner{
-max-width:850px;
-margin:auto;
-text-align:center;
+  max-width:900px;
+  margin:auto;
+  text-align:center;
 }
 
 .lamp{
-font-size:36px;
-margin-bottom:4px;
+  font-size:34px;
 }
 
 h1{
-margin:0;
-font-family:Georgia,serif;
-font-size:30px;
-letter-spacing:.3px;
+  margin:0;
+  font-family:Georgia,serif;
+  font-size:30px;
 }
 
 .subtitle{
-margin-top:7px;
-color:#d9bd94;
-font-size:13px;
+  margin-top:6px;
+  color:#d9bd94;
+  font-size:13px;
 }
 
-
-/* =========================
-   SEARCH
-========================= */
-
 .search{
-width:100%;
-max-width:600px;
-
-margin:20px auto 0;
-
-display:block;
-
-padding:14px 17px;
-
-border:1px solid #8a603c;
-border-radius:14px;
-
-background:#24160f;
-color:white;
-
-outline:none;
-
-font-size:16px;
+  width:100%;
+  max-width:600px;
+  margin:20px auto 0;
+  display:block;
+  padding:14px 17px;
+  border:1px solid #8a603c;
+  border-radius:14px;
+  background:#24160f;
+  color:white;
+  outline:none;
 }
 
 .search::placeholder{
-color:#bda88e;
+  color:#bda88e;
 }
-
-
-/* =========================
-   MAIN
-========================= */
 
 main{
-max-width:900px;
-margin:auto;
-
-padding:
-22px
-16px
-100px;
+  max-width:900px;
+  margin:auto;
+  padding:22px 16px 100px;
 }
-
-.sectionTitle{
-font-family:Georgia,serif;
-font-size:24px;
-margin:0 0 14px;
-}
-
-
-/* =========================
-   ADD BUTTON
-========================= */
 
 .addButton{
-display:block;
-
-width:100%;
-
-padding:17px;
-
-border:1px solid #c29661;
-
-border-radius:15px;
-
-background:
-linear-gradient(
-180deg,
-#a97745,
-#79502f
-);
-
-color:white;
-
-font-size:17px;
-
-font-weight:bold;
-
-box-shadow:
-0 5px 12px rgba(0,0,0,.3);
-
-margin-bottom:20px;
+  display:block;
+  width:100%;
+  padding:17px;
+  border:1px solid #c29661;
+  border-radius:15px;
+  background:linear-gradient(180deg,#a97745,#79502f);
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  box-shadow:0 5px 12px rgba(0,0,0,.3);
+  margin-bottom:20px;
 }
 
 .addButton:active{
-transform:scale(.98);
+  transform:scale(.98);
 }
-
-
-/* =========================
-   FILE INPUT
-========================= */
 
 #fileInput{
-display:none;
+  display:none;
 }
 
+.continue{
+  display:none;
+  margin-bottom:25px;
+}
 
-/* =========================
-   SHELF
-========================= */
+.sectionTitle{
+  font-family:Georgia,serif;
+  font-size:23px;
+  margin:0 0 14px;
+}
+
+.continueCard{
+  background:linear-gradient(145deg,#69432b,#352116);
+  border:1px solid #9b6b43;
+  border-radius:16px;
+  padding:15px;
+  box-shadow:0 7px 20px rgba(0,0,0,.3);
+}
+
+.continueName{
+  font-family:Georgia,serif;
+  font-size:19px;
+  font-weight:bold;
+}
+
+.continueType{
+  color:#d9bd94;
+  font-size:12px;
+  margin-top:5px;
+}
+
+.continueButton{
+  margin-top:13px;
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:11px;
+  background:#d4ad7b;
+  color:#301d12;
+  font-weight:bold;
+}
 
 .shelf{
-position:relative;
-
-padding:
-15px
-10px
-28px;
-
-margin-bottom:30px;
-
-background:
-linear-gradient(
-180deg,
-transparent 0 80%,
-#3a2115 80% 88%,
-#774a2c 88% 100%
-);
-
-border-radius:10px;
+  position:relative;
+  padding:15px 10px 28px;
+  margin-bottom:30px;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0 80%,
+      #3a2115 80% 88%,
+      #774a2c 88% 100%
+    );
+  border-radius:10px;
 }
-
-
-/* =========================
-   BOOK GRID
-========================= */
 
 .grid{
-display:grid;
-
-grid-template-columns:
-repeat(2,1fr);
-
-gap:16px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
 }
 
-
-/* =========================
-   BOOK
-========================= */
-
 .book{
-position:relative;
-
-min-width:0;
-
-background:
-linear-gradient(
-145deg,
-#6c4228,
-#321e14
-);
-
-border:
-1px solid #9a6b43;
-
-border-radius:6px;
-
-overflow:hidden;
-
-box-shadow:
-5px 7px 12px rgba(0,0,0,.45);
+  position:relative;
+  min-width:0;
+  background:linear-gradient(145deg,#6c4228,#321e14);
+  border:1px solid #9a6b43;
+  border-radius:6px;
+  overflow:hidden;
+  box-shadow:5px 7px 12px rgba(0,0,0,.45);
 }
 
 .bookCover{
-height:185px;
-
-padding:16px;
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-justify-content:center;
-
-text-align:center;
-
-font-family:Georgia,serif;
-
-background:
-linear-gradient(
-135deg,
-#75452b,
-#3d2317
-);
-
-border-bottom:
-1px solid #a77549;
+  height:185px;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-family:Georgia,serif;
+  background:linear-gradient(135deg,#75452b,#3d2317);
 }
 
 .book.audio .bookCover{
-background:
-linear-gradient(
-135deg,
-#4b496c,
-#211f36
-);
+  background:linear-gradient(135deg,#4b496c,#211f36);
 }
 
 .coverIcon{
-font-size:42px;
-
-margin-bottom:12px;
+  font-size:42px;
+  margin-bottom:12px;
 }
 
 .bookTitle{
-font-size:17px;
-
-font-weight:bold;
-
-line-height:1.25;
+  font-size:17px;
+  font-weight:bold;
+  line-height:1.25;
 }
 
 .bookType{
-font-family:
--apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
-sans-serif;
-
-font-size:10px;
-
-margin-top:9px;
-
-color:#d8bd99;
-
-letter-spacing:.7px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:10px;
+  margin-top:9px;
+  color:#d8bd99;
+  letter-spacing:.7px;
 }
 
 .bookButtons{
-padding:10px;
+  padding:10px;
 }
 
 .openButton{
-width:100%;
-
-padding:10px;
-
-border:0;
-
-border-radius:9px;
-
-background:#d4ad7b;
-
-color:#301d12;
-
-font-weight:bold;
+  width:100%;
+  padding:10px;
+  border:0;
+  border-radius:9px;
+  background:#d4ad7b;
+  color:#301d12;
+  font-weight:bold;
 }
 
 .deleteButton{
-position:absolute;
-
-top:7px;
-right:7px;
-
-width:30px;
-height:30px;
-
-border:0;
-
-border-radius:50%;
-
-background:
-rgba(20,10,5,.8);
-
-color:white;
-
-font-size:18px;
-
-z-index:5;
+  position:absolute;
+  top:7px;
+  right:7px;
+  width:30px;
+  height:30px;
+  border:0;
+  border-radius:50%;
+  background:rgba(20,10,5,.8);
+  color:white;
+  font-size:18px;
+  z-index:5;
 }
 
-
-/* =========================
-   EMPTY
-========================= */
-
 .empty{
-padding:50px 20px;
-
-text-align:center;
-
-background:
-rgba(30,18,12,.7);
-
-border:
-1px dashed #7d5739;
-
-border-radius:18px;
+  padding:50px 20px;
+  text-align:center;
+  background:rgba(30,18,12,.7);
+  border:1px dashed #7d5739;
+  border-radius:18px;
 }
 
 .emptyIcon{
-font-size:55px;
+  font-size:55px;
 }
 
 .empty h2{
-font-family:Georgia,serif;
+  font-family:Georgia,serif;
 }
 
 .empty p{
-color:#c9b49a;
-line-height:1.5;
+  color:#c9b49a;
+  line-height:1.5;
 }
 
-
-/* =========================
-   READER
-========================= */
-
 .reader{
-display:none;
-
-position:fixed;
-
-inset:0;
-
-z-index:10000;
-
-background:#f5ead9;
-
-color:#302016;
-
-overflow:auto;
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  background:#f5ead9;
+  color:#302016;
+  overflow:auto;
 }
 
 .readerHeader{
-position:sticky;
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:#4b2d1d;
+  color:white;
+  padding:
+    calc(10px + env(safe-area-inset-top))
+    10px
+    10px;
+}
 
-top:0;
-
-z-index:10;
-
-background:#4b2d1d;
-
-color:white;
-
-padding:
-calc(12px + env(safe-area-inset-top))
-12px
-12px;
-
-display:flex;
-
-align-items:center;
-
-gap:12px;
+.readerTop{
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
 .back{
-border:0;
-
-border-radius:9px;
-
-padding:9px 13px;
-
-background:#d4ad7b;
-
-color:#301d12;
-
-font-weight:bold;
+  border:0;
+  border-radius:9px;
+  padding:9px 12px;
+  background:#d4ad7b;
+  color:#301d12;
+  font-weight:bold;
 }
 
 .readerTitle{
-font-family:Georgia,serif;
+  font-family:Georgia,serif;
+  font-weight:bold;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
 
-font-weight:bold;
+.readerTools{
+  display:flex;
+  gap:7px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
 
-white-space:nowrap;
-
-overflow:hidden;
-
-text-overflow:ellipsis;
+.readerTools button{
+  border:0;
+  border-radius:8px;
+  padding:7px 10px;
+  background:#ead5b7;
+  color:#392316;
 }
 
 .readerContent{
-max-width:720px;
-
-margin:auto;
-
-padding:
-30px
-22px
-100px;
-
-font-family:Georgia,serif;
-
-font-size:19px;
-
-line-height:1.8;
-
-white-space:pre-wrap;
+  max-width:720px;
+  margin:auto;
+  padding:30px 22px 100px;
+  font-family:Georgia,serif;
+  font-size:19px;
+  line-height:1.8;
+  white-space:pre-wrap;
 }
 
+.reader.light{
+  background:#fffaf0;
+  color:#302016;
+}
 
-/* =========================
-   AUDIO PLAYER
-========================= */
+.reader.sepia{
+  background:#ead9bc;
+  color:#4a3423;
+}
+
+.reader.dark{
+  background:#171717;
+  color:#eee;
+}
+
+.reader.dark .readerHeader{
+  background:#080808;
+}
+
+.reader.dark .readerTools button{
+  background:#333;
+  color:white;
+}
 
 .audioScreen{
-text-align:center;
-
-padding-top:25px;
+  text-align:center;
+  padding-top:25px;
 }
 
 .album{
-width:210px;
-height:210px;
-
-margin:
-0 auto
-25px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:80px;
-
-border-radius:20px;
-
-background:
-linear-gradient(
-145deg,
-#5d587d,
-#29253e
-);
-
-box-shadow:
-0 15px 35px rgba(0,0,0,.2);
+  width:210px;
+  height:210px;
+  margin:0 auto 25px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:80px;
+  border-radius:20px;
+  background:linear-gradient(145deg,#5d587d,#29253e);
+  box-shadow:0 15px 35px rgba(0,0,0,.2);
 }
 
 .audioScreen h2{
-font-family:Georgia,serif;
-
-font-size:25px;
-
-line-height:1.3;
+  font-family:Georgia,serif;
+  font-size:25px;
+  line-height:1.3;
 }
 
 .audioScreen p{
-font-family:
--apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
-sans-serif;
-
-font-size:13px;
-
-color:#725b48;
-
-word-break:break-word;
+  font-size:13px;
+  color:#725b48;
+  word-break:break-word;
 }
 
 .audioScreen audio{
-width:100%;
-
-margin:
-20px
-0;
+  width:100%;
+  margin:20px 0;
 }
 
-.controls{
-display:flex;
-
-justify-content:center;
-
-gap:10px;
-
-margin-top:10px;
+.audioControls{
+  display:flex;
+  justify-content:center;
+  gap:9px;
+  flex-wrap:wrap;
 }
 
-.controls button{
-border:0;
-
-border-radius:12px;
-
-padding:12px 15px;
-
-background:#e3c49c;
-
-color:#392316;
-
-font-weight:bold;
+.audioControls button,
+.speed button{
+  border:0;
+  border-radius:11px;
+  padding:11px 14px;
+  background:#e3c49c;
+  color:#392316;
+  font-weight:bold;
 }
 
 .speed{
-display:flex;
-
-justify-content:center;
-
-gap:6px;
-
-flex-wrap:wrap;
-
-margin-top:18px;
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  flex-wrap:wrap;
+  margin-top:18px;
 }
 
 .speed button{
-border:1px solid #c7aa84;
-
-background:#f8eee1;
-
-border-radius:9px;
-
-padding:7px 10px;
+  padding:7px 10px;
 }
 
+.audioProgress{
+  margin-top:15px;
+  color:#725b48;
+  font-size:12px;
+}
 
-/* =========================
-   DESKTOP
-========================= */
+.pdfFrame{
+  width:100%;
+  height:80vh;
+  border:0;
+}
 
 @media(min-width:650px){
-
-.grid{
-grid-template-columns:
-repeat(4,1fr);
+  .grid{
+    grid-template-columns:repeat(4,1fr);
+  }
 }
-
-}
-
 </style>
 </head>
 
-
 <body>
 
-
 <header>
+  <div class="headerInner">
 
-<div class="headerInner">
+    <div class="lamp">🕯️</div>
 
-<div class="lamp">
-🕯️
-</div>
+    <h1>Chicken Soup Library</h1>
 
-<h1>
-Chicken Soup Library
-</h1>
+    <div class="subtitle">
+      A quiet place for stories, wisdom & inspiration
+    </div>
 
-<div class="subtitle">
-A quiet place for stories, wisdom & inspiration
-</div>
+    <input
+      id="search"
+      class="search"
+      type="search"
+      placeholder="🔎 Search your library">
 
-
-<input
-id="search"
-class="search"
-type="search"
-placeholder="🔎 Search your library">
-
-</div>
-
+  </div>
 </header>
-
 
 <main>
 
-
 <button
-type="button"
-id="addButton"
-class="addButton">
-
-📚 ＋ Add Book or Audiobook
-
+  type="button"
+  id="addButton"
+  class="addButton">
+  📚 ＋ Add Book or Audiobook
 </button>
 
-
 <input
-id="fileInput"
-type="file"
-accept=".txt,.html,.htm,.pdf,.mp3,.m4a,.m4b,.wav">
+  id="fileInput"
+  type="file"
+  accept=".txt,.html,.htm,.pdf,.mp3,.m4a,.m4b,.wav">
 
+<section
+  id="continueSection"
+  class="continue">
 
-<section>
+  <h2 class="sectionTitle">
+    ⭐ Continue
+  </h2>
 
-<h2 class="sectionTitle">
-📖 My Books
-</h2>
-
-<div
-id="bookShelf"
-class="shelf">
-
-<div
-id="bookGrid"
-class="grid">
-</div>
-
-</div>
+  <div
+    id="continueCard"
+    class="continueCard">
+  </div>
 
 </section>
 
-
 <section>
 
-<h2 class="sectionTitle">
-🎧 Audiobooks
-</h2>
+  <h2 class="sectionTitle">
+    📖 My Books
+  </h2>
 
-<div
-id="audioShelf"
-class="shelf">
+  <div
+    id="bookShelf"
+    class="shelf">
 
-<div
-id="audioGrid"
-class="grid">
-</div>
+    <div
+      id="bookGrid"
+      class="grid">
+    </div>
 
-</div>
+  </div>
 
 </section>
 
+<section>
+
+  <h2 class="sectionTitle">
+    🎧 Audiobooks
+  </h2>
+
+  <div
+    id="audioShelf"
+    class="shelf">
+
+    <div
+      id="audioGrid"
+      class="grid">
+    </div>
+
+  </div>
+
+</section>
 
 <div
-id="empty"
-class="empty">
+  id="empty"
+  class="empty">
 
-<div class="emptyIcon">
-🏛️
-</div>
+  <div class="emptyIcon">🏛️</div>
 
-<h2>
-Welcome to your library
-</h2>
+  <h2>Your library is waiting</h2>
 
-<p>
-Add your books and audiobooks from
-the iPhone Files app and build your
-personal collection.
-</p>
+  <p>
+    Add books and audiobooks from
+    your iPhone Files app.
+  </p>
 
 </div>
-
 
 </main>
 
-
-<!-- =========================
-     READER
-========================= -->
-
 <div
-id="reader"
-class="reader">
+  id="reader"
+  class="reader">
 
+  <div class="readerHeader">
 
-<div class="readerHeader">
+    <div class="readerTop">
 
-<button
-type="button"
-id="backButton"
-class="back">
+      <button
+        type="button"
+        id="backButton"
+        class="back">
+        ← Library
+      </button>
 
-← Library
+      <div
+        id="readerTitle"
+        class="readerTitle">
+      </div>
 
-</button>
+    </div>
 
+    <div
+      id="readerTools"
+      class="readerTools"
+      style="display:none">
 
-<div
-id="readerTitle"
-class="readerTitle">
+      <button id="smaller">A−</button>
+      <button id="larger">A+</button>
+      <button id="lightMode">☀️</button>
+      <button id="sepiaMode">📜</button>
+      <button id="darkMode">🌙</button>
+
+    </div>
+
+  </div>
+
+  <div
+    id="readerContent"
+    class="readerContent">
+  </div>
+
 </div>
-
-</div>
-
-
-<div
-id="readerContent"
-class="readerContent">
-</div>
-
-
-</div>
-
 
 <script>
 
 /* ==========================================
-   WORKING FILE PICKER
+   IMPORTANT:
+   This keeps the same working Files picker
+   method from the previous version.
 ========================================== */
 
 var addButton =
@@ -778,514 +609,20 @@ document.getElementById("addButton");
 var fileInput =
 document.getElementById("fileInput");
 
-
 addButton.onclick = function(){
-
-fileInput.click();
-
+  fileInput.click();
 };
 
 
 /* ==========================================
-   LIBRARY
+   LIBRARY DATA
 ========================================== */
 
 var books = [];
 
-var search =
-document.getElementById("search");
-
-var bookGrid =
-document.getElementById("bookGrid");
-
-var audioGrid =
-document.getElementById("audioGrid");
-
-var empty =
-document.getElementById("empty");
-
-var bookShelf =
-document.getElementById("bookShelf");
-
-var audioShelf =
-document.getElementById("audioShelf");
-
-
-/* ==========================================
-   SELECT FILE
-========================================== */
-
-fileInput.onchange = function(){
-
-if(!fileInput.files.length){
-return;
-}
-
-var file =
-fileInput.files[0];
-
-importFile(file);
-
-};
-
-
-/* ==========================================
-   IMPORT
-========================================== */
-
-function importFile(file){
-
-var name =
-file.name;
-
-var lower =
-name.toLowerCase();
-
-var title =
-name.replace(
-/\.[^/.]+$/,
-""
-);
-
-
-/* AUDIO */
-
-if(
-lower.endsWith(".mp3") ||
-lower.endsWith(".m4a") ||
-lower.endsWith(".m4b") ||
-lower.endsWith(".wav")
-){
-
-var audioBook = {
-
-id:Date.now(),
-
-title:title,
-
-filename:name,
-
-type:"audio",
-
-file:file,
-
-position:0
-
-};
-
-books.unshift(
-audioBook
-);
-
-render();
-
-openAudio(
-audioBook
-);
-
-return;
-
-}
-
-
-/* TEXT */
-
-if(
-lower.endsWith(".txt") ||
-lower.endsWith(".html") ||
-lower.endsWith(".htm")
-){
-
-var reader =
-new FileReader();
-
-
-reader.onload =
-function(){
-
-var textBook = {
-
-id:Date.now(),
-
-title:title,
-
-filename:name,
-
-type:"book",
-
-content:reader.result
-
-};
-
-books.unshift(
-textBook
-);
-
-saveTextBooks();
-
-render();
-
-openBook(
-textBook
-);
-
-};
-
-
-reader.readAsText(file);
-
-return;
-
-}
-
-
-/* PDF */
-
-if(
-lower.endsWith(".pdf")
-){
-
-var pdfReader =
-new FileReader();
-
-
-pdfReader.onload =
-function(){
-
-var pdfBook = {
-
-id:Date.now(),
-
-title:title,
-
-filename:name,
-
-type:"pdf",
-
-data:pdfReader.result
-
-};
-
-books.unshift(
-pdfBook
-);
-
-saveTextBooks();
-
-render();
-
-openPDF(
-pdfBook
-);
-
-};
-
-
-pdfReader.readAsArrayBuffer(file);
-
-return;
-
-}
-
-
-alert(
-"That file type isn't supported yet."
-);
-
-}
-
-
-/* ==========================================
-   RENDER
-========================================== */
-
-function render(){
-
-var term =
-search.value
-.toLowerCase()
-.trim();
-
-
-bookGrid.innerHTML = "";
-
-audioGrid.innerHTML = "";
-
-
-var visible =
-books.filter(
-function(item){
-
-return item.title
-.toLowerCase()
-.includes(term);
-
-});
-
-
-var hasBooks = false;
-
-var hasAudio = false;
-
-
-visible.forEach(
-function(item){
-
-var card =
-createCard(item);
-
-if(
-item.type === "audio"
-){
-
-audioGrid.appendChild(
-card
-);
-
-hasAudio = true;
-
-}else{
-
-bookGrid.appendChild(
-card
-);
-
-hasBooks = true;
-
-}
-
-});
-
-
-bookShelf.style.display =
-hasBooks
-? "block"
-: "none";
-
-
-audioShelf.style.display =
-hasAudio
-? "block"
-: "none";
-
-
-empty.style.display =
-visible.length === 0
-? "block"
-: "none";
-
-}
-
-
-/* ==========================================
-   CREATE CARD
-========================================== */
-
-function createCard(item){
-
-var card =
-document.createElement("div");
-
-card.className =
-"book" +
-(
-item.type === "audio"
-? " audio"
-: ""
-);
-
-
-var cover =
-document.createElement("div");
-
-cover.className =
-"bookCover";
-
-
-var icon =
-document.createElement("div");
-
-icon.className =
-"coverIcon";
-
-icon.textContent =
-item.type === "audio"
-? "🎧"
-: item.type === "pdf"
-? "📕"
-: "📖";
-
-
-var title =
-document.createElement("div");
-
-title.className =
-"bookTitle";
-
-title.textContent =
-item.title;
-
-
-var type =
-document.createElement("div");
-
-type.className =
-"bookType";
-
-type.textContent =
-item.type === "audio"
-? "AUDIOBOOK"
-: item.type === "pdf"
-? "PDF BOOK"
-: "BOOK";
-
-
-cover.appendChild(
-icon
-);
-
-cover.appendChild(
-title
-);
-
-cover.appendChild(
-type
-);
-
-
-/* DELETE */
-
-var del =
-document.createElement("button");
-
-del.type =
-"button";
-
-del.className =
-"deleteButton";
-
-del.textContent =
-"×";
-
-
-del.onclick =
-function(event){
-
-event.stopPropagation();
-
-if(
-confirm(
-"Remove this item from your library?"
-)
-){
-
-var index =
-books.indexOf(item);
-
-if(index >= 0){
-
-books.splice(
-index,
-1
-);
-
-}
-
-saveTextBooks();
-
-render();
-
-}
-
-};
-
-
-/* BUTTON AREA */
-
-var buttons =
-document.createElement("div");
-
-buttons.className =
-"bookButtons";
-
-
-var open =
-document.createElement("button");
-
-open.type =
-"button";
-
-open.className =
-"openButton";
-
-open.textContent =
-item.type === "audio"
-? "▶ Listen"
-: "📖 Open";
-
-
-open.onclick =
-function(){
-
-if(
-item.type === "audio"
-){
-
-openAudio(item);
-
-}else if(
-item.type === "pdf"
-){
-
-openPDF(item);
-
-}else{
-
-openBook(item);
-
-}
-
-};
-
-
-buttons.appendChild(
-open
-);
-
-
-card.appendChild(
-cover
-);
-
-card.appendChild(
-del
-);
-
-card.appendChild(
-buttons
-);
-
-
-return card;
-
-}
-
-
-/* ==========================================
-   SEARCH
-========================================== */
-
-search.oninput =
-function(){
-
-render();
-
-};
-
-
-/* ==========================================
-   OPEN TEXT BOOK
-========================================== */
+var currentAudio = null;
+var currentURL = null;
+var currentBook = null;
 
 var reader =
 document.getElementById("reader");
@@ -1296,293 +633,927 @@ document.getElementById("readerTitle");
 var readerContent =
 document.getElementById("readerContent");
 
-var backButton =
-document.getElementById("backButton");
+var readerTools =
+document.getElementById("readerTools");
+
+var bookGrid =
+document.getElementById("bookGrid");
+
+var audioGrid =
+document.getElementById("audioGrid");
+
+var bookShelf =
+document.getElementById("bookShelf");
+
+var audioShelf =
+document.getElementById("audioShelf");
+
+var empty =
+document.getElementById("empty");
+
+var search =
+document.getElementById("search");
+
+var continueSection =
+document.getElementById("continueSection");
+
+var continueCard =
+document.getElementById("continueCard");
 
 
-function openBook(book){
+/* ==========================================
+   FILE IMPORT
+========================================== */
 
-readerTitle.textContent =
-book.title;
+fileInput.onchange = function(){
 
-readerContent.innerHTML = "";
+  if(!fileInput.files.length){
+    return;
+  }
 
+  var file =
+  fileInput.files[0];
 
-var heading =
-document.createElement("h2");
+  importFile(file);
 
-heading.textContent =
-book.title;
-
-
-var text =
-document.createElement("div");
-
-text.textContent =
-book.content;
+};
 
 
-readerContent.appendChild(
-heading
-);
+/* ==========================================
+   IMPORT FILE
+========================================== */
 
-readerContent.appendChild(
-text
-);
+function importFile(file){
+
+  var name = file.name;
+
+  var lower = name.toLowerCase();
+
+  var title =
+  name.replace(/\.[^/.]+$/,"");
 
 
-reader.style.display =
-"block";
+  /* AUDIO */
+
+  if(
+    lower.endsWith(".mp3") ||
+    lower.endsWith(".m4a") ||
+    lower.endsWith(".m4b") ||
+    lower.endsWith(".wav")
+  ){
+
+    var audioBook = {
+
+      id:Date.now(),
+
+      title:title,
+
+      filename:name,
+
+      type:"audio",
+
+      file:file,
+
+      position:0,
+
+      progress:0
+
+    };
+
+    books.unshift(audioBook);
+
+    render();
+
+    openAudio(audioBook);
+
+    return;
+  }
+
+
+  /* TEXT */
+
+  if(
+    lower.endsWith(".txt") ||
+    lower.endsWith(".html") ||
+    lower.endsWith(".htm")
+  ){
+
+    var textReader =
+    new FileReader();
+
+    textReader.onload =
+    function(){
+
+      var textBook = {
+
+        id:Date.now(),
+
+        title:title,
+
+        filename:name,
+
+        type:"book",
+
+        content:textReader.result,
+
+        position:0,
+
+        progress:0
+
+      };
+
+      books.unshift(textBook);
+
+      saveBooks();
+
+      render();
+
+      openBook(textBook);
+
+    };
+
+    textReader.readAsText(file);
+
+    return;
+  }
+
+
+  /* PDF */
+
+  if(lower.endsWith(".pdf")){
+
+    var pdfReader =
+    new FileReader();
+
+    pdfReader.onload =
+    function(){
+
+      var pdfBook = {
+
+        id:Date.now(),
+
+        title:title,
+
+        filename:name,
+
+        type:"pdf",
+
+        data:pdfReader.result,
+
+        position:0,
+
+        progress:0
+
+      };
+
+      books.unshift(pdfBook);
+
+      saveBooks();
+
+      render();
+
+      openPDF(pdfBook);
+
+    };
+
+    pdfReader.readAsArrayBuffer(file);
+
+    return;
+  }
+
+  alert(
+    "That file type isn't supported yet."
+  );
 
 }
 
 
 /* ==========================================
-   AUDIO
+   SEARCH
 ========================================== */
 
-var currentAudio = null;
+search.oninput =
+function(){
+  render();
+};
 
-var currentURL = null;
 
+/* ==========================================
+   RENDER
+========================================== */
+
+function render(){
+
+  var term =
+  search.value.toLowerCase().trim();
+
+  bookGrid.innerHTML = "";
+  audioGrid.innerHTML = "";
+
+  var visible =
+  books.filter(function(item){
+
+    return item.title
+      .toLowerCase()
+      .includes(term);
+
+  });
+
+  var hasBooks = false;
+  var hasAudio = false;
+
+  visible.forEach(function(item){
+
+    var card =
+    createCard(item);
+
+    if(item.type === "audio"){
+
+      audioGrid.appendChild(card);
+
+      hasAudio = true;
+
+    }else{
+
+      bookGrid.appendChild(card);
+
+      hasBooks = true;
+
+    }
+
+  });
+
+  bookShelf.style.display =
+  hasBooks ? "block" : "none";
+
+  audioShelf.style.display =
+  hasAudio ? "block" : "none";
+
+  empty.style.display =
+  visible.length ? "none" : "block";
+
+  renderContinue();
+
+}
+
+
+/* ==========================================
+   CONTINUE SECTION
+========================================== */
+
+function renderContinue(){
+
+  var active =
+  books.find(function(item){
+
+    return (
+      item.progress > 0 &&
+      item.progress < 100
+    );
+
+  });
+
+  if(!active){
+
+    continueSection.style.display =
+    "none";
+
+    return;
+  }
+
+  continueSection.style.display =
+  "block";
+
+  continueCard.innerHTML = "";
+
+  var name =
+  document.createElement("div");
+
+  name.className =
+  "continueName";
+
+  name.textContent =
+  active.title;
+
+
+  var type =
+  document.createElement("div");
+
+  type.className =
+  "continueType";
+
+  type.textContent =
+  active.type === "audio"
+  ? "🎧 Continue Listening"
+  : "📖 Continue Reading";
+
+
+  var button =
+  document.createElement("button");
+
+  button.type =
+  "button";
+
+  button.className =
+  "continueButton";
+
+  button.textContent =
+  active.type === "audio"
+  ? "▶ Continue Listening"
+  : "📖 Continue Reading";
+
+
+  button.onclick =
+  function(){
+
+    if(active.type === "audio"){
+      openAudio(active);
+    }else{
+      openBook(active);
+    }
+
+  };
+
+
+  continueCard.appendChild(name);
+
+  continueCard.appendChild(type);
+
+  continueCard.appendChild(button);
+
+}
+
+
+/* ==========================================
+   CREATE BOOK CARD
+========================================== */
+
+function createCard(item){
+
+  var card =
+  document.createElement("div");
+
+  card.className =
+  "book" +
+  (item.type === "audio" ? " audio" : "");
+
+
+  var cover =
+  document.createElement("div");
+
+  cover.className =
+  "bookCover";
+
+
+  var icon =
+  document.createElement("div");
+
+  icon.className =
+  "coverIcon";
+
+  icon.textContent =
+  item.type === "audio"
+  ? "🎧"
+  : item.type === "pdf"
+  ? "📕"
+  : "📖";
+
+
+  var title =
+  document.createElement("div");
+
+  title.className =
+  "bookTitle";
+
+  title.textContent =
+  item.title;
+
+
+  var type =
+  document.createElement("div");
+
+  type.className =
+  "bookType";
+
+  type.textContent =
+  item.type === "audio"
+  ? "AUDIOBOOK"
+  : item.type === "pdf"
+  ? "PDF BOOK"
+  : "BOOK";
+
+
+  cover.appendChild(icon);
+  cover.appendChild(title);
+  cover.appendChild(type);
+
+
+  /* DELETE */
+
+  var del =
+  document.createElement("button");
+
+  del.type = "button";
+
+  del.className =
+  "deleteButton";
+
+  del.textContent = "×";
+
+
+  del.onclick =
+  function(event){
+
+    event.stopPropagation();
+
+    if(
+      confirm(
+        "Remove this item from your library?"
+      )
+    ){
+
+      var index =
+      books.indexOf(item);
+
+      if(index >= 0){
+        books.splice(index,1);
+      }
+
+      saveBooks();
+
+      render();
+    }
+
+  };
+
+
+  /* OPEN */
+
+  var area =
+  document.createElement("div");
+
+  area.className =
+  "bookButtons";
+
+
+  var open =
+  document.createElement("button");
+
+  open.type = "button";
+
+  open.className =
+  "openButton";
+
+  open.textContent =
+  item.type === "audio"
+  ? "▶ Listen"
+  : "📖 Open";
+
+
+  open.onclick =
+  function(){
+
+    if(item.type === "audio"){
+      openAudio(item);
+    }else if(item.type === "pdf"){
+      openPDF(item);
+    }else{
+      openBook(item);
+    }
+
+  };
+
+
+  area.appendChild(open);
+
+  card.appendChild(cover);
+
+  card.appendChild(del);
+
+  card.appendChild(area);
+
+  return card;
+
+}
+
+
+/* ==========================================
+   TEXT BOOK
+========================================== */
+
+function openBook(book){
+
+  cleanupAudio();
+
+  currentBook =
+  book;
+
+  readerTitle.textContent =
+  book.title;
+
+  readerContent.textContent =
+  book.content;
+
+  readerTools.style.display =
+  "flex";
+
+  reader.className =
+  "reader";
+
+  reader.style.display =
+  "block";
+
+  updateReadingProgress();
+
+}
+
+
+/* ==========================================
+   READING POSITION
+========================================== */
+
+function updateReadingProgress(){
+
+  if(!currentBook){
+    return;
+  }
+
+  var scrollable =
+  reader.scrollHeight -
+  reader.clientHeight;
+
+  if(scrollable <= 0){
+    return;
+  }
+
+  if(currentBook.position){
+
+    reader.scrollTop =
+    currentBook.position *
+    scrollable;
+
+  }
+
+}
+
+
+reader.addEventListener(
+  "scroll",
+  function(){
+
+    if(!currentBook){
+      return;
+    }
+
+    if(currentBook.type !== "book"){
+      return;
+    }
+
+    var max =
+    reader.scrollHeight -
+    reader.clientHeight;
+
+    if(max <= 0){
+      return;
+    }
+
+    currentBook.position =
+    reader.scrollTop / max;
+
+    currentBook.progress =
+    Math.round(
+      currentBook.position * 100
+    );
+
+    saveBooks();
+
+  }
+);
+
+
+/* ==========================================
+   READER FONT SIZE
+========================================== */
+
+var readerSize = 19;
+
+document.getElementById("smaller").onclick =
+function(){
+
+  readerSize =
+  Math.max(
+    14,
+    readerSize - 1
+  );
+
+  readerContent.style.fontSize =
+  readerSize + "px";
+
+};
+
+
+document.getElementById("larger").onclick =
+function(){
+
+  readerSize =
+  Math.min(
+    30,
+    readerSize + 1
+  );
+
+  readerContent.style.fontSize =
+  readerSize + "px";
+
+};
+
+
+/* ==========================================
+   READING THEMES
+========================================== */
+
+document.getElementById("lightMode").onclick =
+function(){
+
+  reader.className =
+  "reader light";
+
+};
+
+
+document.getElementById("sepiaMode").onclick =
+function(){
+
+  reader.className =
+  "reader sepia";
+
+};
+
+
+document.getElementById("darkMode").onclick =
+function(){
+
+  reader.className =
+  "reader dark";
+
+};
+
+
+/* ==========================================
+   AUDIO PLAYER
+========================================== */
 
 function openAudio(book){
 
-closeAudio();
+  cleanupAudio();
 
+  currentBook =
+  book;
 
-readerTitle.textContent =
-book.title;
+  readerTitle.textContent =
+  book.title;
 
-readerContent.innerHTML = "";
+  readerTools.style.display =
+  "none";
 
+  readerContent.innerHTML = "";
 
-var screen =
-document.createElement("div");
+  reader.className =
+  "reader";
 
-screen.className =
-"audioScreen";
+  var screen =
+  document.createElement("div");
 
+  screen.className =
+  "audioScreen";
 
-var album =
-document.createElement("div");
 
-album.className =
-"album";
+  var album =
+  document.createElement("div");
 
-album.textContent =
-"🎧";
+  album.className =
+  "album";
 
+  album.textContent =
+  "🎧";
 
-var title =
-document.createElement("h2");
 
-title.textContent =
-book.title;
+  var title =
+  document.createElement("h2");
 
+  title.textContent =
+  book.title;
 
-var fileName =
-document.createElement("p");
 
-fileName.textContent =
-book.filename;
+  var filename =
+  document.createElement("p");
 
+  filename.textContent =
+  book.filename;
 
-var audio =
-document.createElement("audio");
 
-audio.controls = true;
+  var audio =
+  document.createElement("audio");
 
-audio.preload =
-"metadata";
+  audio.controls = true;
 
+  audio.preload =
+  "metadata";
 
-currentURL =
-URL.createObjectURL(
-book.file
-);
 
-audio.src =
-currentURL;
+  currentURL =
+  URL.createObjectURL(
+    book.file
+  );
 
-currentAudio =
-audio;
+  audio.src =
+  currentURL;
 
+  currentAudio =
+  audio;
 
-/* SKIP BUTTONS */
 
-var controls =
-document.createElement("div");
+  /* CONTROLS */
 
-controls.className =
-"controls";
+  var controls =
+  document.createElement("div");
 
+  controls.className =
+  "audioControls";
 
-var back =
-document.createElement("button");
 
-back.type =
-"button";
+  var back =
+  document.createElement("button");
 
-back.textContent =
-"↶ 15 sec";
+  back.type = "button";
 
+  back.textContent =
+  "↶ 15 sec";
 
-var forward =
-document.createElement("button");
 
-forward.type =
-"button";
+  var forward =
+  document.createElement("button");
 
-forward.textContent =
-"30 sec ↷";
+  forward.type = "button";
 
+  forward.textContent =
+  "30 sec ↷";
 
-back.onclick =
-function(){
 
-audio.currentTime =
-Math.max(
-0,
-audio.currentTime - 15
-);
+  back.onclick =
+  function(){
 
-};
+    audio.currentTime =
+    Math.max(
+      0,
+      audio.currentTime - 15
+    );
 
+  };
 
-forward.onclick =
-function(){
 
-audio.currentTime =
-Math.min(
-audio.duration || 0,
-audio.currentTime + 30
-);
+  forward.onclick =
+  function(){
 
-};
+    audio.currentTime =
+    Math.min(
+      audio.duration || 0,
+      audio.currentTime + 30
+    );
 
+  };
 
-controls.appendChild(
-back
-);
 
-controls.appendChild(
-forward
-);
+  controls.appendChild(back);
+  controls.appendChild(forward);
 
 
-/* SPEED */
+  /* SPEED */
 
-var speed =
-document.createElement("div");
+  var speed =
+  document.createElement("div");
 
-speed.className =
-"speed";
+  speed.className =
+  "speed";
 
 
-[
-0.75,
-1,
-1.25,
-1.5,
-2
-]
-.forEach(
-function(rate){
+  [
+    .75,
+    1,
+    1.25,
+    1.5,
+    2
+  ].forEach(function(rate){
 
-var button =
-document.createElement("button");
+    var button =
+    document.createElement("button");
 
-button.type =
-"button";
+    button.type = "button";
 
-button.textContent =
-rate + "×";
+    button.textContent =
+    rate + "×";
 
 
-button.onclick =
-function(){
+    button.onclick =
+    function(){
 
-audio.playbackRate =
-rate;
+      audio.playbackRate =
+      rate;
 
-};
+    };
 
 
-speed.appendChild(
-button
-);
+    speed.appendChild(button);
 
-});
+  });
 
 
-screen.appendChild(
-album
-);
+  /* PROGRESS */
 
-screen.appendChild(
-title
-);
+  var progress =
+  document.createElement("div");
 
-screen.appendChild(
-fileName
-);
+  progress.className =
+  "audioProgress";
 
-screen.appendChild(
-audio
-);
+  progress.textContent =
+  "Ready";
 
-screen.appendChild(
-controls
-);
 
-screen.appendChild(
-speed
-);
+  audio.onloadedmetadata =
+  function(){
 
+    if(book.position){
 
-readerContent.appendChild(
-screen
-);
+      audio.currentTime =
+      Math.min(
+        book.position,
+        audio.duration || 0
+      );
 
+    }
 
-reader.style.display =
-"block";
+  };
 
 
-audio.onended =
-function(){
+  audio.ontimeupdate =
+  function(){
 
-book.position = 0;
+    if(!audio.duration){
+      return;
+    }
 
-};
+    book.position =
+    audio.currentTime;
 
+    book.progress =
+    Math.round(
+      audio.currentTime /
+      audio.duration *
+      100
+    );
 
-audio.ontimeupdate =
-function(){
+    progress.textContent =
+    book.progress +
+    "% complete";
 
-book.position =
-audio.currentTime;
+    render();
 
-};
+  };
 
 
-if(
-book.position
-){
+  audio.onended =
+  function(){
 
-audio.onloadedmetadata =
-function(){
+    book.progress = 100;
 
-audio.currentTime =
-Math.min(
-book.position,
-audio.duration || 0
-);
+    book.position = 0;
 
-};
+    saveBooks();
 
-}
+    render();
+
+  };
+
+
+  screen.appendChild(album);
+
+  screen.appendChild(title);
+
+  screen.appendChild(filename);
+
+  screen.appendChild(audio);
+
+  screen.appendChild(controls);
+
+  screen.appendChild(speed);
+
+  screen.appendChild(progress);
+
+
+  readerContent.appendChild(screen);
+
+  reader.style.display =
+  "block";
 
 }
 
@@ -1593,185 +1564,186 @@ audio.duration || 0
 
 function openPDF(book){
 
-readerTitle.textContent =
-book.title;
+  cleanupAudio();
 
-readerContent.innerHTML = "";
+  currentBook =
+  book;
 
+  readerTitle.textContent =
+  book.title;
 
-var blob =
-new Blob(
-[
-book.data
-],
-{
-type:"application/pdf"
-}
-);
+  readerTools.style.display =
+  "none";
+
+  readerContent.innerHTML = "";
 
 
-var url =
-URL.createObjectURL(
-blob
-);
+  var blob =
+  new Blob(
+    [book.data],
+    {type:"application/pdf"}
+  );
 
 
-var frame =
-document.createElement("iframe");
-
-frame.style.width =
-"100%";
-
-frame.style.height =
-"80vh";
-
-frame.style.border =
-"0";
-
-frame.src =
-url;
+  var url =
+  URL.createObjectURL(blob);
 
 
-readerContent.appendChild(
-frame
-);
+  var frame =
+  document.createElement("iframe");
+
+  frame.className =
+  "pdfFrame";
+
+  frame.src =
+  url;
 
 
-reader.style.display =
-"block";
+  readerContent.appendChild(frame);
+
+  reader.style.display =
+  "block";
 
 }
 
 
 /* ==========================================
-   CLOSE
+   CLOSE READER
 ========================================== */
 
-backButton.onclick =
+document.getElementById("backButton").onclick =
 function(){
 
-closeAudio();
+  cleanupAudio();
 
-reader.style.display =
-"none";
+  saveBooks();
+
+  reader.style.display =
+  "none";
+
+  currentBook =
+  null;
+
+  render();
 
 };
 
 
-function closeAudio(){
-
-if(currentAudio){
-
-try{
-currentAudio.pause();
-}catch(e){}
-
-}
-
-currentAudio = null;
-
-
-if(currentURL){
-
-try{
-URL.revokeObjectURL(
-currentURL
-);
-}catch(e){}
-
-}
-
-currentURL = null;
-
-}
-
-
 /* ==========================================
-   SAVE TEXT/PDF LIBRARY
+   AUDIO CLEANUP
 ========================================== */
 
-function saveTextBooks(){
+function cleanupAudio(){
 
-try{
+  if(currentAudio){
 
-var saved =
-books
-.filter(
-function(item){
+    try{
+      currentAudio.pause();
+    }catch(e){}
 
-return item.type !== "audio";
+  }
 
-})
-.map(
-function(item){
-
-return {
-
-id:item.id,
-
-title:item.title,
-
-filename:item.filename,
-
-type:item.type,
-
-content:item.content || null,
-
-data:item.data || null
-
-};
-
-});
+  currentAudio = null;
 
 
-localStorage.setItem(
-"chickenSoupBooks",
-JSON.stringify(
-saved
-)
-);
+  if(currentURL){
 
-}catch(e){
+    try{
+      URL.revokeObjectURL(currentURL);
+    }catch(e){}
 
-console.log(
-"Storage unavailable"
-);
+  }
 
-}
+  currentURL = null;
 
 }
 
 
 /* ==========================================
-   LOAD SAVED BOOKS
+   SAVE
+========================================== */
+
+function saveBooks(){
+
+  try{
+
+    var safe =
+    books
+    .filter(function(item){
+
+      return item.type !== "audio";
+
+    })
+    .map(function(item){
+
+      return {
+
+        id:item.id,
+
+        title:item.title,
+
+        filename:item.filename,
+
+        type:item.type,
+
+        content:item.content || null,
+
+        data:item.data || null,
+
+        position:item.position || 0,
+
+        progress:item.progress || 0
+
+      };
+
+    });
+
+
+    localStorage.setItem(
+      "chickenSoupLibrary",
+      JSON.stringify(safe)
+    );
+
+  }catch(e){
+
+    console.log(
+      "Storage unavailable"
+    );
+
+  }
+
+}
+
+
+/* ==========================================
+   LOAD
 ========================================== */
 
 function loadBooks(){
 
-try{
+  try{
 
-var saved =
-localStorage.getItem(
-"chickenSoupBooks"
-);
+    var saved =
+    localStorage.getItem(
+      "chickenSoupLibrary"
+    );
 
 
-if(saved){
+    if(saved){
 
-books =
-JSON.parse(
-saved
-);
+      books =
+      JSON.parse(saved);
 
-}
+    }
 
-}catch(e){
+  }catch(e){
 
-books = [];
+    books = [];
 
-}
+  }
 
-render();
+
+  render();
 
 }
 
