@@ -1,42 +1,512 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Chicken Soup Test</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta name="theme-color" content="#75472f">
+
+<title>Chicken Soup Library</title>
+
 <style>
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
 body{
-font-family:Arial;
-background:#f5eee5;
-padding:30px;
-text-align:center;
+  margin:0;
+  padding:0;
+  background:#f6efe6;
+  color:#35271f;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
-button{
-display:block;
-width:100%;
-padding:20px;
-margin:20px 0;
-font-size:20px;
-border:0;
-border-radius:15px;
-background:#75472f;
-color:white;
+
+header{
+  background:linear-gradient(145deg,#9b6543,#75472f);
+  color:white;
+  padding:35px 20px 25px;
+  padding-top:calc(35px + env(safe-area-inset-top));
+  border-radius:0 0 28px 28px;
 }
+
+h1{
+  margin:0;
+  font-family:Georgia,serif;
+  font-size:28px;
+}
+
+.subtitle{
+  margin-top:5px;
+  opacity:.85;
+  font-size:14px;
+}
+
+main{
+  padding:20px;
+  max-width:700px;
+  margin:auto;
+}
+
+.add{
+  display:block;
+  width:100%;
+  border:0;
+  border-radius:16px;
+  padding:17px;
+  background:#75472f;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+
+.add:active{
+  transform:scale(.98);
+}
+
+#fileInput{
+  display:none;
+}
+
+.message{
+  background:#fffaf4;
+  border:1px solid #e5d8ca;
+  border-radius:16px;
+  padding:18px;
+  text-align:center;
+  color:#806f62;
+}
+
+.book{
+  display:none;
+  background:#fffaf4;
+  border:1px solid #e5d8ca;
+  border-radius:18px;
+  padding:20px;
+  margin-top:20px;
+}
+
+.book h2{
+  font-family:Georgia,serif;
+  margin-top:0;
+}
+
+.file-info{
+  color:#806f62;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.reader{
+  display:none;
+  margin-top:20px;
+  background:#fffaf4;
+  border-radius:18px;
+  padding:22px;
+  font-family:Georgia,serif;
+  font-size:18px;
+  line-height:1.7;
+  white-space:pre-wrap;
+}
+
+audio{
+  width:100%;
+  margin-top:20px;
+}
+
 </style>
 </head>
 
+
 <body>
+
+<header>
 
 <h1>🍲 Chicken Soup Library</h1>
 
-<p>If these buttons work, your website is running correctly.</p>
+<div class="subtitle">
+Stories that feed the soul
+</div>
 
-<button onclick="alert('ADD BUTTON WORKS!')">
-＋ Add Book
+</header>
+
+
+<main>
+
+<!-- THIS BUTTON OPENS THE IPHONE FILES PICKER -->
+
+<button
+  type="button"
+  class="add"
+  id="addBook">
+
+  ＋ Add Book or Audiobook
+
 </button>
 
-<button onclick="alert('SECOND BUTTON WORKS!')">
-Test Button
+
+<!-- HIDDEN IPHONE FILE PICKER -->
+
+<input
+  id="fileInput"
+  type="file"
+  accept=".txt,.html,.htm,.pdf,.epub,.mp3,.m4a,.m4b,.wav">
+
+
+<div
+  id="message"
+  class="message">
+
+📚 Your library is empty.
+
+<br><br>
+
+Tap <b>＋ Add Book or Audiobook</b>
+to choose a file from your iPhone's
+Files app.
+
+</div>
+
+
+<div
+  id="book"
+  class="book">
+
+<h2 id="bookTitle"></h2>
+
+<div
+  id="fileInfo"
+  class="file-info">
+</div>
+
+<div id="audioContainer"></div>
+
+<button
+  type="button"
+  class="add"
+  id="readButton"
+  style="display:none;margin-top:20px;">
+
+📖 Read Book
+
 </button>
+
+</div>
+
+
+<div
+  id="reader"
+  class="reader">
+</div>
+
+</main>
+
+
+<script>
+
+(function(){
+
+/* Get the two important elements */
+
+var addButton =
+document.getElementById("addBook");
+
+var fileInput =
+document.getElementById("fileInput");
+
+
+/*
+====================================================
+ADD BOOK BUTTON
+====================================================
+
+This is the important part.
+
+When you tap the button, iPhone should open
+the Files picker.
+*/
+
+addButton.addEventListener(
+"click",
+function(){
+
+fileInput.click();
+
+}
+);
+
+
+/*
+====================================================
+FILE SELECTED
+====================================================
+*/
+
+fileInput.addEventListener(
+"change",
+function(){
+
+if(!fileInput.files ||
+   fileInput.files.length === 0){
+
+return;
+
+}
+
+var file =
+fileInput.files[0];
+
+showFile(file);
+
+}
+);
+
+
+/*
+====================================================
+SHOW SELECTED FILE
+====================================================
+*/
+
+function showFile(file){
+
+var message =
+document.getElementById("message");
+
+var book =
+document.getElementById("book");
+
+var title =
+document.getElementById("bookTitle");
+
+var info =
+document.getElementById("fileInfo");
+
+var audioContainer =
+document.getElementById("audioContainer");
+
+var readButton =
+document.getElementById("readButton");
+
+
+message.style.display="none";
+
+book.style.display="block";
+
+audioContainer.innerHTML="";
+
+readButton.style.display="none";
+
+title.textContent =
+file.name;
+
+info.textContent =
+"File type: " +
+(file.type || "Unknown") +
+"\n\nSize: " +
+formatSize(file.size);
+
+
+/*
+====================================================
+AUDIOBOOK
+====================================================
+*/
+
+var name =
+file.name.toLowerCase();
+
+var isAudio =
+name.endsWith(".mp3") ||
+name.endsWith(".m4a") ||
+name.endsWith(".m4b") ||
+name.endsWith(".wav");
+
+
+if(isAudio){
+
+var audio =
+document.createElement("audio");
+
+audio.controls=true;
+
+audio.preload="metadata";
+
+audio.src =
+URL.createObjectURL(file);
+
+audioContainer.appendChild(audio);
+
+return;
+
+}
+
+
+/*
+====================================================
+TEXT BOOK
+====================================================
+*/
+
+var isText =
+name.endsWith(".txt") ||
+name.endsWith(".html") ||
+name.endsWith(".htm");
+
+
+if(isText){
+
+readButton.style.display="block";
+
+
+readButton.onclick =
+function(){
+
+readTextFile(file);
+
+};
+
+return;
+
+}
+
+
+/*
+====================================================
+PDF
+====================================================
+*/
+
+if(name.endsWith(".pdf")){
+
+var url =
+URL.createObjectURL(file);
+
+var link =
+document.createElement("a");
+
+link.href=url;
+
+link.target="_blank";
+
+link.textContent=
+"📕 Open PDF";
+
+link.style.display="block";
+
+link.style.marginTop="20px";
+
+link.style.textAlign="center";
+
+link.style.padding="15px";
+
+link.style.background="#eadaca";
+
+link.style.borderRadius="12px";
+
+link.style.color="#67422e";
+
+link.style.textDecoration="none";
+
+link.style.fontWeight="bold";
+
+audioContainer.appendChild(link);
+
+return;
+
+}
+
+
+/*
+====================================================
+OTHER
+====================================================
+*/
+
+info.textContent +=
+"\n\nThe file was successfully selected.";
+
+}
+
+
+/*
+====================================================
+READ TEXT
+====================================================
+*/
+
+function readTextFile(file){
+
+var reader =
+new FileReader();
+
+reader.onload =
+function(){
+
+var readerBox =
+document.getElementById("reader");
+
+readerBox.style.display="block";
+
+readerBox.textContent =
+reader.result;
+
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:"smooth"
+});
+
+};
+
+reader.onerror =
+function(){
+
+alert(
+"Sorry, this book could not be opened."
+);
+
+};
+
+reader.readAsText(file);
+
+}
+
+
+/*
+====================================================
+FILE SIZE
+====================================================
+*/
+
+function formatSize(bytes){
+
+if(bytes < 1024){
+
+return bytes + " B";
+
+}
+
+if(bytes < 1024*1024){
+
+return Math.round(
+bytes/1024
+) + " KB";
+
+}
+
+return (
+bytes/(1024*1024)
+).toFixed(1) + " MB";
+
+}
+
+})();
+
+</script>
 
 </body>
 </html>
