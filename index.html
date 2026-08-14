@@ -2,23 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width,initial-scale=1,viewport-fit=cover">
-
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#75472f">
-
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
 <title>Chicken Soup Library</title>
 
 <style>
-
-*{
-box-sizing:border-box;
--webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 
 :root{
 --bg:#f6efe6;
@@ -29,801 +21,507 @@ box-sizing:border-box;
 --text:#35271f;
 --muted:#806f62;
 --line:#e5d8ca;
---soft:#eadaca;
+--soft:#eadaca
 }
 
 body{
 margin:0;
 background:var(--bg);
 color:var(--text);
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
 }
 
-button,
-input{
-font:inherit;
-}
+button,input{font:inherit}
 
-button{
-cursor:pointer;
-}
+button{cursor:pointer}
 
 .app{
 max-width:900px;
 margin:auto;
-min-height:100vh;
+min-height:100vh
 }
 
 header{
-padding:
-calc(25px + env(safe-area-inset-top))
-18px
-22px;
-
-background:
-linear-gradient(
-145deg,
-var(--brown2),
-var(--brown)
-);
-
+padding:calc(25px + env(safe-area-inset-top)) 18px 22px;
+background:linear-gradient(145deg,var(--brown2),var(--brown));
 color:white;
-
-border-radius:
-0 0 30px 30px;
-
-box-shadow:
-0 10px 30px rgba(60,35,20,.18);
+border-radius:0 0 30px 30px;
+box-shadow:0 10px 30px rgba(60,35,20,.18)
 }
 
 .brand{
 display:flex;
 align-items:center;
-gap:13px;
+gap:13px
 }
 
 .logo{
 width:59px;
 height:59px;
-
 border-radius:18px;
-
-background:
-rgba(255,255,255,.15);
-
+background:rgba(255,255,255,.15);
 display:flex;
 align-items:center;
 justify-content:center;
-
-font-size:34px;
+font-size:34px
 }
 
 h1{
 margin:0;
-
 font-family:Georgia,serif;
-
-font-size:27px;
+font-size:27px
 }
 
 .tagline{
 margin-top:4px;
 font-size:13px;
-opacity:.82;
+opacity:.82
 }
 
 .search{
 width:100%;
-
 margin-top:18px;
-
 padding:14px 16px;
-
 border:0;
-
 border-radius:15px;
-
 outline:none;
-
-font-size:16px;
+font-size:16px
 }
 
 main{
-padding:20px 16px 110px;
+padding:20px 16px 110px
 }
 
 .toolbar{
 display:flex;
 align-items:center;
 justify-content:space-between;
-
-gap:10px;
+gap:10px
 }
 
 .toolbar h2{
 margin:0;
-
 font-family:Georgia,serif;
-
-font-size:24px;
+font-size:24px
 }
 
 .addButton{
 border:0;
-
 background:var(--brown);
-
 color:white;
-
 padding:12px 15px;
-
 border-radius:13px;
-
-font-weight:700;
+font-weight:700
 }
 
-#fileInput{
-display:none;
-}
+#fileInput{display:none}
 
 .helper{
 margin-top:15px;
-
 background:#fff7eb;
-
 border:1px solid var(--line);
-
 padding:13px;
-
 border-radius:15px;
-
 font-size:13px;
-
 line-height:1.5;
-
-color:var(--muted);
+color:var(--muted)
 }
 
 .filters{
 display:flex;
-
 gap:8px;
-
 overflow-x:auto;
-
 margin-top:16px;
-
-padding-bottom:2px;
+padding-bottom:2px
 }
 
 .filters button{
 white-space:nowrap;
-
 border:1px solid var(--line);
-
 background:var(--card);
-
 color:var(--text);
-
 border-radius:20px;
-
-padding:8px 13px;
+padding:8px 13px
 }
 
 .filters button.active{
 background:var(--brown);
-
 color:white;
-
-border-color:var(--brown);
+border-color:var(--brown)
 }
 
 .books{
 display:grid;
-
-grid-template-columns:
-repeat(2,1fr);
-
+grid-template-columns:repeat(2,1fr);
 gap:15px;
-
-margin-top:18px;
+margin-top:18px
 }
 
 .book{
 position:relative;
-
 background:var(--card);
-
 border:1px solid var(--line);
-
 border-radius:19px;
-
 overflow:hidden;
-
-box-shadow:
-0 8px 25px rgba(65,40,22,.10);
+box-shadow:0 8px 25px rgba(65,40,22,.10)
 }
 
 .cover{
 height:185px;
-
 padding:18px;
-
 display:flex;
-
 flex-direction:column;
-
 align-items:center;
-
 justify-content:center;
-
 text-align:center;
-
 color:white;
-
 font-family:Georgia,serif;
-
-background:
-linear-gradient(
-145deg,
-#c9935d,
-#70432e
-);
+background:linear-gradient(145deg,#c9935d,#70432e)
 }
 
 .cover.audio{
-background:
-linear-gradient(
-145deg,
-#715c8f,
-#392d52
-);
+background:linear-gradient(145deg,#79639b,#392d52)
 }
 
 .coverIcon{
 font-size:38px;
-
-margin-bottom:10px;
+margin-bottom:10px
 }
 
 .coverTitle{
 font-size:18px;
-
 font-weight:bold;
-
-line-height:1.25;
+line-height:1.25
 }
 
 .deleteButton{
 position:absolute;
-
 top:8px;
-
 right:8px;
-
 width:34px;
-
 height:34px;
-
 border:0;
-
 border-radius:50%;
-
-background:
-rgba(255,255,255,.93);
-
+background:rgba(255,255,255,.94);
 font-size:18px;
-
-z-index:2;
+z-index:2
 }
 
 .bookInfo{
-padding:13px;
+padding:13px
 }
 
 .bookTitle{
 font-weight:750;
-
-line-height:1.3;
+line-height:1.3
 }
 
 .bookType{
 font-size:11px;
-
 color:var(--muted);
-
-margin-top:5px;
+margin-top:5px
 }
 
 .progress{
 height:4px;
-
 background:#e8dccf;
-
 border-radius:10px;
-
 overflow:hidden;
-
-margin-top:10px;
+margin-top:10px
 }
 
 .progressBar{
 height:100%;
-
 background:var(--gold);
-
-width:0%;
+width:0%
 }
 
 .readButton{
 width:100%;
-
 border:0;
-
 margin-top:10px;
-
 padding:10px;
-
 border-radius:11px;
-
 background:var(--soft);
-
 color:#67422e;
-
-font-weight:700;
+font-weight:700
 }
 
 .empty{
 text-align:center;
-
 padding:55px 22px;
-
 background:var(--card);
-
 border:1px dashed var(--line);
-
 border-radius:22px;
-
-margin-top:20px;
+margin-top:20px
 }
 
-.emptyIcon{
-font-size:62px;
-}
+.emptyIcon{font-size:62px}
 
 .empty h3{
 font-family:Georgia,serif;
-
 font-size:22px;
-
-margin:10px 0 5px;
+margin:10px 0 5px
 }
 
 .empty p{
 color:var(--muted);
-
-line-height:1.55;
+line-height:1.55
 }
 
 /* READER */
 
 .reader{
 display:none;
-
 position:fixed;
-
 inset:0;
-
 z-index:100;
-
 background:#fffaf4;
-
-overflow:auto;
+overflow:auto
 }
 
 .readerHeader{
 position:sticky;
-
 top:0;
-
 z-index:10;
-
-background:
-rgba(255,250,244,.96);
-
+background:rgba(255,250,244,.96);
 backdrop-filter:blur(14px);
-
 border-bottom:1px solid var(--line);
-
-padding:
-calc(10px + env(safe-area-inset-top))
-12px
-10px;
+padding:calc(10px + env(safe-area-inset-top)) 12px 10px
 }
 
 .readerTop{
 display:flex;
-
 align-items:center;
-
-gap:9px;
+gap:9px
 }
 
 .backButton{
 border:0;
-
 background:var(--soft);
-
 padding:9px 12px;
-
 border-radius:10px;
-
-color:var(--text);
+color:var(--text)
 }
 
 .readerTitle{
 font-weight:750;
-
 white-space:nowrap;
-
 overflow:hidden;
-
-text-overflow:ellipsis;
+text-overflow:ellipsis
 }
 
 .readerControls{
 display:flex;
-
 gap:7px;
-
 overflow-x:auto;
-
-padding-top:9px;
+padding-top:9px
 }
 
 .readerControls button{
 white-space:nowrap;
-
 border:1px solid var(--line);
-
 background:var(--card);
-
 padding:7px 10px;
-
-border-radius:9px;
+border-radius:9px
 }
 
 .readerProgress{
 height:3px;
-
 background:#e5d8ca;
-
-margin-top:9px;
+margin-top:9px
 }
 
 .readerProgressBar{
 height:100%;
-
 width:0%;
-
-background:var(--gold);
+background:var(--gold)
 }
 
 .readerContent{
 max-width:700px;
-
 margin:auto;
-
 padding:30px 22px 120px;
-
 font-family:Georgia,serif;
-
 font-size:19px;
-
 line-height:1.8;
-
-white-space:pre-wrap;
+white-space:pre-wrap
 }
 
 .readerContent h1{
 font-family:Georgia,serif;
-
 font-size:31px;
-
 line-height:1.2;
-
-margin-bottom:25px;
+margin-bottom:25px
 }
 
 .notice{
-font-family:
--apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
-sans-serif;
-
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 background:#fff3df;
-
 border:1px solid #ead3b4;
-
 border-radius:13px;
-
 padding:12px;
-
 font-size:13px;
-
 line-height:1.5;
-
 color:#76583f;
-
-margin-bottom:22px;
+margin-bottom:22px
 }
 
-/* AUDIO PLAYER */
+/* AUDIO */
 
 .audioScreen{
 max-width:650px;
-
 margin:auto;
-
 padding:45px 22px 100px;
-
-text-align:center;
+text-align:center
 }
 
 .audioArtwork{
-width:190px;
-
-height:190px;
-
+width:200px;
+height:200px;
 margin:10px auto 25px;
-
 border-radius:30px;
-
-background:
-linear-gradient(
-145deg,
-#846ba5,
-#3d3158
-);
-
+background:linear-gradient(145deg,#846ba5,#3d3158);
 display:flex;
-
 align-items:center;
-
 justify-content:center;
-
-font-size:80px;
-
-box-shadow:
-0 18px 40px rgba(40,30,60,.2);
+font-size:85px;
+box-shadow:0 18px 40px rgba(40,30,60,.2)
 }
 
 .audioScreen h2{
 font-family:Georgia,serif;
-
 font-size:25px;
-
-line-height:1.25;
+line-height:1.25
 }
 
 .audioScreen p{
 color:var(--muted);
-
-font-size:14px;
+font-size:14px
 }
 
 .audioProgress{
 width:100%;
-
 margin-top:25px;
-
-accent-color:var(--brown);
+accent-color:var(--brown)
 }
 
 .audioTimes{
 display:flex;
-
 justify-content:space-between;
-
 font-size:12px;
-
 color:var(--muted);
-
-margin-top:5px;
+margin-top:5px
 }
 
 .audioMainButton{
-width:70px;
-
-height:70px;
-
+width:72px;
+height:72px;
 border:0;
-
 border-radius:50%;
-
 background:var(--brown);
-
 color:white;
-
 font-size:28px;
-
-margin:20px 0;
+margin:20px 0
 }
 
 .audioSkip{
 display:flex;
-
 justify-content:center;
-
-gap:15px;
+gap:12px
 }
 
 .audioSkip button{
 border:1px solid var(--line);
-
 background:var(--card);
-
 border-radius:13px;
-
-padding:11px 15px;
+padding:11px 15px
 }
 
 .speed{
 margin-top:18px;
-
 display:flex;
-
 justify-content:center;
-
 gap:7px;
-
-flex-wrap:wrap;
+flex-wrap:wrap
 }
 
 .speed button{
 border:1px solid var(--line);
-
 background:var(--card);
-
 border-radius:9px;
-
-padding:7px 10px;
+padding:7px 10px
 }
 
 .audioStatus{
 margin-top:15px;
-
 font-size:12px;
+color:var(--muted)
+}
 
-color:var(--muted);
+.fileAgain{
+margin-top:25px;
+border:0;
+background:var(--soft);
+color:var(--brown);
+padding:12px 16px;
+border-radius:12px;
+font-weight:bold
 }
 
 /* PDF */
 
 .pdfFrame{
 width:100%;
-
-height:
-calc(100vh - 105px);
-
+height:calc(100vh - 105px);
 border:0;
-
-background:white;
+background:white
 }
 
 /* EPUB */
 
 .epubMessage{
 padding:40px 22px;
-
 text-align:center;
-
-font-family:
--apple-system,
-BlinkMacSystemFont,
-"Segoe UI",sans-serif;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
 }
 
 .epubMessage h2{
-font-family:Georgia,serif;
+font-family:Georgia,serif
 }
 
 .epubButton{
 border:0;
-
 background:var(--brown);
-
 color:white;
-
 padding:12px 18px;
-
 border-radius:12px;
-
-font-weight:bold;
-}
-
-/* NOTES */
-
-.notes{
-max-width:700px;
-
-margin:0 auto 50px;
-
-padding:0 22px;
-}
-
-.notes textarea{
-width:100%;
-
-min-height:120px;
-
-border:1px solid var(--line);
-
-border-radius:14px;
-
-padding:12px;
-
-background:var(--card);
-
-resize:vertical;
-}
-
-.saveNotes{
-border:0;
-
-margin-top:8px;
-
-background:var(--brown);
-
-color:white;
-
-padding:10px 14px;
-
-border-radius:10px;
+font-weight:bold
 }
 
 @media(min-width:600px){
-
-.books{
-grid-template-columns:
-repeat(3,1fr);
+.books{grid-template-columns:repeat(3,1fr)}
 }
-
-}
-
 </style>
 </head>
 
 
 <body>
 
-
 <div class="app">
-
 
 <header>
 
 <div class="brand">
 
-<div class="logo">
-🍲
-</div>
+<div class="logo">🍲</div>
 
 <div>
-
-<h1>
-Chicken Soup Library
-</h1>
-
-<div class="tagline">
-Stories that feed the soul
+<h1>Chicken Soup Library</h1>
+<div class="tagline">Stories that feed the soul</div>
 </div>
 
 </div>
-
-</div>
-
 
 <input
 id="search"
@@ -836,20 +534,14 @@ placeholder="🔎 Search your library..."
 
 <main>
 
-
 <div class="toolbar">
 
-<h2>
-My Library
-</h2>
-
+<h2>My Library</h2>
 
 <button
 class="addButton"
 onclick="chooseFile()">
-
 ＋ Add Book
-
 </button>
 
 </div>
@@ -857,27 +549,25 @@ onclick="chooseFile()">
 
 <div class="helper">
 
-📱 <b>Add books and audiobooks directly from your iPhone.</b>
+📱 <b>Add books and audiobooks from your iPhone.</b>
 
-<br>
+<br><br>
 
 Tap <b>Add Book</b> and choose a file from
-the iPhone <b>Files</b> app.
+the <b>Files</b> app.
 
 <br><br>
 
-<b>Books:</b>
-TXT, HTML, PDF, EPUB
+📖 TXT • HTML • PDF • EPUB
 
 <br>
-
-<b>Audiobooks:</b>
-MP3, M4A, M4B, WAV
+🎧 MP3 • M4A • M4B • WAV
 
 <br><br>
 
-Your imported files are stored locally
-in your browser on this device.
+<b>Important:</b> audiobook files are played
+directly from the file you select. They are
+not copied into the website database.
 
 </div>
 
@@ -906,95 +596,55 @@ onclick="setFilter('audio',this)">
 <input
 id="fileInput"
 type="file"
-accept="
-.txt,
-.html,
-.htm,
-.pdf,
-.epub,
-.mp3,
-.m4a,
-.m4b,
-.wav,
-text/plain,
-text/html,
-application/pdf,
-application/epub+zip,
-audio/mpeg,
-audio/mp4,
-audio/x-m4a,
-audio/wav,
-audio/x-wav
-">
+accept=".txt,.html,.htm,.pdf,.epub,.mp3,.m4a,.m4b,.wav,text/plain,text/html,application/pdf,application/epub+zip,audio/mpeg,audio/mp4,audio/x-m4a,audio/wav"
+>
 
 
-<div
-id="empty"
-class="empty">
+<div id="empty" class="empty">
 
-<div class="emptyIcon">
-📚
-</div>
+<div class="emptyIcon">📚</div>
 
-<h3>
-Your library is empty
-</h3>
+<h3>Your library is empty</h3>
 
 <p>
 Add a book or audiobook from your
-iPhone Files app to get started.
+iPhone Files app.
 </p>
 
 <button
 class="addButton"
 onclick="chooseFile()">
-
 ＋ Add Your First Book
-
 </button>
 
 </div>
 
 
-<div
-id="books"
-class="books">
-</div>
-
+<div id="books" class="books"></div>
 
 </main>
 
 </div>
 
 
-
 <!-- READER -->
 
-<div
-id="reader"
-class="reader">
-
+<div id="reader" class="reader">
 
 <div class="readerHeader">
 
-
 <div class="readerTop">
-
 
 <button
 class="backButton"
 onclick="closeReader()">
-
 ← Library
-
 </button>
-
 
 <div
 id="readerTitle"
 class="readerTitle">
 </div>
-
 
 </div>
 
@@ -1003,30 +653,9 @@ class="readerTitle">
 id="readerControls"
 class="readerControls">
 
-<button
-onclick="changeFont(-1)">
-A−
-</button>
-
-<button
-onclick="changeFont(1)">
-A+
-</button>
-
-<button
-onclick="saveBookmark()">
-🔖 Bookmark
-</button>
-
-<button
-onclick="showNotes()">
-📝 Notes
-</button>
-
-<button
-onclick="toggleDark()">
-◐ Theme
-</button>
+<button onclick="changeFont(-1)">A−</button>
+<button onclick="changeFont(1)">A+</button>
+<button onclick="toggleDark()">◐ Theme</button>
 
 </div>
 
@@ -1040,7 +669,6 @@ class="readerProgressBar">
 
 </div>
 
-
 </div>
 
 
@@ -1049,36 +677,7 @@ id="readerContent"
 class="readerContent">
 </div>
 
-
-<div
-id="notes"
-class="notes"
-style="display:none">
-
-<h3>
-📝 My Notes
-</h3>
-
-<textarea
-id="notesText"
-placeholder="Write notes about this book...">
-</textarea>
-
-<br>
-
-<button
-class="saveNotes"
-onclick="saveNotes()">
-
-Save Notes
-
-</button>
-
 </div>
-
-
-</div>
-
 
 
 <script>
@@ -1086,73 +685,53 @@ Save Notes
 /*
 ====================================================
 CHICKEN SOUP LIBRARY
-BOOK + AUDIOBOOK EDITION
+iPHONE VERSION
 
-Files remain on the user's device using IndexedDB.
+IMPORTANT:
+Audiobook files are NOT stored in IndexedDB.
+They are played directly from the selected
+File object.
+
+Books are stored locally.
 ====================================================
 */
 
 
-const DB_NAME=
-"ChickenSoupLibrary";
-
+const DB_NAME="ChickenSoupBooksDB";
 const DB_VERSION=1;
+const STORE="books";
 
-const STORE_NAME=
-"library";
-
-
-let db;
-
+let db=null;
 let books=[];
-
-let currentBook=null;
-
-let currentAudio=null;
-
-let currentAudioURL=null;
-
-let currentPDFURL=null;
-
-let currentEPUBURL=null;
-
-let fontSize=19;
-
-let dark=false;
-
 let filter="all";
 
+let currentBook=null;
+let currentAudio=null;
+let currentAudioURL=null;
+
+let fontSize=19;
+let dark=false;
 
 
 /* DATABASE */
 
-
 function openDB(){
 
-return new Promise(
-(resolve,reject)=>{
+return new Promise((resolve,reject)=>{
 
-const request=
-indexedDB.open(
+const request=indexedDB.open(
 DB_NAME,
 DB_VERSION
 );
 
+request.onupgradeneeded=function(e){
 
-request.onupgradeneeded=
-event=>{
+const database=e.target.result;
 
-const database=
-event.target.result;
-
-
-if(
-!database.objectStoreNames
-.contains(STORE_NAME)
-){
+if(!database.objectStoreNames.contains(STORE)){
 
 database.createObjectStore(
-STORE_NAME,
+STORE,
 {
 keyPath:"id",
 autoIncrement:true
@@ -1163,21 +742,17 @@ autoIncrement:true
 
 };
 
+request.onsuccess=function(e){
 
-request.onsuccess=
-event=>{
-
-db=
-event.target.result;
-
+db=e.target.result;
 resolve();
 
 };
 
+request.onerror=function(){
 
-request.onerror=
-()=>{
 reject(request.error);
+
 };
 
 });
@@ -1185,161 +760,94 @@ reject(request.error);
 }
 
 
+function getAllBooks(){
 
-/* ADD */
+return new Promise((resolve,reject)=>{
 
-
-function dbAdd(book){
-
-return new Promise(
-(resolve,reject)=>{
-
-const tx=
-db.transaction(
-STORE_NAME,
-"readwrite"
-);
-
-const store=
-tx.objectStore(
-STORE_NAME
-);
-
-const req=
-store.add(book);
-
-req.onsuccess=
-()=>{
-resolve(req.result);
-};
-
-req.onerror=
-()=>{
-reject(req.error);
-};
-
-});
-
-}
-
-
-
-/* ALL */
-
-
-function dbAll(){
-
-return new Promise(
-(resolve,reject)=>{
-
-const tx=
-db.transaction(
-STORE_NAME,
+const tx=db.transaction(
+STORE,
 "readonly"
 );
 
-const store=
-tx.objectStore(
-STORE_NAME
-);
+const store=tx.objectStore(STORE);
 
-const req=
-store.getAll();
+const request=store.getAll();
 
-req.onsuccess=
-()=>{
-resolve(req.result);
-};
+request.onsuccess=()=>resolve(request.result);
 
-req.onerror=
-()=>{
-reject(req.error);
-};
+request.onerror=()=>reject(request.error);
 
 });
 
 }
 
 
+function addBook(book){
 
-/* UPDATE */
+return new Promise((resolve,reject)=>{
 
-
-function dbUpdate(book){
-
-return new Promise(
-(resolve,reject)=>{
-
-const tx=
-db.transaction(
-STORE_NAME,
+const tx=db.transaction(
+STORE,
 "readwrite"
 );
 
-const store=
-tx.objectStore(
-STORE_NAME
-);
+const request=
+tx.objectStore(STORE).add(book);
 
-const req=
-store.put(book);
+request.onsuccess=()=>
+resolve(request.result);
 
-req.onsuccess=
-()=>{
-resolve();
-};
-
-req.onerror=
-()=>{
-reject(req.error);
-};
+request.onerror=()=>
+reject(request.error);
 
 });
 
 }
 
 
+function updateBook(book){
 
-/* DELETE */
+return new Promise((resolve,reject)=>{
 
-
-function dbDelete(id){
-
-return new Promise(
-(resolve,reject)=>{
-
-const tx=
-db.transaction(
-STORE_NAME,
+const tx=db.transaction(
+STORE,
 "readwrite"
 );
 
-const store=
-tx.objectStore(
-STORE_NAME
-);
+const request=
+tx.objectStore(STORE).put(book);
 
-const req=
-store.delete(id);
+request.onsuccess=()=>resolve();
 
-req.onsuccess=
-()=>{
-resolve();
-};
-
-req.onerror=
-()=>{
-reject(req.error);
-};
+request.onerror=()=>reject(request.error);
 
 });
 
 }
 
+
+function removeFromDB(id){
+
+return new Promise((resolve,reject)=>{
+
+const tx=db.transaction(
+STORE,
+"readwrite"
+);
+
+const request=
+tx.objectStore(STORE).delete(id);
+
+request.onsuccess=()=>resolve();
+
+request.onerror=()=>reject(request.error);
+
+});
+
+}
 
 
 /* FILE PICKER */
-
 
 function chooseFile(){
 
@@ -1350,38 +858,28 @@ document
 }
 
 
+/* TYPE */
 
-/* FILE TYPE */
+function fileType(file){
 
+const n=file.name.toLowerCase();
 
-function getType(file){
-
-const name=
-file.name.toLowerCase();
-
-
-if(name.endsWith(".mp3"))
+if(
+n.endsWith(".mp3")||
+n.endsWith(".m4a")||
+n.endsWith(".m4b")||
+n.endsWith(".wav")
+)
 return "AUDIO";
 
-if(name.endsWith(".m4a"))
-return "AUDIO";
-
-if(name.endsWith(".m4b"))
-return "AUDIO";
-
-if(name.endsWith(".wav"))
-return "AUDIO";
-
-if(name.endsWith(".pdf"))
+if(n.endsWith(".pdf"))
 return "PDF";
 
-if(name.endsWith(".epub"))
+if(n.endsWith(".epub"))
 return "EPUB";
 
-if(name.endsWith(".html"))
-return "HTML";
-
-if(name.endsWith(".htm"))
+if(n.endsWith(".html")||
+n.endsWith(".htm"))
 return "HTML";
 
 return "TXT";
@@ -1389,47 +887,7 @@ return "TXT";
 }
 
 
-
-/* MIME */
-
-
-function getMime(file,type){
-
-if(type==="AUDIO"){
-
-const name=
-file.name.toLowerCase();
-
-if(name.endsWith(".mp3"))
-return "audio/mpeg";
-
-if(name.endsWith(".m4a"))
-return "audio/mp4";
-
-if(name.endsWith(".m4b"))
-return "audio/mp4";
-
-if(name.endsWith(".wav"))
-return "audio/wav";
-
-return file.type||"audio/mpeg";
-
-}
-
-if(type==="PDF")
-return "application/pdf";
-
-if(type==="EPUB")
-return "application/epub+zip";
-
-return "text/plain";
-
-}
-
-
-
-/* FILE IMPORT */
-
+/* IMPORT */
 
 document
 .getElementById("fileInput")
@@ -1437,68 +895,53 @@ document
 "change",
 async function(){
 
-const file=
-this.files[0];
+const file=this.files[0];
 
-if(!file)
-return;
+if(!file)return;
 
+const type=fileType(file);
 
-const type=
-getType(file);
-
-
-const title=
-file.name.replace(
+const title=file.name.replace(
 /\.(txt|html?|pdf|epub|mp3|m4a|m4b|wav)$/i,
 ""
 );
 
 
-const book={
+/*
+====================================================
+AUDIOBOOK
+====================================================
 
-title:title,
+DO NOT put audio into IndexedDB.
 
-filename:file.name,
+Create the object URL immediately and
+open the player.
+*/
 
-type:type,
+if(type==="AUDIO"){
 
-mime:getMime(file,type),
+addAudiobook(file,title);
 
-size:file.size,
+this.value="";
 
-added:Date.now(),
+return;
 
-progress:0,
-
-bookmark:0,
-
-audioPosition:0,
-
-duration:0,
-
-notes:"",
-
-content:null
-
-};
-
-
-try{
+}
 
 
 /*
-TEXT
+====================================================
+NORMAL BOOKS
+====================================================
 */
 
-if(
-type==="TXT"||
-type==="HTML"
-){
+try{
 
-let text=
-await file.text();
+let content=null;
 
+if(type==="TXT"||type==="HTML"){
+
+content=await file.text();
 
 if(type==="HTML"){
 
@@ -1507,50 +950,46 @@ new DOMParser();
 
 const doc=
 parser.parseFromString(
-text,
+content,
 "text/html"
 );
 
-text=
+content=
 doc.body
 ?
 doc.body.innerText
 :
-text;
+content;
 
 }
 
+}else{
 
-book.content=text;
-
-}
-
-
-/*
-PDF / EPUB / AUDIO
-*/
-
-else{
-
-book.content=
+content=
 await file.arrayBuffer();
 
 }
 
 
-await dbAdd(book);
+const book={
+
+title:title,
+filename:file.name,
+type:type,
+size:file.size,
+added:Date.now(),
+progress:0,
+bookmark:0,
+content:content
+
+};
+
+
+await addBook(book);
 
 await refresh();
 
-
-alert(
-type==="AUDIO"
-?
-"🎧 Audiobook added!"
-:
-"📚 Book added!"
-);
-
+alert("📚 Book added to your library!");
 
 }
 catch(error){
@@ -1558,44 +997,85 @@ catch(error){
 console.error(error);
 
 alert(
-"Unable to save this file. The file may be too large for this browser's available storage."
+"Could not add this book. Please try the file again."
 );
 
 }
-
 
 this.value="";
 
 });
 
 
+/* AUDIOBOOK ADD */
 
-/* REFRESH */
+function addAudiobook(file,title){
+
+/*
+Create a temporary browser URL.
+The audio file stays in the iPhone Files
+selection rather than being copied into
+IndexedDB.
+*/
+
+cleanupAudio();
+
+currentAudioURL=
+URL.createObjectURL(file);
+
+currentAudio=
+new Audio(currentAudioURL);
+
+currentAudio.preload="metadata";
 
 
-async function refresh(){
+const book={
 
-books=
-await dbAll();
+id:"audio-"+Date.now(),
 
-books.sort(
-(a,b)=>
-b.added-a.added
-);
+title:title,
+
+filename:file.name,
+
+type:"AUDIO",
+
+size:file.size,
+
+added:Date.now(),
+
+progress:0,
+
+audioPosition:0,
+
+duration:0,
+
+file:file
+
+};
+
+
+books.unshift(book);
+
+currentBook=book;
 
 render();
+
+openAudioPlayer(book);
+
+
+/*
+If the browser allows playback,
+metadata will load normally.
+*/
 
 }
 
 
-
 /* FILTER */
-
 
 function setFilter(type,button){
 
 filter=type;
-
 
 document
 .querySelectorAll(".filters button")
@@ -1603,18 +1083,14 @@ document
 b=>b.classList.remove("active")
 );
 
-
 button.classList.add("active");
-
 
 render();
 
 }
 
 
-
 /* RENDER */
-
 
 function render(){
 
@@ -1626,32 +1102,22 @@ document
 .trim();
 
 
-let list=
-books.filter(book=>{
+let list=books.filter(book=>{
 
-const matchesSearch=
+const matchSearch=
 book.title
 .toLowerCase()
 .includes(search);
 
-
-if(filter==="books"){
-
-return matchesSearch &&
-book.type!=="AUDIO";
-
-}
-
-
-if(filter==="audio"){
-
-return matchesSearch &&
+if(filter==="audio")
+return matchSearch &&
 book.type==="AUDIO";
 
-}
+if(filter==="books")
+return matchSearch &&
+book.type!=="AUDIO";
 
-
-return matchesSearch;
+return matchSearch;
 
 });
 
@@ -1669,71 +1135,51 @@ books.length
 document
 .getElementById("books")
 .innerHTML=
-list
-.map(book=>{
+list.map(book=>{
 
-
-const isAudio=
+const audio=
 book.type==="AUDIO";
 
-
 const progress=
-isAudio
+audio
 ?
-getAudioPercent(book)
+(book.progress||0)
 :
 (book.progress||0);
-
 
 return `
 
 <div class="book">
 
-
 <button
 class="deleteButton"
-onclick="deleteBook(${book.id})">
-
+onclick="deleteBook('${book.id}')">
 ×
 </button>
 
-
-<div class="cover ${isAudio?"audio":""}">
-
+<div class="cover ${audio?"audio":""}">
 
 <div class="coverIcon">
-
-${isAudio?"🎧":"🍲"}
-
+${audio?"🎧":"🍲"}
 </div>
-
 
 <div class="coverTitle">
-
 ${escapeHTML(book.title)}
-
 </div>
 
-
 </div>
-
 
 <div class="bookInfo">
 
-
 <div class="bookTitle">
-
 ${escapeHTML(book.title)}
-
 </div>
-
 
 <div class="bookType">
 
-${isAudio
+${audio
 ?"🎧 AUDIOBOOK"
-:
-"📖 "+book.type}
+:"📖 "+book.type}
 
 <br>
 
@@ -1741,32 +1187,23 @@ ${formatSize(book.size)}
 
 </div>
 
-
 <div class="progress">
 
 <div
 class="progressBar"
 style="width:${progress}%">
-
 </div>
 
 </div>
-
 
 <button
 class="readButton"
-onclick="openBook(${book.id})">
+onclick="openStored('${book.id}')">
 
 ${
-isAudio
+audio
 ?
-(
-progress>0
-?
-"Continue Listening"
-:
 "▶ Listen"
-)
 :
 (
 progress>0
@@ -1779,22 +1216,18 @@ progress>0
 
 </button>
 
-
 </div>
 
 </div>
 
 `;
 
-})
-.join("");
+}).join("");
 
 }
 
 
-
 /* SEARCH */
-
 
 document
 .getElementById("search")
@@ -1804,9 +1237,7 @@ render
 );
 
 
-
 /* ESCAPE */
-
 
 function escapeHTML(text){
 
@@ -1820,111 +1251,42 @@ return String(text)
 }
 
 
-
 /* SIZE */
-
 
 function formatSize(bytes){
 
-if(!bytes)
-return "";
+if(!bytes)return "";
 
 if(bytes<1024)
 return bytes+" B";
 
 if(bytes<1024*1024)
-return Math.round(
-bytes/1024
-)+" KB";
+return Math.round(bytes/1024)+" KB";
 
 return(
 bytes/(1024*1024)
-).toFixed(1)
-+" MB";
+).toFixed(1)+" MB";
 
 }
 
 
+/* OPEN STORED */
 
-/* AUDIO PERCENT */
-
-
-function getAudioPercent(book){
-
-if(
-!book.duration ||
-!book.audioPosition
-)
-return 0;
-
-
-return Math.min(
-100,
-Math.round(
-(book.audioPosition/
-book.duration)*100
-)
-);
-
-}
-
-
-
-/* DELETE */
-
-
-async function deleteBook(id){
+function openStored(id){
 
 const book=
 books.find(
-b=>b.id===id
+b=>String(b.id)===String(id)
 );
 
-if(!book)
-return;
-
-
-if(
-!confirm(
-'Delete "'+
-book.title+
-'" from your library?'
-)
-)
-return;
-
-
-await dbDelete(id);
-
-await refresh();
-
-
-}
-
-
-
-/* OPEN BOOK */
-
-
-async function openBook(id){
-
-const book=
-books.find(
-b=>b.id===id
-);
-
-if(!book)
-return;
-
+if(!book)return;
 
 currentBook=book;
-
 
 document
 .getElementById("readerTitle")
 .textContent=
 book.title;
-
 
 document
 .getElementById("reader")
@@ -1932,39 +1294,38 @@ document
 "block";
 
 
-document
-.getElementById("readerContent")
-.innerHTML="";
-
-
-document
-.getElementById("notes")
-.style.display=
-"none";
-
-
-document
-.getElementById("readerControls")
-.style.display=
-"flex";
-
-
-/*
-AUDIO
-*/
-
 if(book.type==="AUDIO"){
 
-openAudio(book);
+/*
+The File object is still available because
+the audiobook was selected during this
+browser session.
+*/
+
+if(!book.file){
+
+showAudioUnavailable(book);
 
 return;
 
 }
 
+cleanupAudio();
 
-/*
-PDF
-*/
+currentAudioURL=
+URL.createObjectURL(book.file);
+
+currentAudio=
+new Audio(currentAudioURL);
+
+currentAudio.preload="metadata";
+
+openAudioPlayer(book);
+
+return;
+
+}
+
 
 if(book.type==="PDF"){
 
@@ -1975,10 +1336,6 @@ return;
 }
 
 
-/*
-EPUB
-*/
-
 if(book.type==="EPUB"){
 
 openEPUB(book);
@@ -1988,20 +1345,449 @@ return;
 }
 
 
-/*
-TEXT
-*/
-
 openText(book);
 
 }
 
 
+/* AUDIO PLAYER */
+
+function openAudioPlayer(book){
+
+document
+.getElementById("reader")
+.style.display=
+"block";
+
+document
+.getElementById("readerControls")
+.style.display=
+"none";
+
+
+document
+.getElementById("readerContent")
+.innerHTML=
+
+`
+
+<div class="audioScreen">
+
+<div class="audioArtwork">
+🎧
+</div>
+
+<h2>
+${escapeHTML(book.title)}
+</h2>
+
+<p>
+${escapeHTML(book.filename)}
+</p>
+
+<input
+id="audioProgress"
+class="audioProgress"
+type="range"
+min="0"
+max="100"
+value="0"
+step=".1">
+
+<div class="audioTimes">
+
+<span id="audioCurrent">
+0:00
+</span>
+
+<span id="audioDuration">
+0:00
+</span>
+
+</div>
+
+<button
+id="playButton"
+class="audioMainButton"
+onclick="toggleAudio()">
+▶
+</button>
+
+<div class="audioSkip">
+
+<button onclick="skipAudio(-15)">
+↶ 15 sec
+</button>
+
+<button onclick="skipAudio(30)">
+30 sec ↷
+</button>
+
+</div>
+
+<div class="speed">
+
+<button onclick="setSpeed(.75)">0.75×</button>
+<button onclick="setSpeed(1)">1×</button>
+<button onclick="setSpeed(1.25)">1.25×</button>
+<button onclick="setSpeed(1.5)">1.5×</button>
+<button onclick="setSpeed(2)">2×</button>
+
+</div>
+
+<div
+id="audioStatus"
+class="audioStatus">
+Ready
+</div>
+
+<button
+class="fileAgain"
+onclick="chooseFile()">
+
+📂 Choose Another Audiobook
+
+</button>
+
+</div>
+
+`;
+
+
+if(!currentAudio)
+return;
+
+
+currentAudio.addEventListener(
+"loadedmetadata",
+function(){
+
+book.duration=
+currentAudio.duration;
+
+currentAudio.currentTime=
+book.audioPosition||0;
+
+updateAudioUI();
+
+});
+
+
+currentAudio.addEventListener(
+"timeupdate",
+function(){
+
+if(!currentAudio)return;
+
+book.audioPosition=
+currentAudio.currentTime;
+
+if(currentAudio.duration){
+
+book.duration=
+currentAudio.duration;
+
+book.progress=
+Math.round(
+currentAudio.currentTime/
+currentAudio.duration*
+100
+);
+
+}
+
+updateAudioUI();
+
+render();
+
+});
+
+
+currentAudio.addEventListener(
+"play",
+function(){
+
+const button=
+document.getElementById("playButton");
+
+if(button)
+button.textContent="❚❚";
+
+const status=
+document.getElementById("audioStatus");
+
+if(status)
+status.textContent="Playing";
+
+});
+
+
+currentAudio.addEventListener(
+"pause",
+function(){
+
+const button=
+document.getElementById("playButton");
+
+if(button)
+button.textContent="▶";
+
+const status=
+document.getElementById("audioStatus");
+
+if(status)
+status.textContent="Paused";
+
+});
+
+
+currentAudio.addEventListener(
+"ended",
+function(){
+
+book.progress=100;
+
+book.audioPosition=
+book.duration||0;
+
+const button=
+document.getElementById("playButton");
+
+if(button)
+button.textContent="▶";
+
+const status=
+document.getElementById("audioStatus");
+
+if(status)
+status.textContent="Finished";
+
+});
+
+
+document
+.getElementById("audioProgress")
+.addEventListener(
+"input",
+function(){
+
+if(
+currentAudio &&
+currentAudio.duration
+){
+
+currentAudio.currentTime=
+Number(this.value)/100*
+currentAudio.duration;
+
+}
+
+});
+
+}
+
+
+/* PLAY */
+
+function toggleAudio(){
+
+if(!currentAudio)
+return;
+
+if(currentAudio.paused){
+
+const promise=
+currentAudio.play();
+
+if(promise){
+
+promise.catch(
+function(error){
+
+console.log(error);
+
+document
+.getElementById("audioStatus")
+.textContent=
+"Tap Play again to start audio";
+
+});
+
+}
+
+}else{
+
+currentAudio.pause();
+
+}
+
+}
+
+
+/* SKIP */
+
+function skipAudio(seconds){
+
+if(!currentAudio)return;
+
+currentAudio.currentTime=
+Math.max(
+0,
+Math.min(
+currentAudio.duration||0,
+currentAudio.currentTime+seconds
+)
+);
+
+}
+
+
+/* SPEED */
+
+function setSpeed(speed){
+
+if(!currentAudio)return;
+
+currentAudio.playbackRate=speed;
+
+document
+.getElementById("audioStatus")
+.textContent=
+"Speed: "+speed+"×";
+
+}
+
+
+/* AUDIO UI */
+
+function updateAudioUI(){
+
+if(!currentAudio)return;
+
+const progress=
+currentAudio.duration
+?
+currentAudio.currentTime/
+currentAudio.duration*
+100
+:
+0;
+
+const slider=
+document
+.getElementById("audioProgress");
+
+if(slider)
+slider.value=progress;
+
+const now=
+document
+.getElementById("audioCurrent");
+
+if(now)
+now.textContent=
+formatTime(
+currentAudio.currentTime
+);
+
+const duration=
+document
+.getElementById("audioDuration");
+
+if(duration)
+duration.textContent=
+formatTime(
+currentAudio.duration
+);
+
+}
+
+
+/* TIME */
+
+function formatTime(seconds){
+
+if(
+!seconds ||
+!isFinite(seconds)
+)
+return "0:00";
+
+seconds=Math.floor(seconds);
+
+const minutes=
+Math.floor(seconds/60);
+
+const secs=
+seconds%60;
+
+return minutes+
+":"+
+String(secs).padStart(2,"0");
+
+}
+
+
+/* AUDIO UNAVAILABLE */
+
+function showAudioUnavailable(book){
+
+document
+.getElementById("readerControls")
+.style.display=
+"none";
+
+document
+.getElementById("readerContent")
+.innerHTML=
+
+`
+
+<div class="audioScreen">
+
+<div class="audioArtwork">
+🎧
+</div>
+
+<h2>
+${escapeHTML(book.title)}
+</h2>
+
+<p>
+For privacy and security, iPhone does
+not allow a normal website to keep a
+permanent reference to a Files app
+audiobook after the browser session ends.
+</p>
+
+<p>
+Please choose the audiobook again from
+the Files app.
+</p>
+
+<button
+class="fileAgain"
+onclick="chooseFile()">
+
+📂 Choose Audiobook
+
+</button>
+
+</div>
+
+`;
+
+}
+
 
 /* TEXT */
 
-
 function openText(book){
+
+document
+.getElementById("readerControls")
+.style.display=
+"flex";
 
 document
 .getElementById("readerContent")
@@ -2015,59 +1801,44 @@ document
 
 <br><br>
 
-This book was imported directly
-from your iPhone Files app.
+This book is stored locally in your
+browser.
 
 </div>
 
-
 <h1>
-
 ${escapeHTML(book.title)}
-
 </h1>
-
 
 ${escapeHTML(book.content)}
 
 `;
-
 
 document
 .getElementById("readerContent")
 .style.fontSize=
 fontSize+"px";
 
-
-document
-.getElementById("reader")
-.scrollTop=
-book.bookmark||0;
-
 }
-
 
 
 /* PDF */
 
-
 function openPDF(book){
 
-cleanupURLs();
-
+document
+.getElementById("readerControls")
+.style.display=
+"none";
 
 const blob=
 new Blob(
 [book.content],
-{
-type:"application/pdf"
-}
+{type:"application/pdf"}
 );
 
-
-currentPDFURL=
+const url=
 URL.createObjectURL(blob);
-
 
 document
 .getElementById("readerContent")
@@ -2077,41 +1848,31 @@ document
 
 <iframe
 class="pdfFrame"
-src="${currentPDFURL}">
+src="${url}">
 </iframe>
 
 `;
 
+}
+
+
+/* EPUB */
+
+function openEPUB(book){
 
 document
 .getElementById("readerControls")
 .style.display=
 "none";
 
-}
-
-
-
-/* EPUB */
-
-
-function openEPUB(book){
-
-cleanupURLs();
-
-
 const blob=
 new Blob(
 [book.content],
-{
-type:"application/epub+zip"
-}
+{type:"application/epub+zip"}
 );
 
-
-currentEPUBURL=
+const url=
 URL.createObjectURL(blob);
-
 
 document
 .getElementById("readerContent")
@@ -2130,32 +1891,20 @@ ${escapeHTML(book.title)}
 </h2>
 
 <p>
-
-Your EPUB is stored safely
-in your local library.
-
+Your EPUB is stored locally.
 </p>
 
 <p>
-
-Safari does not natively render
-EPUB files inside an HTML reader.
-Use the button below to open it
-with an EPUB reader installed
-on your iPhone.
-
+Safari does not natively display EPUB
+books inside a regular webpage.
 </p>
 
-<br>
-
 <a
-href="${currentEPUBURL}"
+href="${url}"
 target="_blank">
 
 <button class="epubButton">
-
 Open EPUB
-
 </button>
 
 </a>
@@ -2164,674 +1913,57 @@ Open EPUB
 
 `;
 
-
-document
-.getElementById("readerControls")
-.style.display=
-"none";
-
 }
-
-
-
-/* AUDIO PLAYER */
-
-
-function openAudio(book){
-
-cleanupAudio();
-
-
-document
-.getElementById("readerControls")
-.style.display=
-"none";
-
-
-const blob=
-new Blob(
-[book.content],
-{
-type:book.mime||
-"audio/mpeg"
-}
-);
-
-
-currentAudioURL=
-URL.createObjectURL(blob);
-
-
-currentAudio=
-new Audio(
-currentAudioURL
-);
-
-
-currentAudio.preload=
-"metadata";
-
-
-currentAudio.currentTime=
-book.audioPosition||0;
-
-
-document
-.getElementById("readerContent")
-.innerHTML=
-
-`
-
-<div class="audioScreen">
-
-
-<div class="audioArtwork">
-🎧
-</div>
-
-
-<h2>
-
-${escapeHTML(book.title)}
-
-</h2>
-
-
-<p>
-
-${escapeHTML(book.filename)}
-
-</p>
-
-
-<input
-id="audioProgress"
-class="audioProgress"
-type="range"
-min="0"
-max="100"
-value="0"
-step="0.1"
->
-
-
-<div class="audioTimes">
-
-<span id="audioCurrent">
-0:00
-</span>
-
-<span id="audioDuration">
-0:00
-</span>
-
-</div>
-
-
-<button
-id="playButton"
-class="audioMainButton"
-onclick="toggleAudio()">
-
-▶
-
-</button>
-
-
-<div class="audioSkip">
-
-<button
-onclick="skipAudio(-15)">
-
-↶ 15 sec
-
-</button>
-
-<button
-onclick="skipAudio(30)">
-
-30 sec ↷
-
-</button>
-
-</div>
-
-
-<div class="speed">
-
-<button onclick="setSpeed(.75)">
-0.75×
-</button>
-
-<button onclick="setSpeed(1)">
-1×
-</button>
-
-<button onclick="setSpeed(1.25)">
-1.25×
-</button>
-
-<button onclick="setSpeed(1.5)">
-1.5×
-</button>
-
-<button onclick="setSpeed(2)">
-2×
-</button>
-
-</div>
-
-
-<div
-id="audioStatus"
-class="audioStatus">
-
-Ready to listen
-
-</div>
-
-
-</div>
-
-`;
-
-
-currentAudio.addEventListener(
-"loadedmetadata",
-()=>{
-
-book.duration=
-currentAudio.duration;
-
-document
-.getElementById("audioDuration")
-.textContent=
-formatTime(
-currentAudio.duration
-);
-
-currentAudio.currentTime=
-book.audioPosition||0;
-
-updateAudioUI();
-
-dbUpdate(book);
-
-});
-
-
-currentAudio.addEventListener(
-"timeupdate",
-()=>{
-
-if(!currentAudio)
-return;
-
-
-book.audioPosition=
-currentAudio.currentTime;
-
-
-if(
-book.duration
-){
-
-book.progress=
-Math.round(
-(currentAudio.currentTime/
-book.duration)*100
-);
-
-}
-
-
-updateAudioUI();
-
-});
-
-
-currentAudio.addEventListener(
-"play",
-()=>{
-
-document
-.getElementById("playButton")
-.textContent="❚❚";
-
-document
-.getElementById("audioStatus")
-.textContent=
-"Playing";
-
-});
-
-
-currentAudio.addEventListener(
-"pause",
-()=>{
-
-document
-.getElementById("playButton")
-.textContent="▶";
-
-document
-.getElementById("audioStatus")
-.textContent=
-"Paused";
-
-saveAudioProgress();
-
-});
-
-
-currentAudio.addEventListener(
-"ended",
-()=>{
-
-book.progress=100;
-
-book.audioPosition=
-book.duration||0;
-
-document
-.getElementById("playButton")
-.textContent="▶";
-
-document
-.getElementById("audioStatus")
-.textContent=
-"Finished";
-
-saveAudioProgress();
-
-});
-
-
-document
-.getElementById("audioProgress")
-.addEventListener(
-"input",
-function(){
-
-if(!currentAudio)
-return;
-
-if(
-currentAudio.duration
-){
-
-currentAudio.currentTime=
-(
-Number(this.value)/100
-)*
-currentAudio.duration;
-
-}
-
-});
-
-}
-
-
-
-/* AUDIO PLAY */
-
-
-function toggleAudio(){
-
-if(!currentAudio)
-return;
-
-
-if(currentAudio.paused){
-
-currentAudio.play();
-
-}
-else{
-
-currentAudio.pause();
-
-}
-
-}
-
-
-
-/* AUDIO SKIP */
-
-
-function skipAudio(seconds){
-
-if(!currentAudio)
-return;
-
-
-currentAudio.currentTime=
-Math.max(
-0,
-Math.min(
-currentAudio.duration||0,
-currentAudio.currentTime+
-seconds
-)
-);
-
-}
-
-
-
-/* SPEED */
-
-
-function setSpeed(speed){
-
-if(!currentAudio)
-return;
-
-currentAudio.playbackRate=
-speed;
-
-
-document
-.getElementById("audioStatus")
-.textContent=
-"Speed: "+speed+"×";
-
-}
-
-
-
-/* AUDIO UI */
-
-
-function updateAudioUI(){
-
-if(!currentAudio)
-return;
-
-
-const progress=
-currentAudio.duration
-?
-(
-currentAudio.currentTime/
-currentAudio.duration
-)*100
-:
-0;
-
-
-const slider=
-document
-.getElementById("audioProgress");
-
-
-if(slider)
-slider.value=
-progress;
-
-
-const current=
-document
-.getElementById("audioCurrent");
-
-
-if(current)
-current.textContent=
-formatTime(
-currentAudio.currentTime
-);
-
-}
-
-
-
-/* TIME */
-
-
-function formatTime(seconds){
-
-if(
-!seconds ||
-!isFinite(seconds)
-)
-return "0:00";
-
-
-seconds=
-Math.floor(seconds);
-
-
-const minutes=
-Math.floor(
-seconds/60
-);
-
-const secs=
-seconds%60;
-
-
-return minutes+
-":"+
-String(secs)
-.padStart(2,"0");
-
-}
-
-
-
-/* SAVE AUDIO */
-
-
-async function saveAudioProgress(){
-
-if(
-!currentBook ||
-!currentAudio
-)
-return;
-
-
-currentBook.audioPosition=
-currentAudio.currentTime||0;
-
-
-if(currentAudio.duration){
-
-currentBook.duration=
-currentAudio.duration;
-
-currentBook.progress=
-Math.round(
-(
-currentAudio.currentTime/
-currentAudio.duration
-)*100
-);
-
-}
-
-
-try{
-
-await dbUpdate(
-currentBook
-);
-
-}
-catch(e){
-
-console.log(e);
-
-}
-
-}
-
 
 
 /* FONT */
-
 
 function changeFont(amount){
 
 fontSize+=amount;
 
-
 if(fontSize<14)
 fontSize=14;
 
-
 if(fontSize>32)
 fontSize=32;
-
 
 const content=
 document
 .getElementById("readerContent");
 
-
-if(content){
-
+if(content)
 content.style.fontSize=
 fontSize+"px";
 
 }
 
-}
 
-
-
-/* BOOKMARK */
-
-
-async function saveBookmark(){
-
-if(
-!currentBook ||
-(
-currentBook.type!=="TXT" &&
-currentBook.type!=="HTML"
-)
-)
-return;
-
-
-currentBook.bookmark=
-document
-.getElementById("reader")
-.scrollTop;
-
-
-await dbUpdate(
-currentBook
-);
-
-
-alert(
-"🔖 Bookmark saved!"
-);
-
-}
-
-
-
-/* NOTES */
-
-
-function showNotes(){
-
-const notes=
-document
-.getElementById("notes");
-
-
-notes.style.display=
-notes.style.display==="none"
-?
-"block"
-:
-"none";
-
-
-document
-.getElementById("notesText")
-.value=
-currentBook
-?
-(currentBook.notes||"")
-:
-"";
-
-}
-
-
-
-/* SAVE NOTES */
-
-
-async function saveNotes(){
-
-if(!currentBook)
-return;
-
-
-currentBook.notes=
-document
-.getElementById("notesText")
-.value;
-
-
-await dbUpdate(
-currentBook
-);
-
-
-alert(
-"📝 Notes saved!"
-);
-
-}
-
-
-
-/* DARK MODE */
-
+/* DARK */
 
 function toggleDark(){
 
 dark=!dark;
 
-
 const reader=
-document
-.getElementById("reader");
+document.getElementById("reader");
 
 const header=
-document
-.querySelector(".readerHeader");
-
+document.querySelector(
+".readerHeader"
+);
 
 if(dark){
 
-reader.style.background=
-"#191614";
-
-reader.style.color=
-"#eee5dc";
-
+reader.style.background="#191614";
+reader.style.color="#eee5dc";
 header.style.background=
 "rgba(25,22,20,.96)";
 
-}
-else{
+}else{
 
-reader.style.background=
-"#fffaf4";
-
-reader.style.color=
-"#35271f";
-
+reader.style.background="#fffaf4";
+reader.style.color="#35271f";
 header.style.background=
 "rgba(255,250,244,.96)";
 
@@ -2840,128 +1972,110 @@ header.style.background=
 }
 
 
-
 /* CLOSE */
 
+function closeReader(){
 
-async function closeReader(){
+if(currentAudio){
 
-if(
-currentBook &&
-currentBook.type==="AUDIO"
-){
-
-await saveAudioProgress();
+currentAudio.pause();
 
 }
-
-
-if(
-currentBook &&
-(
-currentBook.type==="TXT"||
-currentBook.type==="HTML"
-)
-){
-
-currentBook.bookmark=
-document
-.getElementById("reader")
-.scrollTop;
-
-
-await dbUpdate(
-currentBook
-);
-
-}
-
 
 cleanupAudio();
-
-cleanupURLs();
-
 
 document
 .getElementById("reader")
 .style.display=
 "none";
 
-
 currentBook=null;
 
-
-await refresh();
+render();
 
 }
 
 
+/* DELETE */
+
+async function deleteBook(id){
+
+const book=
+books.find(
+b=>String(b.id)===String(id)
+);
+
+if(!book)return;
+
+if(
+!confirm(
+'Remove "'+
+book.title+
+'" from your library?'
+)
+)
+return;
+
+
+/*
+Audiobooks are only memory objects.
+Books are deleted from IndexedDB.
+*/
+
+if(book.type!=="AUDIO"){
+
+await removeFromDB(book.id);
+
+}
+
+
+if(
+currentBook &&
+String(currentBook.id)===String(id)
+){
+
+closeReader();
+
+}
+
+books=
+books.filter(
+b=>String(b.id)!==String(id)
+);
+
+render();
+
+}
+
 
 /* CLEAN AUDIO */
-
 
 function cleanupAudio(){
 
 if(currentAudio){
 
 try{
-
 currentAudio.pause();
-
-}
-catch(e){}
+}catch(e){}
 
 currentAudio=null;
 
 }
 
-
 if(currentAudioURL){
 
+try{
 URL.revokeObjectURL(
 currentAudioURL
 );
+}catch(e){}
 
 currentAudioURL=null;
 
 }
 
-}
 
-
-
-/* CLEAN URLS */
-
-
-function cleanupURLs(){
-
-if(currentPDFURL){
-
-URL.revokeObjectURL(
-currentPDFURL
-);
-
-currentPDFURL=null;
-
-}
-
-
-if(currentEPUBURL){
-
-URL.revokeObjectURL(
-currentEPUBURL
-);
-
-currentEPUBURL=null;
-
-}
-
-}
-
-
-
-/* READING PROGRESS */
-
+/* READER SCROLL */
 
 document
 .getElementById("reader")
@@ -2971,37 +2085,27 @@ async function(){
 
 if(
 !currentBook ||
-(
-currentBook.type!=="TXT" &&
-currentBook.type!=="HTML"
-)
+currentBook.type==="AUDIO" ||
+currentBook.type==="PDF" ||
+currentBook.type==="EPUB"
 )
 return;
-
 
 const max=
 this.scrollHeight-
 this.clientHeight;
 
-
-if(max<=0)
-return;
-
+if(max<=0)return;
 
 const percent=
 Math.round(
-(
-this.scrollTop/
-max
-)*100
+this.scrollTop/max*100
 );
-
 
 document
 .getElementById("readerProgressBar")
 .style.width=
 percent+"%";
-
 
 if(
 Math.abs(
@@ -3013,19 +2117,19 @@ percent
 currentBook.progress=
 percent;
 
+currentBook.bookmark=
+this.scrollTop;
 
-await dbUpdate(
-currentBook
-);
+try{
+await updateBook(currentBook);
+}catch(e){}
 
 }
 
 });
 
 
-
-/* INITIALIZE */
-
+/* START */
 
 (async function(){
 
@@ -3033,15 +2137,22 @@ try{
 
 await openDB();
 
-await refresh();
+books=
+await getAllBooks();
 
-}
-catch(error){
+books.sort(
+(a,b)=>
+b.added-a.added
+);
+
+render();
+
+}catch(error){
 
 console.error(error);
 
 alert(
-"Unable to initialize the local library."
+"Could not start the Chicken Soup Library."
 );
 
 }
